@@ -1,0 +1,28 @@
+.Refactor {
+    grid-area: content;
+    background-color: white;
+    height: 89vh;
+    text-align: center;
+}
+
+.Inf {
+    position: relative;
+    font-size: large;
+    margin-right: -3vw;
+}
+
+button:hover{
+    background-color: #c70000;
+}
+
+.Refactor-button {
+    position: relative;
+    border-radius: 5px;
+    height: 5vh;
+    width: 35vw;
+    margin: 2vh 2vh;
+    background-color: red;
+    outline: none;
+    color: white;
+    border: 0;
+}
