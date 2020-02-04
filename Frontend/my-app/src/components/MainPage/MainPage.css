@@ -1,25 +1,46 @@
-.Refactor {
+.Main {
     grid-area: content;
     background-color: white;
     height: 89vh;
     text-align: center;
 }
 
-.Inf {
-    position: relative;
-    font-size: large;
+.Menu {
+    grid-area: content;
+    margin: 60px;
+
+}
+
+.Menu-item{
+    grid-area: content;
+    display: inline;
+    padding: 30px;
+    text-align: center;
+}
+
+.Menu-head{
+    margin-top: 3vh;
+    margin-bottom: 4vh;
+}
+
+.Label {
+    margin-top: 15vh;
+    position: center;
+    horiz-align: center;
+    vertical-align: central;
+    font-size: 60px;
     margin-right: -3vw;
 }
 
-button:hover{
+button:hover {
     background-color: #c70000;
 }
 
-.Refactor-button {
+.Try-button {
     position: relative;
     border-radius: 5px;
     height: 5vh;
-    width: 35vw;
+    width: 15vw;
     margin: 2vh 2vh;
     background-color: red;
     outline: none;
