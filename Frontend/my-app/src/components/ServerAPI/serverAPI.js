@@ -12,5 +12,10 @@ export function login(user) {
             }
         }
     });
+}
 
+export function getCurrentUser() {
+    return axios.default.get('http://localhost:8080/api/user/me').then(response => {
+        console.log(response.data);
+    })
 }
