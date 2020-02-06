@@ -22,6 +22,7 @@ class SingUp extends Component {
             password: document.getElementById('password1').value
         }
         singUp(singupuser).then(response => {
+            debugger;
             if (response.data.success) {
                 window.location.assign('http://localhost:3000/login')
             }
@@ -31,7 +32,7 @@ class SingUp extends Component {
     render() {
         return (
             <div className="Registration">
-                <form onSubmit={this.handleSubmitsh}>
+                <form onSubmit={this.handleSubmit}>
                     <div className='Inf'>
                         <text>
                             Регистрация
