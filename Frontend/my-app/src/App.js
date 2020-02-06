@@ -21,7 +21,7 @@ class App extends Component{
         return (
             <BrowserRouter>
                 <div className="Abstract-wrapper">
-                    <AbstractHeader/>
+                    <AbstractHeader isAuthenticated={this.props.isAuthenticated}/>
                     <Route path="/refactoraccount" component={RefactorAccount}/>
                     <Route path="/login" component={Login}/>
                     <Route path='/registration' component={Registration}/>

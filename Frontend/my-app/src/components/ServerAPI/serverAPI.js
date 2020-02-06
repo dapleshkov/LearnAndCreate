@@ -15,7 +15,17 @@ export function login(user) {
 }
 
 export function getCurrentUser() {
-    return axios.default.get('http://localhost:8080/api/user/me').then(response => {
+    const headers = new Headers({
+        'Content-Type': 'application/json',
+    })
+
+    if(localStorage.getItem("accessToken")) {
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem("accessToken"))
+    }
+
+    const defaults = {headers: headers};
+
+    return axios.default.get('http://localhost:8080/api/user/me', defaults).then(response => {
         console.log(response.data);
     })
 }

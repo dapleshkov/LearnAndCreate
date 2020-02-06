@@ -17,6 +17,12 @@ class Login extends Component {
         user.password = document.getElementById('pass').value;
         axios.default.post('http://localhost:8080/api/auth/signin', user).then(response => {
             if (response.status === 200) {
+                localStorage.setItem("accessToken", response.data.accessToken);
+                this.setState({
+                    currentUser: response,
+                    isAuthenticated: true,
+                    isLoading: false
+                });
                 window.location.assign('http://localhost:3000/mainpage')
             } else {
                 if (response.status === 401) {
@@ -26,11 +32,11 @@ class Login extends Component {
                 }
             }
         });
-    }
+    };
 
     handleChange = event => {
         this.setState({name: event.target.value});
-    }
+    };
 
     render() {
         return (
