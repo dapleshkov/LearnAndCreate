@@ -23,14 +23,13 @@ class App extends Component {
 
     render() {
         getCurrentUser().then(response => {
-            debugger;
             user.usernameOrEmail = response.usernameOrEmail;
             user.isAuthenticated = true;
         });
         return (
             <BrowserRouter>
                 <div className="Abstract-wrapper">
-                    <AbstractHeader user={user} onLogout={this.handleLogout}/>
+                    <AbstractHeader user={user}/>
                     <Route path="/refactoraccount" component={RefactorAccount}/>
                     <Route path="/login" render={(props) => <Login user={user}/>}/>
                     <Route path='/registration' render={(props) => <Registration user={user}/>}/>
