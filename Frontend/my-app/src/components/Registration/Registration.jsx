@@ -31,7 +31,7 @@ class SingUp extends Component {
     render() {
         return (
             <div className="Registration">
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmitsh}>
                     <div className='Inf'>
                         <text>
                             Регистрация
