@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import './Authorization.css';
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import user from "../States/Auth_Reducer"
-import * as axios from "axios";
-import {getCurrentUser} from "../ServerAPI/serverAPI";
+import {login} from "../ServerAPI/serverAPI";
 
 
 class Login extends Component {
@@ -15,14 +14,11 @@ class Login extends Component {
         event.preventDefault();
         user.usernameOrEmail = document.getElementById('login').value;
         user.password = document.getElementById('pass').value;
-        axios.default.post('http://localhost:8080/api/auth/signin', user).then(response => {
+        login().then(response => {
             if (response.status === 200) {
-                localStorage.setItem("accessToken", response.data.accessToken);
-                this.setState({
-                    currentUser: response,
-                    isAuthenticated: true,
-                    isLoading: false
-                });
+                localStorage.setItem('accessToken', response.data.accessToken);
+                user.isAuthenticated = true;
+                alert(user.isAuthenticated);
                 window.location.assign('http://localhost:3000/mainpage')
             } else {
                 if (response.status === 401) {

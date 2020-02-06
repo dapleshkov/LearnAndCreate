@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import './AbstractHeader.css'
+import user from "../States/Auth_Reducer";
 import {NavLink} from "react-router-dom";
 import {getCurrentUser} from "../ServerAPI/serverAPI";
+
 
 class AbstractHeader extends Component {
     constructor(props) {
@@ -11,14 +13,7 @@ class AbstractHeader extends Component {
 
     render() {
         let menuItems;
-        getCurrentUser().then(response => {
-            this.setState({
-                currentUser: response,
-                isAuthenticated: true,
-                isLoading: false
-            });
-        });
-        if (localStorage.getItem("accessToken")) {
+        if (user.isAuthenticated) {
             menuItems = [
                 <text>
                     profile
@@ -32,9 +27,9 @@ class AbstractHeader extends Component {
             ];
         } else {
             menuItems = [
-                    <NavLink className="Enter" to='/login'>Вход</NavLink>,
-                    < NavLink className="Reg" to='/registration'> Регистрация </NavLink>
-        ];
+                <NavLink className="Enter" to='/login'>Вход</NavLink>,
+                < NavLink className="Reg" to='/registration'> Регистрация </NavLink>
+            ];
         }
 
         return (
@@ -45,7 +40,7 @@ class AbstractHeader extends Component {
                 </div>
             </header>
         )
-        };
-        }
+    };
+}
 
-        export default AbstractHeader;
+export default AbstractHeader;

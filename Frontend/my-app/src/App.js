@@ -6,18 +6,20 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Registration from "./components/Registration/Registration";
 import RefactorAccount from "./components/Refactor/RefactorAccount";
 import MainPage from "./components/MainPage/MainPage";
+import {getCurrentUser} from "./components/ServerAPI/serverAPI";
+import user from "./components/States/Auth_Reducer";
 
 class App extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-            currentUser: null,
-            isAuthenticated: false,
-            isLoading: false
-        }
     }
 
     render () {
+        getCurrentUser().then(response => {
+            debugger;
+            user.usernameOrEmail = response.usernameOrEmail;
+            user.isAuthenticated = true;
+        });
         return (
             <BrowserRouter>
                 <div className="Abstract-wrapper">
