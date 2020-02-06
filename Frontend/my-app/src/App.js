@@ -27,7 +27,7 @@ class App extends Component {
                     <AbstractHeader isAuthenticated={user.isAuthenticated}/>
                     <Route path="/refactoraccount" component={RefactorAccount}/>
                     <Route path="/login" render={(props) => <Login user={user}/>}/>
-                    <Route path='/registration' component={Registration}/>
+                    <Route path='/registration' render={(props) => <Registration user={user}/>}/>
                     <Route path='/mainpage' component={MainPage}/>
                 </div>
             </BrowserRouter>

@@ -17,7 +17,6 @@ class Login extends Component {
             if (response.status === 200) {
                 localStorage.setItem('accessToken', response.data.accessToken);
                 this.props.user.isAuthenticated = true;
-               // alert(this.props.user.isAuthenticated);
                 window.location.assign('http://localhost:3000/mainpage')
             } else {
                 if (response.status === 401) {
