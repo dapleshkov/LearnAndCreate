@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './Authorization.css';
 import {NavLink} from 'react-router-dom';
-import user from "../States/Auth_Reducer"
 import {login} from "../ServerAPI/serverAPI";
 
 
@@ -12,19 +11,20 @@ class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        user.usernameOrEmail = document.getElementById('login').value;
-        user.password = document.getElementById('pass').value;
-        login().then(response => {
+        this.props.user.usernameOrEmail = document.getElementById('login').value;
+        this.props.user.password = document.getElementById('pass').value;
+        login(this.props.user).then(response => {
             if (response.status === 200) {
                 localStorage.setItem('accessToken', response.data.accessToken);
-                user.isAuthenticated = true;
-                alert(user.isAuthenticated);
+                this.props.user.isAuthenticated = true;
+               // alert(this.props.user.isAuthenticated);
                 window.location.assign('http://localhost:3000/mainpage')
             } else {
                 if (response.status === 401) {
                     alert('Your Username or Password is incorrect. Please try again!');
                 } else {
-                    alert('Sorry! Something went wrong. Please try again!');
+                    alert(response.status);
+                    //alert('Sorry! Something went wrong. Please try again!');
                 }
             }
         });

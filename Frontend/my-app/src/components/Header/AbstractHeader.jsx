@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import './AbstractHeader.css'
-import user from "../States/Auth_Reducer";
 import {NavLink} from "react-router-dom";
 import {getCurrentUser} from "../ServerAPI/serverAPI";
 
@@ -13,7 +12,7 @@ class AbstractHeader extends Component {
 
     render() {
         let menuItems;
-        if (user.isAuthenticated) {
+        if (this.props.isAuthenticated) {
             menuItems = [
                 <text>
                     profile

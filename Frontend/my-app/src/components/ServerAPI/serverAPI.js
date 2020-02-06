@@ -1,7 +1,6 @@
 import * as axios from "axios";
-import user from "../States/Auth_Reducer";
 
-export function login() {
+export function login(user) {
     return axios.default.post('http://localhost:8080/api/auth/signin', user).then(response => {
         return response;
     }).catch(function (error) {
