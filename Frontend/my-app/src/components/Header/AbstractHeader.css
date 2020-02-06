@@ -5,6 +5,10 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.Header-components{
+    margin: 1%;
+}
+
 .Header-text {
 
     position: relative;
@@ -12,7 +16,6 @@
     font-style: normal;
     font-weight: normal;
     color: #42444C;
-    margin: 0.5% 0.5% 0.5% 0.5%;
     left: 2%;
     top: 30%;
     font-size: 100%;
@@ -21,9 +24,9 @@
 .Reg {
     position: relative;
     right: 3%;
+    padding: 6px 10px;
     outline: none;
     height: 40%;
-    margin: 0.5% 0.5% 0.5% 0.5%;
     background: #FF1A2E;
     border-radius: 6px;
     color: white;
@@ -35,7 +38,7 @@
 
 .Enter{
     position: relative;
-    margin: 0.5% 0.5% 0.5% 0.5%;
+    padding: 6px 10px;
     right: 3%;
     top:15%;
     height: 40%;

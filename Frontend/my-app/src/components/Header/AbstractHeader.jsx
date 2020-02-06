@@ -27,14 +27,14 @@ class AbstractHeader extends Component {
             ];
         } else {
             menuItems = [
+                <NavLink className="Reg" to='/registration'> Регистрация </NavLink>,
                 <NavLink className="Enter" to='/login'>Вход</NavLink>,
-                < NavLink className="Reg" to='/registration'> Регистрация </NavLink>
             ];
         }
 
         return (
             <header className="Absrtact-header">
-                <div>
+                <div className="Header-components">
                     <text className="Header-text">LEARN AND CREATE</text>
                     {menuItems}
                 </div>
