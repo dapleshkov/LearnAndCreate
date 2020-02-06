@@ -1,28 +1,23 @@
 import React, {Component} from "react";
 import './AbstractHeader.css'
 import {NavLink} from "react-router-dom";
-import {getCurrentUser} from "../ServerAPI/serverAPI";
-
 
 class AbstractHeader extends Component {
     constructor(props) {
         super(props);
     }
 
+    handleClick = event => {
+        localStorage.removeItem("accessToken");
+        this.props.user.isAuthenticated = false;
+        window.location.assign('http://localhost:3000/mainpage');
+    };
 
     render() {
         let menuItems;
-        if (this.props.isAuthenticated) {
+        if (this.props.user.isAuthenticated) {
             menuItems = [
-                <text>
-                    profile
-                </text>,
-                <text>
-                    icon
-                </text>,
-                <text>
-                    menu
-                </text>
+                <NavLink className="Logout" to="/mainpage" onClick={this.handleClick}>Выход</NavLink>
             ];
         } else {
             menuItems = [
