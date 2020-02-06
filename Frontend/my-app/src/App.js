@@ -12,7 +12,13 @@ import user from "./components/States/Auth_Reducer";
 class App extends Component {
     constructor(props) {
         super(props);
-        user.isAuthenticated = localStorage.getItem('accessToken');
+        if(localStorage.getItem('accessToken')!=null){
+            user.isAuthenticated=localStorage.getItem('accessToken');
+        }
+        else
+        {
+            user.isAuthenticated=false;
+        }
     }
 
     render() {
@@ -24,7 +30,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div className="Abstract-wrapper">
-                    <AbstractHeader isAuthenticated={user.isAuthenticated}/>
+                    <AbstractHeader user={user} onLogout={this.handleLogout}/>
                     <Route path="/refactoraccount" component={RefactorAccount}/>
                     <Route path="/login" render={(props) => <Login user={user}/>}/>
                     <Route path='/registration' component={Registration}/>

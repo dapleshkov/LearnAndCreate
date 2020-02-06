@@ -49,3 +49,8 @@
     outline: none;
     float: right;
 }
+
+.Logout{
+    float: right;
+    text-decoration: none;
+}
