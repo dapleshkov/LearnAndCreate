@@ -1,5 +1,6 @@
 package com.lac.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -38,11 +39,24 @@ public class User {
     @Size(max = 100)
     private String password;
 
+    @OneToOne
+    @JoinTable(name = "user_image",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "file_id"))
+    private Image image;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @JoinTable(name = "user_courses",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private Set<Course> courses = new HashSet<>();
 
     public User() {
 
@@ -79,6 +93,22 @@ public class User {
         return roles;
     }
 
+    public Image getImage() {
+        return image;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -101,5 +131,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void subscribe(Course course) {
+        courses.add(course);
+    }
+
+    public void unsubscribe(Course course) {
+        courses.remove(course);
     }
 }
