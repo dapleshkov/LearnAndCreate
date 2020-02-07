@@ -23,7 +23,8 @@ public class ImageService {
 
     private final static String[] extensions = {"jpeg", "jpg", "img"};
 
-    private final static String STORAGE_PATH = "C:\\Users\\Admin\\IdeaProjects\\repository_test\\src\\main\\resources\\storage\\images";
+    //todo::replace it with your own storage path
+    private final static String STORAGE_PATH = "C:\\Users\\Admin\\IdeaProjects\\17.learn-and-create\\Backend\\src\\main\\resources\\storage\\images";
 
     public Image store(MultipartFile multipartFile) throws IOException {
         if (!Arrays.asList(extensions).contains(FilenameUtils.getExtension(multipartFile.getOriginalFilename())))

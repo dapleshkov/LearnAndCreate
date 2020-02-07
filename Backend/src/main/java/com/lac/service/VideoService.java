@@ -23,7 +23,8 @@ public class VideoService {
 
     private final static String[] extensions = {"mp4", "avi"};
 
-    private final static String STORAGE_PATH = "C:\\Users\\Admin\\IdeaProjects\\repository_test\\src\\main\\resources\\storage\\videos";
+    //todo::replace it with your own storage path
+    private final static String STORAGE_PATH = "C:\\Users\\Admin\\IdeaProjects\\17.learn-and-create\\Backend\\src\\main\\resources\\storage\\videos";
 
     public Video store(MultipartFile multipartFile) throws IOException {
         if (!Arrays.asList(extensions).contains(FilenameUtils.getExtension(multipartFile.getOriginalFilename())))
