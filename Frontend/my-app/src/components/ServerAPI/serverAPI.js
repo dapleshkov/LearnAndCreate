@@ -26,3 +26,22 @@ export function getCurrentUser() {
         return error.response;
     });
 }
+
+
+export function checkEmailAvailability(email) {
+    return axios.default.get('http://localhost:8080/api/user/checkEmailAvailability?email=' + email,).then(response => {
+        return response;
+    }).catch(function (error) {
+        console.error(error);
+        return error.response;
+    });
+}
+
+export function checkUsernameAvailability(username) {
+    return axios.default.get('http://localhost:8080/api/user/checkUsernameAvailability?username=' + username,).then(response => {
+        return response;
+    }).catch(function (error) {
+        console.error(error);
+        return error.response;
+    });
+}

@@ -1,9 +1,9 @@
 let loginuser = {
-    name: null,
-    username: null,
-    email: null,
-    usernameOrEmail: null,
-    password: null,
+    name: '',
+    username: '',
+    email: '',
+    usernameOrEmail: '',
+    password: '',
     isAuthenticated: false
 };
 export default loginuser;
