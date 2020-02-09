@@ -33,7 +33,7 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private UserService userService;
+    private  UserService userService;
 
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
@@ -44,37 +44,28 @@ public class UserController {
 
     @PostMapping("/user/me/edit/name")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> changeName(@CurrentUser UserPrincipal currentUser,
+    public ResponseEntity<?> editName(@CurrentUser UserPrincipal currentUser,
                                          @RequestParam(name = "name") String name) {
-        if (name.length() > 20)
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        User user = userRepository.findByUserId(currentUser.getUserId());
-        user.setName(name);
-        userRepository.save(user);
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        if(userService.editName(currentUser, name))
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/user/me/edit/username")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> editUsername(@CurrentUser UserPrincipal currentUser,
                                           @RequestParam(name = "username") String username) {
-        if(userService.editUsername(currentUser, username)){
+        if(userService.editUsername(currentUser, username))
             return new ResponseEntity<>(HttpStatus.OK);
-        }
         return new  ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("user/me/edit/password")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> changePassword(@CurrentUser UserPrincipal currentUser,
+    public ResponseEntity<?> editPassword(@CurrentUser UserPrincipal currentUser,
                                             @RequestParam(name = "password") String password) {
-        if (password.length() < 4 || password.length() > 20)
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
-        User user = userRepository.findByUserId(currentUser.getUserId());
-        user.setPassword(passwordEncoder.encode(password));
-        userRepository.save(user);
-
+        if(userService.editPassword(currentUser, password))
+            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
