@@ -7,6 +7,7 @@ import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
 import com.lac.security.UserPrincipal;
 import com.lac.service.ImageService;
+import com.lac.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +32,9 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<User> getCurrentUser(@CurrentUser UserPrincipal currentUser) {
@@ -52,17 +56,12 @@ public class UserController {
 
     @PostMapping("/user/me/edit/username")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> changeUsername(@CurrentUser UserPrincipal currentUser,
-                                            @RequestParam(name = "username") String username) {
-        if (username.length() > 15 || username.length() < 4)
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        if (userRepository.existsByUsernameOrEmail(username, username))
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
-        User user = userRepository.findByUserId(currentUser.getUserId());
-        user.setUsername(username);
-        userRepository.save(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> editUsername(@CurrentUser UserPrincipal currentUser,
+                                          @RequestParam(name = "username") String username) {
+        if(userService.editUsername(currentUser, username)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new  ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("user/me/edit/password")
