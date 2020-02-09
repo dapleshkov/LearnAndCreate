@@ -39,3 +39,8 @@ button:hover{
     color: white;
     border: 0;
 }
+.help{
+    color:red;
+    position: relative;
+    font-size: small;
+}

@@ -68,11 +68,11 @@ class SingUp extends Component {
     render() {
         return (
             <div className="Registration">
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handleSubmit} className="signup-form">
                     <div className="Inf">
                         <text>Регистрация</text>
                     </div>
-                    <Form.Item
+                    <Form.Item className='help'
                         validateStatus={this.state.name.validateStatus}
                         help={this.state.name.errorMsg}>
                         <input className="Login"
@@ -82,49 +82,49 @@ class SingUp extends Component {
                                value={this.state.name.value}
                                onChange={(event) => this.handleInputChange(event, this.validateName)}/>
                     </Form.Item>
-                    <Form.Item
-                        hasFeedback
+                    <Form.Item className='help'
                         validateStatus={this.state.username.validateStatus}
                         help={this.state.username.errorMsg}>
-                        <input className="Login"
-                               id="username"
-                               placeholder='username'
-                               name="username"
-                               autoComplete='off'
-                               value={this.state.username.value}
-                               onBlur={this.validateUsernameAvailability}
-                               onChange={(event) => this.handleInputChange(event, this.validateUsername)}/>
-                    </Form.Item>
-                    <Form.Item
-                        hasFeedback
-                        validateStatus={this.state.email.validateStatus}
-                        help={this.state.email.errorMsg}>
-                        <input className="Login"
-                               id="mail"
-                               name="email"
-                               placeholder='email'
-                               type='email'
-                               autoComplete='off'
-                               value={this.state.email.value}
-                               onBlur={this.validateEmailAvailability}
-                               onChange={(event) => this.handleInputChange(event, this.validateEmail)}/>
-                    </Form.Item>
-                    <Form.Item>
-                        <input className='Password'
-                               type='password'
-                               placeholder='Пароль'
-                               name="password"
-                               value={this.state.password.value}
-                               onChange={(event) => this.handleInputChange(event, this.validatePassword)}
-                               id="password"/>
-                    </Form.Item>
-                    <Form.Item>
-                        <button className='Register'>
-                            Зарегистрироваться
-                        </button>
-                    </Form.Item>
-                </Form>
-            </div>
+                    <input className="Login"
+                           id="username"
+                           placeholder='username'
+                           name="username"
+                           autoComplete='off'
+                           value={this.state.username.value}
+                           onBlur={this.validateUsernameAvailability}
+                           onChange={(event) => this.handleInputChange(event, this.validateUsername)}/>
+                </Form.Item>
+                <Form.Item className='help'
+                    validateStatus={this.state.email.validateStatus}
+                    help={this.state.email.errorMsg}>
+                    <input className="Login"
+                           id="mail"
+                           name="email"
+                           placeholder='email'
+                           type='email'
+                           autoComplete='off'
+                           value={this.state.email.value}
+                           onBlur={this.validateEmailAvailability}
+                           onChange={(event) => this.handleInputChange(event, this.validateEmail)}/>
+                </Form.Item>
+                <Form.Item className='help'
+                    validateStatus={this.state.password.validateStatus}
+                    help={this.state.password.errorMsg}>
+                    <input className='Password'
+                           type='password'
+                           placeholder='Пароль'
+                           name="password"
+                           value={this.state.password.value}
+                           onChange={(event) => this.handleInputChange(event, this.validatePassword)}
+                           id="password"/>
+                </Form.Item>
+                <Form.Item>
+                    <button className='Register'>
+                        Зарегистрироваться
+                    </button>
+                </Form.Item>
+            </Form>
+            < /div>
         );
     }
 
