@@ -26,12 +26,12 @@ public class User {
     private String name;
 
     @NotBlank
-    @NaturalId
+    @NaturalId(mutable = true)
     @Size(min = 4, max = 15)
     private String username;
 
     @NotBlank
-    @NaturalId
+    @NaturalId(mutable = true)
     @Email
     private String email;
 
