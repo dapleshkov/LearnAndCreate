@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.swing.*;
 import java.io.IOException;
 
 @RestController
@@ -42,25 +43,25 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
-    @PostMapping("/user/me/edit/name")
+    @PutMapping("/user/me/edit/name")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> editName(@CurrentUser UserPrincipal currentUser,
                                          @RequestParam(name = "name") String name) {
         if(userService.editName(currentUser, name))
-            return new ResponseEntity<Void>(HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Name was edited successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Name was not edited. Name is incorrect", HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("/user/me/edit/username")
+    @PutMapping("/user/me/edit/username")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> editUsername(@CurrentUser UserPrincipal currentUser,
                                           @RequestParam(name = "username") String username) {
         if(userService.editUsername(currentUser, username))
-            return new ResponseEntity<>(HttpStatus.OK);
-        return new  ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Username was edited successfully",HttpStatus.OK);
+        return new  ResponseEntity<>("Username was not edited. The username is already taken",HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("user/me/edit/password")
+    @PutMapping("user/me/edit/password")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> editPassword(@CurrentUser UserPrincipal currentUser,
                                             @RequestParam(name = "password") String password) {
