@@ -2,6 +2,7 @@ package com.lac.controller;
 
 import com.lac.model.Image;
 import com.lac.model.User;
+import com.lac.payload.ApiResponse;
 import com.lac.payload.UploadFileResponse;
 import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
@@ -48,8 +49,8 @@ public class UserController {
     public ResponseEntity<?> editName(@CurrentUser UserPrincipal currentUser,
                                          @RequestParam(name = "name") String name) {
         if(userService.editName(currentUser, name))
-            return new ResponseEntity<>("Name was edited successfully", HttpStatus.OK);
-        return new ResponseEntity<>("Name was not edited. Name is incorrect", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse(true, "Name was edited successfully"), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(false, "Name was not edited. Name is incorrect"), HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("/user/me/edit/username")
@@ -57,8 +58,8 @@ public class UserController {
     public ResponseEntity<?> editUsername(@CurrentUser UserPrincipal currentUser,
                                           @RequestParam(name = "username") String username) {
         if(userService.editUsername(currentUser, username))
-            return new ResponseEntity<>("Username was edited successfully",HttpStatus.OK);
-        return new  ResponseEntity<>("Username was not edited. The username is already taken",HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse(true, "Username was edited successfully"), HttpStatus.OK);
+        return new  ResponseEntity<>(new ApiResponse(false, "Username was not edited. The username is already taken"), HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("user/me/edit/password")
@@ -66,8 +67,8 @@ public class UserController {
     public ResponseEntity<?> editPassword(@CurrentUser UserPrincipal currentUser,
                                             @RequestParam(name = "password") String password) {
         if(userService.editPassword(currentUser, password))
-            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(new ApiResponse(true, "Password was edited successfully"), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(false, "Password was not edited. Password is incorrect"), HttpStatus.BAD_REQUEST);
 
     }
 
