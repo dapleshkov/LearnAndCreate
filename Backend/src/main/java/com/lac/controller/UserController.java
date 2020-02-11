@@ -57,9 +57,12 @@ public class UserController {
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> editUsername(@CurrentUser UserPrincipal currentUser,
                                           @RequestParam(name = "username") String username) {
+
         if(userService.editUsername(currentUser, username))
             return new ResponseEntity<>(new ApiResponse(true, "Username was edited successfully"), HttpStatus.OK);
-        return new  ResponseEntity<>(new ApiResponse(false, "Username was not edited. The username is already taken"), HttpStatus.BAD_REQUEST);
+        if (userRepository.existsByUsername(username))
+            return new ResponseEntity<>(new ApiResponse(false, "Username was not edited. The username is already taken"), HttpStatus.BAD_REQUEST);
+        return new  ResponseEntity<>(new ApiResponse(false, "Username was not edited. The username is incorrect"), HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("user/me/edit/password")

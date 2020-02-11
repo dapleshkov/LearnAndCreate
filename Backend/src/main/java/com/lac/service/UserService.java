@@ -20,8 +20,6 @@ public class UserService {
     public boolean editUsername(UserPrincipal currentUser, String username){
         if (username.length() > 15 || username.length() < 4)
             return false;
-        if (userRepository.existsByUsernameOrEmail(username, username))
-            return false;
 
         User user = userRepository.findByUserId(currentUser.getUserId());
         user.setUsername(username);
