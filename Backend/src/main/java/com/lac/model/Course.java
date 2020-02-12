@@ -44,7 +44,7 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "file_id"))
     private Set<Video> videos = new HashSet<>();
 
-    
+
     @OneToMany(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinTable(name = "course_lessons",
