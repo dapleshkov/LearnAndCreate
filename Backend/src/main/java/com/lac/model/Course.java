@@ -39,7 +39,8 @@ public class Course {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JsonIgnore
-    @JoinTable(name = "course_video", joinColumns = @JoinColumn(name = "course_id"),
+    @JoinTable(name = "course_video",
+            joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "file_id"))
     private Set<Video> videos = new HashSet<>();
 
