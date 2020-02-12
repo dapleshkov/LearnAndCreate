@@ -1,16 +1,23 @@
-import React from "react";
+import React, {Component} from "react";
 import "./MainPage.css"
 
-function MainPage() {
-    return (
-        <div className="Main">
-            <Base/>
-            <Menu/>
-        </div>);
+class MainPage extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+
+    render() {
+        return (
+            <div className="Main">
+                <Base/>
+                <Menu/>
+            </div>);
+    }
 }
 
 function Base() {
-    return (/*здесь добавить картинку как фон*/
+    return (
         <div className="Label">
             <div>
                 <text fontSize="60">
@@ -29,7 +36,7 @@ function Base() {
 function Menu() {
     return (
         <div className="Menu">
-            <div className="Menu-head"> Открытый доступ ко всем направлениям искусства </div>
+            <div className="Menu-head"> Открытый доступ ко всем направлениям искусства</div>
             <MenuItem name="Все категории"/>
             <MenuItem name="Дизайн"/>
             <MenuItem name="Каллиграфия"/>
