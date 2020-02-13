@@ -16,10 +16,6 @@ class App extends Component {
     }
 
     render() {
-        getCurrentUser().then(response => {
-            user.isAuthenticated = true;
-            user.username = response.username;
-        });
         return (
             <BrowserRouter>
                 <div className="Abstract-wrapper">
@@ -29,7 +25,6 @@ class App extends Component {
                     <Route path='/registration' render={(props) => <Registration user={user}/>}/>
                     <Route path='/mainpage' component={MainPage}/>
                     <Route path='/users/:username' render={(props) => <UserAccount user={user}/>}/>
-                    <Route path='' component={MainPage}/>
                 </div>
             </BrowserRouter>
         );

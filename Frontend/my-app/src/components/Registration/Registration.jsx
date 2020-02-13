@@ -58,12 +58,19 @@ class SingUp extends Component {
         }
         singUp(singupuser).then(response => {
             debugger;
-            if (response.data.success) {
+            if (response.success) {
                 window.location.assign('http://localhost:3000/login')
             }
         });
     };
 
+    isFormInvalid() {
+        return !(this.state.name.validateStatus === 'success' &&
+            this.state.username.validateStatus === 'success' &&
+            this.state.email.validateStatus === 'success' &&
+            this.state.password.validateStatus === 'success'
+        );
+    }
 
     render() {
         return (
@@ -118,7 +125,8 @@ class SingUp extends Component {
                            id="password"/>
                 </Form.Item>
                 <Form.Item>
-                    <button className='Register'>
+                    <button className='Register'
+                            disabled={this.isFormInvalid()}>
                         Зарегистрироваться
                     </button>
                 </Form.Item>

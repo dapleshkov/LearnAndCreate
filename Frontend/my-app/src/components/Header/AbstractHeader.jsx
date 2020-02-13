@@ -16,7 +16,6 @@ class AbstractHeader extends Component {
 
     render() {
         let menuItems;
-        alert(this.props.user.username);
         if (this.props.user.isAuthenticated) {
             menuItems = [
                 <NavLink className="Logout" to="/mainpage" onClick={this.handleClickOut}>Выход</NavLink>,

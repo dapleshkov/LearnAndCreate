@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Authorization.css';
 import {NavLink} from 'react-router-dom';
 import {login} from "../ServerAPI/serverAPI";
+import {loadUser} from "../States/Auth_Reducer";
 
 
 class Login extends Component {
@@ -11,20 +12,19 @@ class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.user.usernameOrEmail = document.getElementById('login').value;
-        this.props.user.password = document.getElementById('pass').value;
-        login(this.props.user).then(response => {
-            if (response.status === 200) {
-                localStorage.setItem('accessToken', response.data.accessToken);
-                this.props.user.isAuthenticated = true;
-                window.location.assign('http://localhost:3000/mainpage')
+        let user={
+            usernameOrEmail : document.getElementById('login').value,
+        password:document.getElementById('pass').value
+        };
+        login(user).then(response => {
+            localStorage.setItem('accessToken', response.accessToken);
+            loadUser(this.props.user);
+            window.location.assign('http://localhost:3000/mainpage')
+        }).catch(error => {
+            if (error.status === 401) {
+                alert('Your Username or Password is incorrect. Please try again!');
             } else {
-                if (response.status === 401) {
-                    alert('Your Username or Password is incorrect. Please try again!');
-                } else {
-                    alert(response.status);
-                    //alert('Sorry! Something went wrong. Please try again!');
-                }
+                alert('Sorry! Something went wrong. Please try again!');
             }
         });
     };
