@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import './AbstractHeader.css'
 import {NavLink} from "react-router-dom";
 import UserAccount from "../UserAccount/UserAccount";
-import user from "../States/Auth_Reducer";
 
 class AbstractHeader extends Component {
     constructor(props) {
@@ -19,7 +18,7 @@ class AbstractHeader extends Component {
         if (this.props.isAuthenticated) {
             menuItems = [
                 <NavLink className="Logout" to="/mainpage" onClick={this.handleClickOut}>Выход</NavLink>,
-                //<NavLink className="Logout" to ={'http://localhost:3000/users/' + this.props.user.username}>Личный кабинет</NavLink>,
+                <NavLink className="Logout"  to="/">Личный кабинет</NavLink>,
             ];
         } else {
             menuItems = [
@@ -30,7 +29,7 @@ class AbstractHeader extends Component {
         return (
             <header className="Absrtact-header">
                 <div className="Header-components">
-                    <text className="Header-text">LEARN AND CREATE</text>
+                    <a className="Header-text" accessKey="/mainpage">LEARN AND CREATE</a>
                     {menuItems}
                 </div>
             </header>

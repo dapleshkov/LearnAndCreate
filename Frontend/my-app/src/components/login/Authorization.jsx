@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './Authorization.css';
 import {NavLink} from 'react-router-dom';
 import {login} from "../ServerAPI/serverAPI";
-import {loadUser} from "../States/Auth_Reducer";
 
 
 class Login extends Component {
@@ -12,9 +11,9 @@ class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        let user={
-            usernameOrEmail : document.getElementById('login').value,
-        password:document.getElementById('pass').value
+        let user = {
+            usernameOrEmail: document.getElementById('login').value,
+            password: document.getElementById('pass').value
         };
         login(user).then(response => {
             localStorage.setItem('accessToken', response.accessToken);

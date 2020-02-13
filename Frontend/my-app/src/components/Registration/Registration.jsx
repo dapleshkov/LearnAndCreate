@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import "./Registration.css";
-import user from "../States/Auth_Reducer";
 import {checkEmailAvailability, checkUsernameAvailability, login, singUp} from "../ServerAPI/serverAPI";
 import {Form} from "antd";
 import {
@@ -57,7 +56,6 @@ class SingUp extends Component {
             password: document.getElementById('password').value
         }
         singUp(singupuser).then(response => {
-            debugger;
             if (response.success) {
                 window.location.assign('http://localhost:3000/login')
             }
