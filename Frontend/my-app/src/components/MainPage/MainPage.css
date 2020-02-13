@@ -1,17 +1,16 @@
 .Main {
-    width:auto; max-width:100%; height:auto;
     background: url(../../sourses/mainpage_pics/main_back.png) no-repeat top;
+    background-size: 100%;
     grid-area: content;
-    /*height: 95vh;*/
+    height: 95vh;
     text-align: center;
     margin-top: 0;
 }
 
 
 .Menu {
-    margin-top: 20%;
+    margin-top: 15%;
     grid-area: content;
-    //margin: 60px;
 }
 
 .Menu-item{
@@ -27,6 +26,7 @@
 }
 
 .Label {
+    width: 100%;
     color: white;
     margin-top: 15vh;
     position: center;
