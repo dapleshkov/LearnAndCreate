@@ -52,5 +52,6 @@
 
 .Logout{
     float: right;
+    margin: 2px 2px;
     text-decoration: none;
 }

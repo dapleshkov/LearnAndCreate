@@ -8,23 +8,17 @@ import RefactorAccount from "./components/Refactor/RefactorAccount";
 import MainPage from "./components/MainPage/MainPage";
 import {getCurrentUser} from "./components/ServerAPI/serverAPI";
 import user from "./components/States/Auth_Reducer";
+import UserAccount from "./components/UserAccount/UserAccount";
 
 class App extends Component {
     constructor(props) {
         super(props);
-        if(localStorage.getItem('accessToken')!=null){
-            user.isAuthenticated=localStorage.getItem('accessToken');
-        }
-        else
-        {
-            user.isAuthenticated=false;
-        }
     }
 
     render() {
         getCurrentUser().then(response => {
-            user.usernameOrEmail = response.usernameOrEmail;
             user.isAuthenticated = true;
+            user.username = response.username;
         });
         return (
             <BrowserRouter>
@@ -34,6 +28,8 @@ class App extends Component {
                     <Route path="/login" render={(props) => <Login user={user}/>}/>
                     <Route path='/registration' render={(props) => <Registration user={user}/>}/>
                     <Route path='/mainpage' component={MainPage}/>
+                    <Route path='/users/:username' render={(props) => <UserAccount user={user}/>}/>
+                    <Route path='' component={MainPage}/>
                 </div>
             </BrowserRouter>
         );

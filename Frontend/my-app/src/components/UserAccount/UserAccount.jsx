@@ -1,13 +1,17 @@
-import React from "react";
+import React, {Component} from "react";
 
-function UserAccount(){
-    return (
-      <div>
-          Account
-          <div>
-
-          </div>
-      </div>
-    );
+class UserAccount extends Component{
+    constructor(props)
+    {
+        super(props);
+    }
+    render(){
+        alert(this.props.user.name);
+        return (
+            <div>
+                this is user account
+            </div>
+        );
+    }
 }
 export default UserAccount;

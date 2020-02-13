@@ -67,24 +67,23 @@ class SingUp extends Component {
 
     render() {
         return (
-            <div className="Registration">
-                <Form onSubmit={this.handleSubmit} className="signup-form">
-                    <div className="Inf">
-                        <text>Регистрация</text>
-                    </div>
-                    <Form.Item className='help'
-                        validateStatus={this.state.name.validateStatus}
-                        help={this.state.name.errorMsg}>
-                        <input className="Login"
-                               id="name"
-                               name="name"
-                               placeholder='Имя и фамилия'
-                               value={this.state.name.value}
-                               onChange={(event) => this.handleInputChange(event, this.validateName)}/>
-                    </Form.Item>
-                    <Form.Item className='help'
-                        validateStatus={this.state.username.validateStatus}
-                        help={this.state.username.errorMsg}>
+            <Form onSubmit={this.handleSubmit} className="Registration">
+                <div className="Inf">
+                    <text>Регистрация</text>
+                </div>
+                <Form.Item className='help'
+                           validateStatus={this.state.name.validateStatus}
+                           help={this.state.name.errorMsg}>
+                    <input className="Login"
+                           id="name"
+                           name="name"
+                           placeholder='Имя и фамилия'
+                           value={this.state.name.value}
+                           onChange={(event) => this.handleInputChange(event, this.validateName)}/>
+                </Form.Item>
+                <Form.Item className='help'
+                           validateStatus={this.state.username.validateStatus}
+                           help={this.state.username.errorMsg}>
                     <input className="Login"
                            id="username"
                            placeholder='username'
@@ -95,8 +94,8 @@ class SingUp extends Component {
                            onChange={(event) => this.handleInputChange(event, this.validateUsername)}/>
                 </Form.Item>
                 <Form.Item className='help'
-                    validateStatus={this.state.email.validateStatus}
-                    help={this.state.email.errorMsg}>
+                           validateStatus={this.state.email.validateStatus}
+                           help={this.state.email.errorMsg}>
                     <input className="Login"
                            id="mail"
                            name="email"
@@ -108,8 +107,8 @@ class SingUp extends Component {
                            onChange={(event) => this.handleInputChange(event, this.validateEmail)}/>
                 </Form.Item>
                 <Form.Item className='help'
-                    validateStatus={this.state.password.validateStatus}
-                    help={this.state.password.errorMsg}>
+                           validateStatus={this.state.password.validateStatus}
+                           help={this.state.password.errorMsg}>
                     <input className='Password'
                            type='password'
                            placeholder='Пароль'
@@ -124,7 +123,6 @@ class SingUp extends Component {
                     </button>
                 </Form.Item>
             </Form>
-            < /div>
         );
     }
 
