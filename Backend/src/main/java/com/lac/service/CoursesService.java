@@ -3,6 +3,7 @@ package com.lac.service;
 import com.lac.model.Course;
 import com.lac.model.User;
 import com.lac.repository.CourseRepository;
+import com.lac.repository.CoursesRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.UserPrincipal;
 import org.slf4j.Logger;
@@ -16,14 +17,15 @@ import java.util.List;
 public class CoursesService {
 
     @Autowired
-    CourseRepository courseRepository;
+    CoursesRepository coursesRepository;
+
     @Autowired
     UserRepository userRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(CoursesService.class);
 
     public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+        return coursesRepository.findAll();
     }
 
     public List<Course> getCoursesByUser(User user) {
@@ -31,35 +33,9 @@ public class CoursesService {
     }
 
     public boolean addCourse(Course course) {
-        if (!courseRepository.existsByTitleAndDescription(course.getTitle(), course.getDescription())) {
-            courseRepository.save(course);
+        if (!coursesRepository.existsByTitleAndDescription(course.getTitle(), course.getDescription())) {
+            coursesRepository.save(course);
             return true;
-        }
-        return false;
-    }
-
-    public boolean subscribeCourse(UserPrincipal currentUser, Long courseId) {
-        if (currentUser != null) {
-            User user = userRepository.findByUserId(currentUser.getUserId());
-            if (courseRepository.findByCourseId(courseId) != null) {
-                user.subscribe(courseRepository.findByCourseId(courseId));
-                userRepository.save(user);
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public boolean unsubscribeCourse(UserPrincipal currentUser, Long courseId) {
-        if (currentUser != null) {
-            User user = userRepository.findByUserId(currentUser.getUserId());
-            if (courseRepository.findByCourseId(courseId) != null) {
-                user.unsubscribe(courseRepository.findByCourseId(courseId));
-                userRepository.save(user);
-                return true;
-            }
-            return false;
         }
         return false;
     }

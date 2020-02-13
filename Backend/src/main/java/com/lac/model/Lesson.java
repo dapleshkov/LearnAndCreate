@@ -24,11 +24,8 @@ public class Lesson {
     @Size(max = 10000)
     private String description;
 
-    @OneToOne
-    @JoinTable(name = "lesson_image",
-            joinColumns = @JoinColumn(name = "lesson_id"),
-            inverseJoinColumns = @JoinColumn(name = "file_id"))
-    private Image image;
+   @NotBlank
+   private String duration;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -36,6 +33,13 @@ public class Lesson {
             joinColumns = @JoinColumn(name = "lesson_id"),
             inverseJoinColumns = @JoinColumn(name = "lesson_id"))
     private Video video = new Video();
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @JoinTable(name = "lesson_comments",
+            joinColumns = @JoinColumn(name = "lesson_id"),
+            inverseJoinColumns = @JoinColumn(name = "comment_id"))
+    private Set<Comment> comments = new HashSet<>();
 
     public  Lesson(){
 
@@ -45,5 +49,13 @@ public class Lesson {
         this.lessonId = lessonId;
         this.title = title;
         this.description = description;
+    }
+
+    public void addComment(Comment comment){
+        comments.add(comment);
+    }
+
+    public void deleteComment(Comment comment){
+        comments.remove(comment);
     }
 }

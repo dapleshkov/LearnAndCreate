@@ -36,9 +36,6 @@ import java.util.Set;
 public class CoursesController {
 
     @Autowired
-    private CourseRepository courseRepository;
-
-    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -54,41 +51,30 @@ public class CoursesController {
 
     @GetMapping
     public ResponseEntity<List<Course>> getAllCourses() {
-        List<Course> courses = courseRepository.findAll();
+        List<Course> courses = coursesService.getAllCourses();
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
-    @PostMapping("/{courseId}/image")
-    public UploadFileResponse setCourseImage(@RequestParam(name = "file") MultipartFile file,
-                                             @PathVariable("courseId") Long courseId) throws IOException {
-        Course course = courseRepository.findByCourseId(courseId);
 
-        Image image = imageService.store(file);
-        course.setImage(image);
-        courseRepository.save(course);
-
-        return new UploadFileResponse(image.getName(), image.getType(), file.getSize());
-    }
-
-    @PostMapping("/{courseId}/videos")
-    public List<UploadFileResponse> setCourseVideos(@RequestParam(name = "files") MultipartFile[] files,
-                                                    @PathVariable("courseId") Long courseId) throws IOException {
-        Course course = courseRepository.findByCourseId(courseId);
-
-        Set<Video> videos = new HashSet<>();
-        List<UploadFileResponse> responses = new ArrayList<>();
-
-        for (MultipartFile file : files) {
-            Video video = videoService.store(file);
-            videos.add(video);
-            responses.add(new UploadFileResponse(video.getName(), video.getType(), file.getSize()));
-        }
-
-        course.setVideos(videos);
-        courseRepository.save(course);
-
-        return responses;
-    }
+//    @PostMapping("/{courseId}/videos")
+//    public List<UploadFileResponse> setCourseVideos(@RequestParam(name = "files") MultipartFile[] files,
+//                                                    @PathVariable("courseId") Long courseId) throws IOException {
+//        Course course = courseRepository.findByCourseId(courseId);
+//
+//        Set<Video> videos = new HashSet<>();
+//        List<UploadFileResponse> responses = new ArrayList<>();
+//
+//        for (MultipartFile file : files) {
+//            Video video = videoService.store(file);
+//            videos.add(video);
+//            responses.add(new UploadFileResponse(video.getName(), video.getType(), file.getSize()));
+//        }
+//
+//        course.setVideos(videos);
+//        courseRepository.save(course);
+//
+//        return responses;
+//    }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<?> getCoursesByUserId(@PathVariable("userId") Long userId) {
@@ -124,23 +110,5 @@ public class CoursesController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @PostMapping("/{courseId}")
-    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<Void> subscribeCourse(@CurrentUser UserPrincipal currentUser,
-                                                @PathVariable("courseId") Long courseId) {
-        boolean flag = coursesService.subscribeCourse(currentUser, courseId);
-        if (flag)
-            return new ResponseEntity<>(HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.CONFLICT);
-    }
 
-    @DeleteMapping("/{courseId}")
-    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<Void> unsubscribeCourse(@CurrentUser UserPrincipal currentUser,
-                                                  @PathVariable("courseId") Long courseId) {
-        boolean flag = coursesService.unsubscribeCourse(currentUser, courseId);
-        if (flag)
-            return new ResponseEntity<>(HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.CONFLICT);
-    }
 }
