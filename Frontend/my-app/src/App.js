@@ -9,19 +9,47 @@ import MainPage from "./components/MainPage/MainPage";
 import {getCurrentUser} from "./components/ServerAPI/serverAPI";
 import user from "./components/States/Auth_Reducer";
 import UserAccount from "./components/UserAccount/UserAccount";
+import {ACCESS_TOKEN} from "./components/ServerAPI/utils";
 
 class App extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            currentUser: null,
+            isAuthenticated: false,
+            isLoading: false
+        };
+        this.loadUser = this.loadUser.bind(this);
+        this.logOut = this.logOut.bind(this);
+        this.loadUser();
+    }
+
+    loadUser() {
+        debugger;
+        getCurrentUser().then(response => {
+            this.setState({
+                currentUser: response,
+                isAuthenticated: true,
+            });
+        });
+    }
+
+    logOut() {
+        localStorage.removeItem(ACCESS_TOKEN);
+
+        this.setState({
+            currentUser: null,
+            isAuthenticated: false
+        });
     }
 
     render() {
         return (
             <BrowserRouter>
                 <div className="Abstract-wrapper">
-                    <AbstractHeader user={user}/>
+                    <AbstractHeader LogOut={this.logOut} isAuthenticated={this.state.isAuthenticated}/>
                     <Route path="/refactoraccount" component={RefactorAccount}/>
-                    <Route path="/login" render={(props) => <Login user={user}/>}/>
+                    <Route path="/login" render={(props) => <Login onLogin={this.loadUser} user={user}/>}/>
                     <Route path='/registration' render={(props) => <Registration user={user}/>}/>
                     <Route path='/mainpage' component={MainPage}/>
                     <Route path='/users/:username' render={(props) => <UserAccount user={user}/>}/>

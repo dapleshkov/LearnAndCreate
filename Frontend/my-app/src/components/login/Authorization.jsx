@@ -18,7 +18,7 @@ class Login extends Component {
         };
         login(user).then(response => {
             localStorage.setItem('accessToken', response.accessToken);
-            loadUser(this.props.user);
+            this.props.onLogin();
             window.location.assign('http://localhost:3000/mainpage')
         }).catch(error => {
             if (error.status === 401) {

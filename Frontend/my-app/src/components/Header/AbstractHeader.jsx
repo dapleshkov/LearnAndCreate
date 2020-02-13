@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import './AbstractHeader.css'
 import {NavLink} from "react-router-dom";
 import UserAccount from "../UserAccount/UserAccount";
+import user from "../States/Auth_Reducer";
 
 class AbstractHeader extends Component {
     constructor(props) {
@@ -9,18 +10,16 @@ class AbstractHeader extends Component {
     }
 
     handleClickOut = event => {
-        localStorage.removeItem("accessToken");
-        this.props.user.isAuthenticated = false;
+        this.props.LogOut();
         window.location.assign('http://localhost:3000/mainpage');
     };
 
     render() {
         let menuItems;
-        if (this.props.user.isAuthenticated) {
+        if (this.props.isAuthenticated) {
             menuItems = [
                 <NavLink className="Logout" to="/mainpage" onClick={this.handleClickOut}>Выход</NavLink>,
-                <NavLink className="Logout" to={'http://localhost:3000/users/' + this.props.user.username}>Личный
-                    кабинет</NavLink>,
+                //<NavLink className="Logout" to ={'http://localhost:3000/users/' + this.props.user.username}>Личный кабинет</NavLink>,
             ];
         } else {
             menuItems = [
