@@ -4,7 +4,8 @@ import com.lac.model.Comment;
 import com.lac.model.Course;
 import com.lac.model.User;
 import com.lac.repository.CommentRepository;
-import com.lac.repository.CoursesRepository;
+import com.lac.repository.CourseRepository;
+
 import com.lac.repository.UserRepository;
 import com.lac.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class CourseService {
     CommentRepository commentRepository;
 
     @Autowired
-    CoursesRepository coursesRepository;
+    CourseRepository courseRepository;
 
 
     @Autowired
@@ -28,8 +29,8 @@ public class CourseService {
     public boolean subscribeCourse(UserPrincipal currentUser, Long courseId) {
         if (currentUser != null) {
             User user = userRepository.findByUserId(currentUser.getUserId());
-            if (coursesRepository.findByCourseId(courseId) != null) {
-                user.subscribe(coursesRepository.findByCourseId(courseId));
+            if (courseRepository.findByCourseId(courseId) != null) {
+                user.subscribe(courseRepository.findByCourseId(courseId));
                 userRepository.save(user);
                 return true;
             }
@@ -41,8 +42,8 @@ public class CourseService {
     public boolean unsubscribeCourse(UserPrincipal currentUser, Long courseId) {
         if (currentUser != null) {
             User user = userRepository.findByUserId(currentUser.getUserId());
-            if (coursesRepository.findByCourseId(courseId) != null) {
-                user.unsubscribe(coursesRepository.findByCourseId(courseId));
+            if (courseRepository.findByCourseId(courseId) != null) {
+                user.unsubscribe(courseRepository.findByCourseId(courseId));
                 userRepository.save(user);
                 return true;
             }
@@ -52,7 +53,7 @@ public class CourseService {
     }
 
     public Set<Comment> getAllCommentsByCourseId(Long courseId) {
-        Course course = coursesRepository.findByCourseId(courseId);
+        Course course = courseRepository.findByCourseId(courseId);
         return course.getComments();
     }
 

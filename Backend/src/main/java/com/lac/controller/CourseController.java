@@ -7,7 +7,7 @@ import com.lac.model.Image;
 import com.lac.payload.CommentRequest;
 import com.lac.payload.UploadFileResponse;
 import com.lac.repository.CommentRepository;
-import com.lac.repository.CoursesRepository;
+import com.lac.repository.CourseRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
 import com.lac.security.UserPrincipal;
@@ -46,7 +46,7 @@ public class CourseController {
     private ImageService imageService;
 
     @Autowired
-    private CoursesRepository coursesRepository;
+    private CourseRepository courseRepository;
 
     @GetMapping("{courseId}/comment")
     @PreAuthorize("hasRole('USER')")
@@ -86,11 +86,11 @@ public class CourseController {
     @PostMapping("/{courseId}/image")
     public UploadFileResponse setCourseImage(@RequestParam(name = "file") MultipartFile file,
                                              @PathVariable("courseId") Long courseId) throws IOException {
-        Course course = coursesRepository.findByCourseId(courseId);
+        Course course = courseRepository.findByCourseId(courseId);
 
         Image image = imageService.store(file);
         course.setImage(image);
-        coursesRepository.save(course);
+        courseRepository.save(course);
 
         return new UploadFileResponse(image.getName(), image.getType(), file.getSize());
     }

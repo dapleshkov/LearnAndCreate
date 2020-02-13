@@ -2,7 +2,7 @@ package com.lac.service;
 
 import com.lac.model.Course;
 import com.lac.model.User;
-import com.lac.repository.CoursesRepository;
+import com.lac.repository.CourseRepository;
 import com.lac.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +15,7 @@ import java.util.List;
 public class CoursesService {
 
     @Autowired
-    CoursesRepository coursesRepository;
+    CourseRepository courseRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -23,7 +23,7 @@ public class CoursesService {
     private static final Logger logger = LoggerFactory.getLogger(CoursesService.class);
 
     public List<Course> getAllCourses() {
-        return coursesRepository.findAll();
+        return courseRepository.findAll();
     }
 
     public List<Course> getCoursesByUser(User user) {
@@ -31,8 +31,8 @@ public class CoursesService {
     }
 
     public boolean addCourse(Course course) {
-        if (!coursesRepository.existsByTitleAndDescription(course.getTitle(), course.getDescription())) {
-            coursesRepository.save(course);
+        if (!courseRepository.existsByTitleAndDescription(course.getTitle(), course.getDescription())) {
+            courseRepository.save(course);
             return true;
         }
         return false;
