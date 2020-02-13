@@ -2,10 +2,8 @@ package com.lac.service;
 
 import com.lac.model.Course;
 import com.lac.model.User;
-import com.lac.repository.CourseRepository;
 import com.lac.repository.CoursesRepository;
 import com.lac.repository.UserRepository;
-import com.lac.security.UserPrincipal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
