@@ -1,10 +1,41 @@
 package com.lac.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.lac.model.Comment;
+import com.lac.payload.CommentRequest;
+import com.lac.repository.CommentRepository;
+import com.lac.repository.UserRepository;
+import com.lac.security.CurrentUser;
+import com.lac.security.UserPrincipal;
+import com.lac.service.CommentService;
+import com.lac.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.Date;
 
 @RestController
 @RequestMapping("api/lesson")
 public class LessonController {
+    @Autowired
+    CommentService commentService;
 
+    @Autowired
+    private UserRepository userRepository;
+    @PostMapping("{lessonId}/comment")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<Comment> addCommentToLesson(@CurrentUser UserPrincipal currentUser,
+                                                      @Valid @RequestBody CommentRequest request,
+                                                      @PathVariable("lessonId") Long lessonId) {
+        Comment comment = new Comment(request.getText());
+//        comment.setDate(new Date());
+        comment.setUser(userRepository.findByUserId(currentUser.getUserId()));
+        boolean flag = commentService.addCommentToLesson(lessonId, comment);
+        if (!flag)
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        return new ResponseEntity<>(comment, HttpStatus.CREATED);
+    }
 }

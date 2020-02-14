@@ -20,10 +20,10 @@ public class Comment {
     @NotBlank
     @Size(max = 10000)
     private String text;
-
-    @NotBlank
-    @Column(name = "date_creation")
-    private Date date;
+//
+//    @NotBlank
+//    @Column(name = "date_creation")
+//    private Date date;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -55,14 +55,14 @@ public class Comment {
     public void setText(String text) {
         this.text = text;
     }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+//
+//    public Date getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(Date date) {
+//        this.date = date;
+//    }
 
     public User getUser() {
         return user;

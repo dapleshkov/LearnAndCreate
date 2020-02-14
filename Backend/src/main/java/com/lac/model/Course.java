@@ -31,19 +31,19 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "file_id"))
     private Image image;
 
-    @NotBlank
-    @Column(name = "date_creation")
-    private Date date;
-
-    @NotBlank
-    private Integer duration;
-
-    @NotBlank
-    private Double mark;
-
-    @NotBlank
-    @Column(name = "num_marks")
-    private Long numMarks;
+//    @NotBlank
+//    @Column(name = "date_creation")
+//    private Date date;
+//
+//    @NotBlank
+//    private Integer duration;
+//
+//    @NotBlank
+//    private Double mark;
+//
+//    @NotBlank
+//    @Column(name = "num_marks")
+//    private Long numMarks;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -52,12 +52,12 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> users = new HashSet<>();
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    @JoinTable(name = "creator_user",
-            joinColumns = @JoinColumn(name = "course_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private User creator = new User();
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @JoinTable(name = "creator_user",
+//            joinColumns = @JoinColumn(name = "course_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    private User creator = new User();
 
     @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -145,45 +145,45 @@ public class Course {
         this.description = description;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    public Double getMark() {
-        return mark;
-    }
-
-    public void setMark(Double mark) {
-        this.mark = mark;
-    }
-
-    public Long getNumMarks() {
-        return numMarks;
-    }
-
-    public void setNumMarks(Long numMarks) {
-        this.numMarks = numMarks;
-    }
-
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
-    }
+//    public Date getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(Date date) {
+//        this.date = date;
+//    }
+//
+//    public Integer getDuration() {
+//        return duration;
+//    }
+//
+//    public void setDuration(Integer duration) {
+//        this.duration = duration;
+//    }
+//
+//    public Double getMark() {
+//        return mark;
+//    }
+//
+//    public void setMark(Double mark) {
+//        this.mark = mark;
+//    }
+//
+//    public Long getNumMarks() {
+//        return numMarks;
+//    }
+//
+//    public void setNumMarks(Long numMarks) {
+//        this.numMarks = numMarks;
+//    }
+//
+//    public User getCreator() {
+//        return creator;
+//    }
+//
+//    public void setCreator(User creator) {
+//        this.creator = creator;
+//    }
 
     public Video getVideo() {
         return video;
