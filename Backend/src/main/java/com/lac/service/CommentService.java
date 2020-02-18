@@ -7,6 +7,7 @@ import com.lac.model.User;
 import com.lac.repository.CommentRepository;
 import com.lac.repository.CourseRepository;
 import com.lac.repository.LessonRepository;
+import com.lac.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.AfterDomainEventPublication;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,10 @@ public class CommentService {
 
     @Autowired
     CourseRepository courseRepository;
+
+//    public boolean deleteComment(Long userId, Long commentId, Comment comment){
+//        if(userId == )
+//    }
 
     public boolean addCommentToCourse(Long courseId, Comment comment){
         Course course = courseRepository.findByCourseId(courseId);

@@ -20,7 +20,7 @@ public class Comment {
     @NotBlank
     @Size(max = 10000)
     private String text;
-//
+
 //    @NotBlank
 //    @Column(name = "date_creation")
 //    private Date date;
@@ -38,6 +38,7 @@ public class Comment {
 
     public Comment(String text){
         this.text = text;
+//        this.date = new Date();
     }
 
     public Long getCommentId() {
@@ -55,7 +56,7 @@ public class Comment {
     public void setText(String text) {
         this.text = text;
     }
-//
+
 //    public Date getDate() {
 //        return date;
 //    }
