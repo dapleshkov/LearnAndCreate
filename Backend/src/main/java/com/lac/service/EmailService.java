@@ -53,18 +53,18 @@ public class EmailService {
 
     public String sendCodeToConfirmEmail(String oldEmail, String newEmail) {
         SimpleMailMessage message = new SimpleMailMessage();
-
-        message.setTo(newEmail);
-        message.setSubject("Подтверждение новой почты");
         String code = generateString();
-        message.setText(CONFIRMATION_CODE + code);
-
-        javaMailSender.send(message);
 
         EmailConfirmation confirmation = new EmailConfirmation(code, newEmail);
         User user = userRepository.findByEmail(oldEmail);
         user.setEmailConfirmation(confirmation);
         userRepository.save(user);
+
+        message.setTo(newEmail);
+        message.setSubject("Подтверждение новой почты");
+        message.setText(CONFIRMATION_CODE + code);
+
+        javaMailSender.send(message);
 
         return code;
     }
