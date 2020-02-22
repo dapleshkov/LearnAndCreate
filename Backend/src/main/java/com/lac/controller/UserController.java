@@ -1,12 +1,15 @@
 package com.lac.controller;
 
+import com.lac.model.EmailConfirmation;
 import com.lac.model.Image;
 import com.lac.model.User;
 import com.lac.payload.ApiResponse;
 import com.lac.payload.UploadFileResponse;
+import com.lac.repository.EmailConfirmationRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
 import com.lac.security.UserPrincipal;
+import com.lac.service.EmailService;
 import com.lac.service.ImageService;
 import com.lac.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +21,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.swing.*;
 import java.io.IOException;
 
 @RestController
@@ -36,6 +38,12 @@ public class UserController {
 
     @Autowired
     private  UserService userService;
+
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private EmailConfirmationRepository emailConfirmationRepository;
 
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
@@ -72,6 +80,37 @@ public class UserController {
             return new ResponseEntity<>(new ApiResponse(true, "Password was edited successfully"), HttpStatus.OK);
         return new ResponseEntity<>(new ApiResponse(false, "Password was not edited. Password is incorrect"), HttpStatus.BAD_REQUEST);
 
+    }
+
+    @PutMapping("/user/me/edit/email")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> editEmail(@CurrentUser UserPrincipal currentUser,
+                                       @RequestParam("email") String email) {
+        User user = userRepository.findByUserId(currentUser.getUserId());
+
+        String code = emailService.sendCodeToConfirmEmail(user.getEmail(), email);
+
+        return new ResponseEntity(new ApiResponse(true, "Confirmation code was sent to your email"), HttpStatus.OK);
+    }
+
+    @PutMapping("/user/me/edit/email/confirm")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> confirmEmail(@CurrentUser UserPrincipal currentUser,
+                                          @RequestParam("code") String code) {
+        User user = userRepository.findByUserId(currentUser.getUserId());
+
+        if (user.getEmailConfirmation() == null)
+            return new ResponseEntity(new ApiResponse(false, "You don't need to confirm email"), HttpStatus.BAD_REQUEST);
+        if (!user.getEmailConfirmation().getCode().equals(code))
+            return new ResponseEntity(new ApiResponse(false, "Incorrect confirmation code"), HttpStatus.BAD_REQUEST);
+
+        EmailConfirmation confirmation = user.getEmailConfirmation();
+        user.setEmail(confirmation.getNewEmail());
+        emailConfirmationRepository.delete(confirmation);
+        user.setEmailConfirmation(null);
+        userRepository.save(user);
+
+        return new ResponseEntity(new ApiResponse(true, "Email was edited"), HttpStatus.OK);
     }
 
     @PostMapping("/user/me/image")
