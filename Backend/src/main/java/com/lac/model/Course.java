@@ -59,19 +59,19 @@ public class Course {
 //            inverseJoinColumns = @JoinColumn(name = "user_id"))
 //    private User creator = new User();
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    @JoinTable(name = "course_video",
-            joinColumns = @JoinColumn(name = "course_id"),
-            inverseJoinColumns = @JoinColumn(name = "file_id"))
-    private Video video = new Video();
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @JoinTable(name = "course_video",
+//            joinColumns = @JoinColumn(name = "course_id"),
+//            inverseJoinColumns = @JoinColumn(name = "file_id"))
+//    private Video video = new Video();
 
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinTable(name = "course_lessons",
-            joinColumns = @JoinColumn(name = "lesson_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id"))
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "lesson_id"))
     private Set<Lesson> lessons = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY)
@@ -113,13 +113,13 @@ public class Course {
         return image;
     }
 
-    public Video getVideos() {
-        return video;
-    }
+//    public Video getVideos() {
+//        return video;
+//    }
 
-    public void setVideos(Video video) {
-        this.video = video;
-    }
+//    public void setVideos(Video video) {
+//        this.video = video;
+//    }
 
     public void setImage(Image image) {
         this.image = image;
@@ -185,13 +185,13 @@ public class Course {
 //        this.creator = creator;
 //    }
 
-    public Video getVideo() {
-        return video;
-    }
+//    public Video getVideo() {
+//        return video;
+//    }
 
-    public void setVideo(Video video) {
-        this.video = video;
-    }
+//    public void setVideo(Video video) {
+//        this.video = video;
+//    }
 
     public Set<Lesson> getLessons() {
         return lessons;
@@ -215,5 +215,9 @@ public class Course {
 
     public void deleteComment(Comment comment){
         comments.remove(comment);
+    }
+
+    public void addLesson(Lesson lesson) {
+        lessons.add(lesson);
     }
 }

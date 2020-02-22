@@ -2,6 +2,7 @@ package com.lac.service;
 
 import com.lac.model.Comment;
 import com.lac.model.Course;
+import com.lac.model.Lesson;
 import com.lac.model.User;
 import com.lac.repository.CommentRepository;
 import com.lac.repository.CourseRepository;
@@ -59,5 +60,15 @@ public class CourseService {
 
     public void addNewCommentToCourse(Comment comment){
         commentRepository.save(comment);
+    }
+
+    public boolean addLesson(Long courseId, Lesson lesson) {
+        Course course = courseRepository.findByCourseId(courseId);
+        if (course != null) {
+            course.addLesson(lesson);
+            courseRepository.save(course);
+            return true;
+        }
+        return false;
     }
 }

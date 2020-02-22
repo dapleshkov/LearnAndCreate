@@ -4,10 +4,13 @@ package com.lac.controller;
 import com.lac.model.Comment;
 import com.lac.model.Course;
 import com.lac.model.Image;
+import com.lac.model.Lesson;
 import com.lac.payload.CommentRequest;
+import com.lac.payload.LessonRequest;
 import com.lac.payload.UploadFileResponse;
 import com.lac.repository.CommentRepository;
 import com.lac.repository.CourseRepository;
+import com.lac.repository.LessonRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
 import com.lac.security.UserPrincipal;
@@ -99,5 +102,20 @@ public class CourseController {
         if (flag)
             return new ResponseEntity<>(HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
+
+    @PostMapping("{courseId}/lesson")
+    public ResponseEntity<?> addLesson(@PathVariable("courseId") Long courseId,
+                                       @Valid @RequestBody LessonRequest lessonRequest) {
+        Lesson lesson = new Lesson();
+        lesson.setTitle(lessonRequest.getTitle());
+        lesson.setDescription(lessonRequest.getDescription());
+        lesson.setDuration(lessonRequest.getDuration());
+
+        boolean flag = courseService.addLesson(courseId, lesson);
+
+        if (flag)
+            return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
