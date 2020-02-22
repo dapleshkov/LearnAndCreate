@@ -5,6 +5,7 @@ import com.lac.model.Comment;
 import com.lac.model.Course;
 import com.lac.model.Image;
 import com.lac.model.Lesson;
+import com.lac.payload.ApiResponse;
 import com.lac.payload.CommentRequest;
 import com.lac.payload.LessonRequest;
 import com.lac.payload.UploadFileResponse;
@@ -27,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -117,5 +119,20 @@ public class CourseController {
         if (flag)
             return new ResponseEntity<>(HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/{courseId}/lessons")
+    public ResponseEntity<List<Lesson>> getCourseLessons(@PathVariable("courseId") Long courseId) {
+        List<Lesson> lessons = courseService.getLessonsByCourseId(courseId);
+        return new ResponseEntity<>(lessons, HttpStatus.OK);
+    }
+
+    @GetMapping("/{courseId}/lesson/{lessonId}/next")
+    public ResponseEntity<?> getNextLesson(@PathVariable("courseId") Long courseId,
+                                                @PathVariable("lessonId") Long lessonId) {
+        Lesson lesson = courseService.getNextLesson(courseId, lessonId);
+        if (lesson != null)
+            return new ResponseEntity<>(lesson, HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(false, "Next lesson doesn't exist"), HttpStatus.BAD_REQUEST);
     }
 }

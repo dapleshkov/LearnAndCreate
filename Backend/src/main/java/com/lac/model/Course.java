@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Table(name = "courses")
 @Entity
@@ -72,7 +70,7 @@ public class Course {
     @JoinTable(name = "course_lessons",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "lesson_id"))
-    private Set<Lesson> lessons = new HashSet<>();
+    private List<Lesson> lessons = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -193,11 +191,11 @@ public class Course {
 //        this.video = video;
 //    }
 
-    public Set<Lesson> getLessons() {
+    public List<Lesson> getLessons() {
         return lessons;
     }
 
-    public void setLessons(Set<Lesson> lessons) {
+    public void setLessons(List<Lesson> lessons) {
         this.lessons = lessons;
     }
 

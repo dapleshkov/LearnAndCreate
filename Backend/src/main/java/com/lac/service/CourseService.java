@@ -7,11 +7,15 @@ import com.lac.model.User;
 import com.lac.repository.CommentRepository;
 import com.lac.repository.CourseRepository;
 
+import com.lac.repository.LessonRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -22,10 +26,11 @@ public class CourseService {
     @Autowired
     CourseRepository courseRepository;
 
+    @Autowired
+    private LessonRepository lessonRepository;
 
     @Autowired
     UserRepository userRepository;
-
 
     public boolean subscribeCourse(UserPrincipal currentUser, Long courseId) {
         if (currentUser != null) {
@@ -70,5 +75,26 @@ public class CourseService {
             return true;
         }
         return false;
+    }
+
+    public List<Lesson> getLessonsByCourseId(Long courseId) {
+        Course course = courseRepository.findByCourseId(courseId);
+        if (course != null)
+            return course.getLessons();
+        return new ArrayList<>();
+    }
+
+    public Lesson getNextLesson(Long courseId, Long lessonId) {
+        Course course = courseRepository.findByCourseId(courseId);
+        if (course != null) {
+            List<Lesson> lessons = course.getLessons();
+            int i = lessons.indexOf(lessonRepository.findByLessonId(lessonId));
+
+            if (i < lessons.size() - 1 && i >= 0)
+                return lessons.get(i + 1);
+
+            return null;
+        }
+        return null;
     }
 }
