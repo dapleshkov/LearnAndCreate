@@ -30,7 +30,7 @@ public class CommentService {
         Comment comment = commentRepository.findCommentByCommentId(commentId);
         if(comment!=null){
             if(comment.getUser().getUserId() == userId) {
-                commentRepository.deleteByCommentId(commentId);
+                commentRepository.removeCommentByCommentId(commentId);
                 return true;
             }
         }
