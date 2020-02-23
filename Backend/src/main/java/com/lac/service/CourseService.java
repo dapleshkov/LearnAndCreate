@@ -97,4 +97,18 @@ public class CourseService {
         }
         return null;
     }
+
+    public Lesson getPreviousLesson(Long courseId, Long lessonId) {
+        Course course = courseRepository.findByCourseId(courseId);
+        if (course != null) {
+            List<Lesson> lessons = course.getLessons();
+            int i = lessons.indexOf(lessonRepository.findByLessonId(lessonId));
+
+            if (i > 0 && i <= lessons.size())
+                return lessons.get(i - 1);
+
+            return null;
+        }
+        return null;
+    }
 }

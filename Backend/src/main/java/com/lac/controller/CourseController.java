@@ -27,7 +27,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -134,5 +133,14 @@ public class CourseController {
         if (lesson != null)
             return new ResponseEntity<>(lesson, HttpStatus.OK);
         return new ResponseEntity<>(new ApiResponse(false, "Next lesson doesn't exist"), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/{courseId}/lesson/{lessonId}/previous")
+    public ResponseEntity<?> getPreviousLesson(@PathVariable("courseId") Long courseId,
+                                               @PathVariable("lessonId") Long lessonId) {
+        Lesson lesson = courseService.getPreviousLesson(courseId, lessonId);
+        if (lesson != null)
+            return new ResponseEntity<>(lesson, HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(false, "Previous lesson doesn't exist"), HttpStatus.BAD_REQUEST);
     }
 }
