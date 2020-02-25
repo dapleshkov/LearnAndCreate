@@ -30,7 +30,7 @@ class SingUp extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validateUsernameAvailability = this.validateUsernameAvailability.bind(this);
         this.validateEmailAvailability = this.validateEmailAvailability.bind(this);
-        //this.isFormInvalid = this.isFormInvalid.bind(this);
+        this.isFormInvalid = this.isFormInvalid.bind(this);
     }
 
     handleInputChange(event, validationFun) {
@@ -48,6 +48,8 @@ class SingUp extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
+        debugger;
+
 
         let singupuser = {
             name: document.getElementById('name').value,

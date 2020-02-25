@@ -1,0 +1,11 @@
+.Settings {
+    grid-area: content;
+    background-color: white;
+    height: 89vh;
+    text-align: center;
+}
+.UserSettings{
+    margin: 2vh 5vw;
+    height: 85vh;
+    background-color: grey;
+}

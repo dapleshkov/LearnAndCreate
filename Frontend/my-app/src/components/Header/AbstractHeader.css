@@ -1,13 +1,17 @@
-.Absrtact-header {
+.Abstract-header {
     grid-area: header;
     background-color: white;
     height: 9vh;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.Header-components{
-    margin: 1%;
+.Header-components {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 0;
+    width: 100%;
 }
+
 
 .Header-text {
     position: relative;
@@ -29,28 +33,126 @@
     background: #FF1A2E;
     border-radius: 6px;
     color: white;
-    top:15%;
+    top: 15%;
     text-decoration: none;
-    border: 0px;
+    border: 0;
     float: right;
+    //margin-top: -3%;
 }
 
-.Enter{
+.Enter {
     position: relative;
     padding: 6px 10px;
     right: 3%;
-    top:15%;
+    //margin-top: -3%;
+    top: 15%;
     height: 40%;
     text-decoration: none;
     background-color: white;
-    border: 0px white;
+    border: 0 white;
     animation: none;
     outline: none;
     float: right;
 }
 
-.Logout{
+.dropDownMenu {
+    width: 6.5%;
+    margin-top: -3%;
+    margin-right: 5px;
     float: right;
-    margin: 2px 2px;
+
+    position: relative;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.topmenu > li {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 0;
+    position: relative;
+}
+
+.topmenu > li:last-child {
+    margin-right: 0;
+}
+
+a {
+    display: block;
+    padding: 10px 15px;
     text-decoration: none;
+}
+
+.dropDownMenu {
+    width: 6.5%;
+    margin-top: -3%;
+    margin-right: 5px;
+    float: right;
+    position: relative;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.topmenu > li {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 0;
+    position: relative;
+}
+
+.topmenu > li:last-child {
+    margin-right: 0;
+}
+
+a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    outline: none;
+    font-family: 'Lora', serif;
+    transition: .5s linear;
+}
+
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+.dropDownMenu ul {
+    //background: #FF1A2E;
+    border-width: 4px;
+    border-color: #FF1A2E;
+}
+
+.dropDownMenu ul li{
+    width: 100%;
+}
+
+.dropDownMenu ul a {
+    color: black;
+}
+
+.dropDownMenu .submenu {
+    visibility: hidden;
+    background: white;
+}
+
+.dropDownMenu ul li:hover .submenu {
+    visibility: visible;
 }
