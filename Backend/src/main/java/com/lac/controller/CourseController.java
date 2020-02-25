@@ -65,7 +65,7 @@ public class CourseController {
                                         @Valid @RequestBody MarkRequest request,
                                         @PathVariable("courseId") Long courseId){
         if(courseService.addMark(request.getMark(), courseId)) return new ResponseEntity<>(HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("{courseId}/comment")

@@ -32,15 +32,16 @@ public class CourseService {
     @Autowired
     UserRepository userRepository;
 
-    public boolean addMark(Integer mark, Long courseId){
+    public boolean addMark(Long mark, Long courseId){
         Course course = courseRepository.findByCourseId(courseId);
         if(course!=null){
-            Double lastMark = course.getMark();
-            Long num = course.getNumMarks();
+            Double lastMark = course.getMark()==null?0 : course.getMark();
+            Long num = course.getNumMarks()==null?0:course.getNumMarks();
             num++;
-            Double newMark = (lastMark * num + mark) / num;
+            Double newMark = (lastMark * (num-1) + mark) / num;
             course.setMark(newMark);
             course.setNumMarks(num);
+            courseRepository.save(course);
             return true;
         }
         return false;

@@ -36,10 +36,8 @@ public class Course {
 //    @NotBlank
 //    private Integer duration;
 //
-    @NotBlank
-    private Double mark;
+    private Double mark ;
 
-    @NotBlank
     @Column(name = "num_marks")
     private Long numMarks;
 

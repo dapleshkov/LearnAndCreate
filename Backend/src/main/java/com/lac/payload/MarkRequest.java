@@ -3,14 +3,13 @@ package com.lac.payload;
 import javax.validation.constraints.NotBlank;
 
 public class MarkRequest {
-    @NotBlank
-    private Integer mark;
+    private Long mark;
 
-    public Integer getMark() {
+    public Long getMark() {
         return mark;
     }
 
-    public void setMark(Integer mark) {
+    public void setMark(Long mark) {
         this.mark = mark;
     }
 }
