@@ -36,12 +36,12 @@ public class Course {
 //    @NotBlank
 //    private Integer duration;
 //
-//    @NotBlank
-//    private Double mark;
-//
-//    @NotBlank
-//    @Column(name = "num_marks")
-//    private Long numMarks;
+    @NotBlank
+    private Double mark;
+
+    @NotBlank
+    @Column(name = "num_marks")
+    private Long numMarks;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -159,21 +159,21 @@ public class Course {
 //        this.duration = duration;
 //    }
 //
-//    public Double getMark() {
-//        return mark;
-//    }
-//
-//    public void setMark(Double mark) {
-//        this.mark = mark;
-//    }
-//
-//    public Long getNumMarks() {
-//        return numMarks;
-//    }
-//
-//    public void setNumMarks(Long numMarks) {
-//        this.numMarks = numMarks;
-//    }
+    public Double getMark() {
+        return mark;
+    }
+
+    public void setMark(Double mark) {
+        this.mark = mark;
+    }
+
+    public Long getNumMarks() {
+        return numMarks;
+    }
+
+    public void setNumMarks(Long numMarks) {
+        this.numMarks = numMarks;
+    }
 //
 //    public User getCreator() {
 //        return creator;

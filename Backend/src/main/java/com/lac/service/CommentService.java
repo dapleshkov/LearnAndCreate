@@ -54,6 +54,7 @@ public class CommentService {
         Course course = courseRepository.findByCourseId(courseId);
         if( course !=null){
             course.addComment(comment);
+            comment.setDate(Calendar.getInstance(TimeZone.getTimeZone("UTC")));
             commentRepository.save(comment);
             return true;
         }
@@ -64,6 +65,7 @@ public class CommentService {
         Lesson lesson = lessonRepository.findByLessonId(lessonId);
         if( lesson !=null){
             lesson.addComment(comment);
+            comment.setDate(Calendar.getInstance(TimeZone.getTimeZone("UTC")));
             commentRepository.save(comment);
             return true;
         }

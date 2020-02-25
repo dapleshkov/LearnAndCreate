@@ -32,6 +32,20 @@ public class CourseService {
     @Autowired
     UserRepository userRepository;
 
+    public boolean addMark(Integer mark, Long courseId){
+        Course course = courseRepository.findByCourseId(courseId);
+        if(course!=null){
+            Double lastMark = course.getMark();
+            Long num = course.getNumMarks();
+            num++;
+            Double newMark = (lastMark * num + mark) / num;
+            course.setMark(newMark);
+            course.setNumMarks(num);
+            return true;
+        }
+        return false;
+    }
+
     public boolean subscribeCourse(UserPrincipal currentUser, Long courseId) {
         if (currentUser != null) {
             User user = userRepository.findByUserId(currentUser.getUserId());

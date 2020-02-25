@@ -5,10 +5,7 @@ import com.lac.model.Comment;
 import com.lac.model.Course;
 import com.lac.model.Image;
 import com.lac.model.Lesson;
-import com.lac.payload.ApiResponse;
-import com.lac.payload.CommentRequest;
-import com.lac.payload.LessonRequest;
-import com.lac.payload.UploadFileResponse;
+import com.lac.payload.*;
 import com.lac.repository.CommentRepository;
 import com.lac.repository.CourseRepository;
 import com.lac.repository.LessonRepository;
@@ -52,6 +49,25 @@ public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
 
+    @GetMapping("{courseId}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<Course> getCourseById(@PathVariable("courseId") Long courseId){
+        Course course = courseRepository.findByCourseId(courseId);
+        if(course !=null){
+            return new ResponseEntity<>(course, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("{courseId}/mark")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<Void> addMark(@CurrentUser UserPrincipal currentUser,
+                                        @Valid @RequestBody MarkRequest request,
+                                        @PathVariable("courseId") Long courseId){
+        if(courseService.addMark(request.getMark(), courseId)) return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("{courseId}/comment")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Set<Comment>> getAllCourseComments(@PathVariable("courseId") Long courseId) {
@@ -65,7 +81,6 @@ public class CourseController {
                                                 @Valid @RequestBody CommentRequest request,
                                                 @PathVariable("courseId") Long courseId) {
         Comment comment = new Comment(request.getText());
-//        comment.setDate(new Date());
         comment.setUser(userRepository.findByUserId(currentUser.getUserId()));
         boolean flag = commentService.addCommentToCourse(courseId, comment);
         if (!flag)

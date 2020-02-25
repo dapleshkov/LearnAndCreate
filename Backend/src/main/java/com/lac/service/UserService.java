@@ -20,12 +20,12 @@ public class UserService {
     public boolean editUsername(UserPrincipal currentUser, String username){
         if (username.length() > 15 || username.length() < 4)
             return false;
-
         User user = userRepository.findByUserId(currentUser.getUserId());
         user.setUsername(username);
         userRepository.save(user);
         return true;
     }
+
     public boolean editName(UserPrincipal currentUser, String name){
         if (name.length() > 20 || name.length() < 2)
             return false;
