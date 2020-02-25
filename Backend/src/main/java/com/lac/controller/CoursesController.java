@@ -1,12 +1,8 @@
 package com.lac.controller;
 
 import com.lac.model.Course;
-import com.lac.model.Image;
 import com.lac.model.User;
-import com.lac.model.Video;
-import com.lac.payload.UploadFileResponse;
 import com.lac.payload.CourseRequest;
-import com.lac.repository.CourseRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
 import com.lac.security.UserPrincipal;
@@ -19,24 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/api/courses")
 public class CoursesController {
-
-    @Autowired
-    private CourseRepository courseRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -54,41 +42,30 @@ public class CoursesController {
 
     @GetMapping
     public ResponseEntity<List<Course>> getAllCourses() {
-        List<Course> courses = courseRepository.findAll();
+        List<Course> courses = coursesService.getAllCourses();
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
-    @PostMapping("/{courseId}/image")
-    public UploadFileResponse setCourseImage(@RequestParam(name = "file") MultipartFile file,
-                                             @PathVariable("courseId") Long courseId) throws IOException {
-        Course course = courseRepository.findByCourseId(courseId);
 
-        Image image = imageService.store(file);
-        course.setImage(image);
-        courseRepository.save(course);
-
-        return new UploadFileResponse(image.getName(), image.getType(), file.getSize());
-    }
-
-    @PostMapping("/{courseId}/videos")
-    public List<UploadFileResponse> setCourseVideos(@RequestParam(name = "files") MultipartFile[] files,
-                                                    @PathVariable("courseId") Long courseId) throws IOException {
-        Course course = courseRepository.findByCourseId(courseId);
-
-        Set<Video> videos = new HashSet<>();
-        List<UploadFileResponse> responses = new ArrayList<>();
-
-        for (MultipartFile file : files) {
-            Video video = videoService.store(file);
-            videos.add(video);
-            responses.add(new UploadFileResponse(video.getName(), video.getType(), file.getSize()));
-        }
-
-        course.setVideos(videos);
-        courseRepository.save(course);
-
-        return responses;
-    }
+//    @PostMapping("/{courseId}/videos")
+//    public List<UploadFileResponse> setCourseVideos(@RequestParam(name = "files") MultipartFile[] files,
+//                                                    @PathVariable("courseId") Long courseId) throws IOException {
+//        Course course = courseRepository.findByCourseId(courseId);
+//
+//        Set<Video> videos = new HashSet<>();
+//        List<UploadFileResponse> responses = new ArrayList<>();
+//
+//        for (MultipartFile file : files) {
+//            Video video = videoService.store(file);
+//            videos.add(video);
+//            responses.add(new UploadFileResponse(video.getName(), video.getType(), file.getSize()));
+//        }
+//
+//        course.setVideos(videos);
+//        courseRepository.save(course);
+//
+//        return responses;
+//    }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<?> getCoursesByUserId(@PathVariable("userId") Long userId) {
@@ -124,23 +101,5 @@ public class CoursesController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @PostMapping("/{courseId}")
-    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<Void> subscribeCourse(@CurrentUser UserPrincipal currentUser,
-                                                @PathVariable("courseId") Long courseId) {
-        boolean flag = coursesService.subscribeCourse(currentUser, courseId);
-        if (flag)
-            return new ResponseEntity<>(HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.CONFLICT);
-    }
 
-    @DeleteMapping("/{courseId}")
-    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<Void> unsubscribeCourse(@CurrentUser UserPrincipal currentUser,
-                                                  @PathVariable("courseId") Long courseId) {
-        boolean flag = coursesService.unsubscribeCourse(currentUser, courseId);
-        if (flag)
-            return new ResponseEntity<>(HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.CONFLICT);
-    }
 }

@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Table(name = "comments")
 @Entity
@@ -21,9 +19,10 @@ public class Comment {
     @Size(max = 10000)
     private String text;
 
-    @NotBlank
+    @Basic
     @Column(name = "date_creation")
-    private Date date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar date;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -36,9 +35,41 @@ public class Comment {
 
     }
 
-    public Comment(Long commentId, String text, Date date){
-        this.commentId = commentId;
+    public Comment(String text){
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        date = calendar;
         this.text = text;
+    }
+
+    public Long getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(Long commentId) {
+        this.commentId = commentId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
         this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
