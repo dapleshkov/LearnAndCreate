@@ -1,8 +1,10 @@
 package com.lac.controller;
 
+import com.lac.model.Category;
 import com.lac.model.Course;
 import com.lac.model.User;
 import com.lac.payload.CourseRequest;
+import com.lac.repository.CategoryRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
 import com.lac.security.UserPrincipal;
@@ -18,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.persistence.GeneratedValue;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
@@ -37,6 +40,9 @@ public class CoursesController {
 
     @Autowired
     private VideoService videoService;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(CoursesController.class);
 
@@ -89,7 +95,8 @@ public class CoursesController {
 
     @PostMapping
     public ResponseEntity<Void> addCourse(@Valid @RequestBody CourseRequest request) {
-        Course course = new Course(request.getTitle(), request.getDescription());
+        Category category = categoryRepository.findByName(request.getCategoryName());
+        Course course = new Course(request.getTitle(), request.getDescription(), category);
         boolean flag = coursesService.addCourse(course);
         if (!flag)
             return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -101,5 +108,10 @@ public class CoursesController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<?> getCoursesByCategoryId(@PathVariable("categoryId") Long categoryId) {
+        Category category = categoryRepository.findByCategoryId(categoryId);
+        List<Course> courses = coursesService.getCoursesByCategory(category);
+        return new ResponseEntity<>(courses, HttpStatus.OK);
+    }
 }

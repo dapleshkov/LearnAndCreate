@@ -12,12 +12,23 @@ public class CourseRequest {
     @Size(max = 10000)
     private String description;
 
+//    @NotBlank
+    private String categoryName;
+
     public String getDescription() {
         return description;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public void setDescription(String description) {

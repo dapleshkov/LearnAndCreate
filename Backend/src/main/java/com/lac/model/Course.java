@@ -29,6 +29,12 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "file_id"))
     private Image image;
 
+    @ManyToOne
+    @JoinTable(name = "course_category",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Category category;
+
 //    @NotBlank
 //    @Column(name = "date_creation")
 //    private Date date;
@@ -88,9 +94,10 @@ public class Course {
 
     }
 
-    public Course(String title, String description) {
+    public Course(String title, String description, Category category) {
         this.title = title;
         this.description = description;
+        this.category = category;
     }
 
     public String getTitle() {
@@ -105,6 +112,10 @@ public class Course {
         return courseId;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
     public Image getImage() {
         return image;
     }
@@ -116,6 +127,11 @@ public class Course {
 //    public void setVideos(Video video) {
 //        this.video = video;
 //    }
+
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public void setImage(Image image) {
         this.image = image;

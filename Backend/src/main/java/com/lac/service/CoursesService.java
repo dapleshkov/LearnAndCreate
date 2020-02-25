@@ -1,5 +1,6 @@
 package com.lac.service;
 
+import com.lac.model.Category;
 import com.lac.model.Course;
 import com.lac.model.User;
 import com.lac.repository.CourseRepository;
@@ -28,6 +29,10 @@ public class CoursesService {
 
     public List<Course> getCoursesByUser(User user) {
         return (List<Course>) user.getCourses();
+    }
+
+    public List<Course> getCoursesByCategory(Category category) {
+        return courseRepository.findAllByCategory(category);
     }
 
     public boolean addCourse(Course course) {
