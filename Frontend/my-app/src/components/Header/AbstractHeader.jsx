@@ -17,8 +17,20 @@ class AbstractHeader extends Component {
         let menuItems;
         if (this.props.isAuthenticated) {
             menuItems = [
-                <NavLink className="Logout" to="/mainpage" onClick={this.handleClickOut}>Выход</NavLink>,
-                <NavLink className="Logout"  to="/">Личный кабинет</NavLink>,
+                <nav className="dropDownMenu">
+                    <ul className="topmenu">
+                        <li><a href="#">{this.props.user.username}</a>
+                            <ul className="submenu">
+                                <li><a href="/users/">Личный кабинет</a></li>
+                                <li><a href="/mainpage" onClick={this.handleClickOut}>Выход</a></li>
+                                {/*<NavLink className="toProfile" to="/users/">Личный кабинет</NavLink>*/}
+                                {/*<NavLink className="Logout" to="/mainpage" onClick={this.handleClickOut}>Выход</NavLink>*/}
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                // <NavLink className="Logout" to="/mainpage" onClick={this.handleClickOut}>Выход</NavLink>,
+                // <NavLink className="Logout"  to="/">Личный кабинет</NavLink>,
             ];
         } else {
             menuItems = [
@@ -27,9 +39,9 @@ class AbstractHeader extends Component {
             ];
         }
         return (
-            <header className="Absrtact-header">
+            <header className="Abstract-header">
                 <div className="Header-components">
-                    <a className="Header-text" accessKey="/mainpage">LEARN AND CREATE</a>
+                    <a className="Header-text" href="/mainpage">LEARN AND CREATE</a>
                     {menuItems}
                 </div>
             </header>

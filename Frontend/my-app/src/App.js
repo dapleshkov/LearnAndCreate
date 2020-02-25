@@ -9,6 +9,7 @@ import MainPage from "./components/MainPage/MainPage";
 import {getCurrentUser} from "./components/ServerAPI/serverAPI";
 import UserAccount from "./components/UserAccount/UserAccount";
 import {ACCESS_TOKEN} from "./components/ServerAPI/utils";
+import Settings from "./components/Settings/Settings";
 
 class App extends Component {
     constructor(props) {
@@ -52,6 +53,10 @@ class App extends Component {
                     <Route path="/login" render={(props) => <Login onLogin={this.loadUser}/>}/>
                     <Route path='/registration' render={(props) => <Registration/>}/>
                     <Route path='/mainpage' component={MainPage}/>
+                    <Route path='/settings' render={(props)=> <Settings user ={this.state.currentUser}/>}/>
+
+                    {/*<Route path={pathToAccount} render={(props) => <UserAccount user={this.state.currentUser}*/}
+                    {/*                                                            isAuthenticated={this.state.isAuthenticated}/>}/>*/}
                     <Route path='/users/:username' render={(props) => <UserAccount user={this.state.currentUser}
                                                                                    isAuthenticated={this.state.isAuthenticated}/>}/>
                 </div>

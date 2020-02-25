@@ -9,8 +9,9 @@
 
 
 .Menu {
+    width: 100%;
+    text-align: center;
     margin-top: 15%;
-    grid-area: content;
 }
 
 .Menu-item{
@@ -24,6 +25,7 @@
     margin-top: 3vh;
     margin-bottom: 4vh;
 }
+
 
 .Label {
     width: 100%;
