@@ -6,7 +6,7 @@ import {Switch, Route, withRouter} from "react-router-dom";
 import Registration from "./components/Registration/Registration";
 import RefactorAccount from "./components/Refactor/RefactorAccount";
 import MainPage from "./components/MainPage/MainPage";
-import {getCurrentUser} from "./components/ServerAPI/serverAPI";
+import {getCurrentUser} from "./components/ServerAPI/userAPI.js";
 import UserAccount from "./components/UserAccount/UserAccount";
 import {ACCESS_TOKEN} from "./components/ServerAPI/utils";
 import Settings from "./components/Settings/Settings";

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "./Registration.css";
-import {checkEmailAvailability, checkUsernameAvailability, login, singUp} from "../ServerAPI/serverAPI";
+import {checkEmailAvailability, checkUsernameAvailability, login, singUp} from "../ServerAPI/userAPI";
 import {Form} from "antd";
 import {
     NAME_MIN_LENGTH, NAME_MAX_LENGTH,

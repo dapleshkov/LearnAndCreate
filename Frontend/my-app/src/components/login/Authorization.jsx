@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Authorization.css';
 import {NavLink} from 'react-router-dom';
-import {login} from "../ServerAPI/serverAPI";
+import {login} from "../ServerAPI/userAPI";
 
 
 class Login extends Component {
