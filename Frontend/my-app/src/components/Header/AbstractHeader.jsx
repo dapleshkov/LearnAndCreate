@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import './AbstractHeader.css'
-import {BrowserRouter, NavLink, Route} from "react-router-dom";
-import UserAccount from "../UserAccount/UserAccount";
+import {NavLink} from "react-router-dom";
 
 class AbstractHeader extends Component {
     constructor(props) {
