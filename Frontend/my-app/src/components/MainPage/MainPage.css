@@ -9,7 +9,6 @@
 
 
 .Menu {
-    //background-color: aqua;
     width: 100%;
     height: 20vh;
     text-align: center;
@@ -17,7 +16,6 @@
 }
 
 .Menu-item {
-    //background-color: bisque;
     grid-area: content;
     display: inline;
     padding: 30px;
@@ -25,14 +23,12 @@
 }
 
 .Menu-head {
-    //background-color: blueviolet;
     margin-top: 5vh;
     margin-bottom: 5vh;
 }
 
 
 .Label {
-    //background-color: aquamarine;
     width: 100%;
     color: white;
     margin-top: 15vh;
@@ -57,4 +53,17 @@ button:hover {
     outline: none;
     color: white;
     border: 0;
+}
+
+.CourseBlock{
+    position: relative;
+    left: 20vw;
+    height: 100px;
+    width: 60vw;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 8px;
+}
+.Inf{
+    position: relative;
+    left: -40%;
 }
