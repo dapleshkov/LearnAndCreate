@@ -16,7 +16,8 @@
     position: relative;
     float: right;
     width: 25px;
-    margin: 1vh 1vw;
+    top: 1vh;
+    right: 2vw;
 }
 
 .Header-text {
@@ -57,6 +58,18 @@
     animation: none;
     outline: none;
     float: right;
+}
+
+.d4 {
+    top: 2.5vh;
+    right: 1.5vw;
+    float: right;
+    position: relative;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid #000000;
 }
 
 .dropDownMenu {
