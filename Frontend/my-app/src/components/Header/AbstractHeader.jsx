@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import './AbstractHeader.css'
-import {NavLink} from "react-router-dom";
+import {BrowserRouter, NavLink, Route} from "react-router-dom";
 import UserAccount from "../UserAccount/UserAccount";
 
 class AbstractHeader extends Component {
@@ -13,15 +13,21 @@ class AbstractHeader extends Component {
         window.location.assign('http://localhost:3000/mainpage');
     };
 
+    // handleClickAccount() {
+    //     return (
+    //     );
+    // }
+
     render() {
         let menuItems;
         if (this.props.isAuthenticated) {
+            let pathToUser = "/users/" + this.props.user.username;
             menuItems = [
                 <nav className="dropDownMenu">
                     <ul className="topmenu">
                         <li><a href="#">{this.props.user.username}</a>
                             <ul className="submenu">
-                                <li><a href="/users/">Личный кабинет</a></li>
+                                <li><a href={pathToUser}>Личный кабинет</a></li>
                                 <li><a href="/mainpage" onClick={this.handleClickOut}>Выход</a></li>
                                 {/*<NavLink className="toProfile" to="/users/">Личный кабинет</NavLink>*/}
                                 {/*<NavLink className="Logout" to="/mainpage" onClick={this.handleClickOut}>Выход</NavLink>*/}
