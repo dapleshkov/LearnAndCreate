@@ -46,11 +46,11 @@ function Base() {
 function CourseBlock(course) {
     return(
         <div className="CourseBlock">
-            <text className="Inf">{course.name}</text>
+            <text className="Infa">{course.name}</text>
             <br/>
-            <text className="Inf">{course.duration}</text>
+            <text className="Infa">{course.duration}</text>
             <br/>
-            <text className="Inf">{course.mark}</text>
+            <text className="Infa">{course.mark}</text>
         </div>
     )
 }
