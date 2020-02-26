@@ -8,7 +8,7 @@ class UserAccount extends Component{
     render(){
         alert(this.props.user.name);
         return (
-            <div>
+            <div className="QW">
                 this is user account
             </div>
         );

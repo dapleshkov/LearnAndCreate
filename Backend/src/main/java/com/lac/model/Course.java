@@ -5,8 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Table(name = "courses")
 @Entity
@@ -30,6 +29,20 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "file_id"))
     private Image image;
 
+//    @NotBlank
+//    @Column(name = "date_creation")
+//    private Date date;
+//
+//    @NotBlank
+//    private Integer duration;
+//
+//    @NotBlank
+//    private Double mark;
+//
+//    @NotBlank
+//    @Column(name = "num_marks")
+//    private Long numMarks;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinTable(name = "user_courses",
@@ -37,20 +50,41 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> users = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
-    @JoinTable(name = "course_video",
-            joinColumns = @JoinColumn(name = "course_id"),
-            inverseJoinColumns = @JoinColumn(name = "file_id"))
-    private Set<Video> videos = new HashSet<>();
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @JoinTable(name = "creator_user",
+//            joinColumns = @JoinColumn(name = "course_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    private User creator = new User();
+
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @JoinTable(name = "course_video",
+//            joinColumns = @JoinColumn(name = "course_id"),
+//            inverseJoinColumns = @JoinColumn(name = "file_id"))
+//    private Video video = new Video();
 
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinTable(name = "course_lessons",
-            joinColumns = @JoinColumn(name = "lesson_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id"))
-    private Set<Lesson> lessons = new HashSet<>();
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "lesson_id"))
+    private List<Lesson> lessons = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @JoinTable(name = "course_comments",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "comment_id"))
+    private Set<Comment> comments = new HashSet<>();
+
+//    @ManyToMany( fetch =  FetchType.LAZY)
+//    @JsonIgnore
+//    @JoinTable(name = "course_tags",
+//            joinColumns = @JoinColumn(name  = "course_id"),
+//            inverseJoinColumns =  @JoinColumn(name = "tag_id"))
+//    private Set<Tag> tags = new HashSet<>();// потом заменим на нормальный тег
 
     public Course() {
 
@@ -77,13 +111,13 @@ public class Course {
         return image;
     }
 
-    public Set<Video> getVideos() {
-        return videos;
-    }
+//    public Video getVideos() {
+//        return video;
+//    }
 
-    public void setVideos(Set<Video> videos) {
-        this.videos = videos;
-    }
+//    public void setVideos(Video video) {
+//        this.video = video;
+//    }
 
     public void setImage(Image image) {
         this.image = image;
@@ -107,5 +141,81 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+//    public Date getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(Date date) {
+//        this.date = date;
+//    }
+//
+//    public Integer getDuration() {
+//        return duration;
+//    }
+//
+//    public void setDuration(Integer duration) {
+//        this.duration = duration;
+//    }
+//
+//    public Double getMark() {
+//        return mark;
+//    }
+//
+//    public void setMark(Double mark) {
+//        this.mark = mark;
+//    }
+//
+//    public Long getNumMarks() {
+//        return numMarks;
+//    }
+//
+//    public void setNumMarks(Long numMarks) {
+//        this.numMarks = numMarks;
+//    }
+//
+//    public User getCreator() {
+//        return creator;
+//    }
+//
+//    public void setCreator(User creator) {
+//        this.creator = creator;
+//    }
+
+//    public Video getVideo() {
+//        return video;
+//    }
+
+//    public void setVideo(Video video) {
+//        this.video = video;
+//    }
+
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public void addComment(Comment comment){
+        comments.add(comment);
+    }
+
+    public void deleteComment(Comment comment){
+        comments.remove(comment);
+    }
+
+    public void addLesson(Lesson lesson) {
+        lessons.add(lesson);
     }
 }

@@ -10,6 +10,7 @@ import com.lac.payload.SignUpRequest;
 import com.lac.repository.RoleRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.JwtTokenProvider;
+import com.lac.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,10 +20,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -47,6 +45,9 @@ public class AuthController {
 
     @Autowired
     JwtTokenProvider tokenProvider;
+
+    @Autowired
+    private EmailService emailService;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest request) {
@@ -91,5 +92,14 @@ public class AuthController {
                 .buildAndExpand(result.getUsername()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+    }
+
+    @PostMapping("/forgotpassword")
+    public ResponseEntity<?> forgotPassword(@RequestParam("usernameOrEmail") String usernameOrEmail) {
+        boolean success = emailService.sendPassword(usernameOrEmail);
+
+        if (success)
+            return new ResponseEntity(new ApiResponse(success, "Temporary password was sent to your email"), HttpStatus.OK);
+        else return new ResponseEntity(new ApiResponse(success, "User with this email or username not found"), HttpStatus.BAD_REQUEST);
     }
 }

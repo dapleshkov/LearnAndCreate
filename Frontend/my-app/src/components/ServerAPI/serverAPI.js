@@ -1,4 +1,3 @@
-import * as axios from "axios";
 import {ACCESS_TOKEN, API_BASE_URL} from "./utils";
 
 const request=(options)=>{

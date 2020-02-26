@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import './AbstractHeader.css'
-import {NavLink} from "react-router-dom";
+import {BrowserRouter, NavLink, Route} from "react-router-dom";
 import UserAccount from "../UserAccount/UserAccount";
 
 class AbstractHeader extends Component {
@@ -16,6 +16,7 @@ class AbstractHeader extends Component {
     render() {
         let menuItems;
         if (this.props.isAuthenticated) {
+            let pathToUser = "/users/" + this.props.user.username;
             menuItems = [
                 <nav className="dropDownMenu">
                     <ul className="topmenu">
@@ -26,8 +27,6 @@ class AbstractHeader extends Component {
                                 <li className="item"><a href={`/users/${this.props.user.username}`}>Личный кабинет</a></li>
                                 <li className="item"><a href="/settings">Настройки</a></li>
                                 <li className="item"><a href="/mainpage" onClick={this.handleClickOut}>Выход</a></li>
-                                {/*<NavLink className="toProfile" to="/users/">Личный кабинет</NavLink>*/}
-                                {/*<NavLink className="Logout" to="/mainpage" onClick={this.handleClickOut}>Выход</NavLink>*/}
                             </ul>
                         </li>
                     </ul>

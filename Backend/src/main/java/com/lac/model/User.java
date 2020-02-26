@@ -58,6 +58,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "course_id"))
     private Set<Course> courses = new HashSet<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_confirmation",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "confirmation_id"))
+    private EmailConfirmation emailConfirmation;
+
     public User() {
 
     }
@@ -99,6 +105,14 @@ public class User {
 
     public Set<Course> getCourses() {
         return courses;
+    }
+
+    public EmailConfirmation getEmailConfirmation() {
+        return emailConfirmation;
+    }
+
+    public void setEmailConfirmation(EmailConfirmation emailConfirmation) {
+        this.emailConfirmation = emailConfirmation;
     }
 
     public void setImage(Image image) {
