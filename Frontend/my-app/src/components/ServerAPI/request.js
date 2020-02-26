@@ -3,7 +3,7 @@ import {ACCESS_TOKEN} from "./utils";
 export function request(options){
     const headers = new Headers({
         'Content-Type': 'application/json',
-    })
+    });
 
     if(localStorage.getItem(ACCESS_TOKEN)) {
         headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
@@ -21,4 +21,4 @@ export function request(options){
                 return json;
             })
         );
-};
+}

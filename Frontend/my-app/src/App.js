@@ -15,7 +15,12 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentUser: null,
+            currentUser: {
+                name:null,
+                username:null,
+                email:null,
+                password:null
+            },
             isAuthenticated: false,
             isLoading: false
         };
@@ -25,7 +30,6 @@ class App extends Component {
     }
 
     loadUser() {
-        debugger;
         getCurrentUser().then(response => {
             this.setState({
                 currentUser: response,
@@ -43,6 +47,7 @@ class App extends Component {
     }
 
     render() {
+        debugger;
         return (
             <div className="Abstract-wrapper">
                 <AbstractHeader LogOut={this.logOut} user={this.state.currentUser}
