@@ -21,6 +21,7 @@ class AbstractHeader extends Component {
                 <nav className="dropDownMenu">
                     <ul className="topmenu">
                         <li>
+                            <span className="d4"></span>
                             <img className="ico" src="http://cdn.onlinewebfonts.com/svg/img_51324.png" alt="ico"></img>
                             <a className="maina" href="#">{this.props.user.username}</a>
                             <ul className="submenu">
