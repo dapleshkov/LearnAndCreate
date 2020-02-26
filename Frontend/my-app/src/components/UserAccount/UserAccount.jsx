@@ -6,9 +6,10 @@ class UserAccount extends Component{
         super(props);
     }
     render(){
+        debugger;
         alert(this.props.user.name);
         return (
-            <div className="QW">
+            <div className="Wrapper">
                 this is user account
             </div>
         );
