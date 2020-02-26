@@ -25,9 +25,9 @@ class AbstractHeader extends Component {
                             <img className="ico" src="http://cdn.onlinewebfonts.com/svg/img_51324.png" alt="ico"></img>
                             <a className="maina" href="#">{this.props.user.username}</a>
                             <ul className="submenu">
-                                <li className="item"><a href={`/users/${this.props.user.username}`}>Личный кабинет</a></li>
-                                <li className="item"><a href="/settings">Настройки</a></li>
-                                <li className="item"><a href="/mainpage" onClick={this.handleClickOut}>Выход</a></li>
+                                <li className="item"><NavLink to={`/users/${this.props.user.username}`}>Личный кабинет</NavLink></li>
+                                <li className="item"><NavLink to="/settings">Настройки</NavLink></li>
+                                <li className="item"><NavLink to="/mainpage" onClick={this.handleClickOut}>Выход</NavLink></li>
                             </ul>
                         </li>
                     </ul>
@@ -43,7 +43,7 @@ class AbstractHeader extends Component {
             <header className="Abstract-header">
                 <div className="Header-components">
                     {menuItems}
-                    <a className="Header-text" href="/mainpage">LEARN AND CREATE</a>
+                    <NavLink className="Header-text" to="/mainpage">LEARN AND CREATE</NavLink>
                 </div>
             </header>
         )
