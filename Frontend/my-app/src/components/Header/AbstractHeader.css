@@ -12,6 +12,12 @@
     width: 100%;
 }
 
+.ico{
+    position: relative;
+    float: right;
+    width: 25px;
+    margin: 1vh 1vw;
+}
 
 .Header-text {
     position: relative;
@@ -19,9 +25,9 @@
     font-style: normal;
     font-weight: normal;
     color: #42444C;
-    left: 2%;
     top: 30%;
     font-size: 100%;
+    width: 13vw;
 }
 
 .Reg {
@@ -37,14 +43,12 @@
     text-decoration: none;
     border: 0;
     float: right;
-    //margin-top: -3%;
 }
 
 .Enter {
     position: relative;
     padding: 6px 10px;
     right: 3%;
-    //margin-top: -3%;
     top: 15%;
     height: 40%;
     text-decoration: none;
@@ -56,40 +60,8 @@
 }
 
 .dropDownMenu {
-    width: 6.5%;
-    margin-top: -3%;
-    margin-right: 5px;
-    float: right;
-
-    position: relative;
-}
-
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.topmenu > li {
-    display: inline-block;
-    margin-right: 20px;
-    margin-top: 0;
-    position: relative;
-}
-
-.topmenu > li:last-child {
-    margin-right: 0;
-}
-
-a {
-    display: block;
-    padding: 10px 15px;
-    text-decoration: none;
-}
-
-.dropDownMenu {
-    width: 6.5%;
-    margin-top: -3%;
+    width: 13%;
+    //margin-top: -3%;
     margin-right: 5px;
     float: right;
     position: relative;
@@ -101,6 +73,10 @@ ul {
     padding: 0;
 }
 
+.topmenu > li:last-child {
+    margin-right: 0;
+}
+
 .topmenu > li {
     display: inline-block;
     margin-right: 20px;
@@ -108,8 +84,8 @@ ul {
     position: relative;
 }
 
-.topmenu > li:last-child {
-    margin-right: 0;
+.maina {
+    text-align: center;
 }
 
 a {
@@ -120,7 +96,6 @@ a {
     font-family: 'Lora', serif;
     transition: .5s linear;
 }
-
 
 .submenu {
     position: absolute;
@@ -134,18 +109,13 @@ a {
     transition: 0.5s ease-in-out;
 }
 
-.dropDownMenu ul {
-    //background: #FF1A2E;
-    border-width: 4px;
-    border-color: #FF1A2E;
-}
-
-.dropDownMenu ul li{
+.dropDownMenu ul li {
     width: 100%;
 }
 
 .dropDownMenu ul a {
     color: black;
+    //border: 1px solid #FF0000;
 }
 
 .dropDownMenu .submenu {
@@ -155,4 +125,12 @@ a {
 
 .dropDownMenu ul li:hover .submenu {
     visibility: visible;
+}
+
+.item:hover{
+    background-color: #c7c5ce;
+}
+
+.maina:hover{
+    background-color: #c7c5ce;
 }

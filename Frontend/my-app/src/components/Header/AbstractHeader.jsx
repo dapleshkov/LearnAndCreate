@@ -19,30 +19,31 @@ class AbstractHeader extends Component {
             menuItems = [
                 <nav className="dropDownMenu">
                     <ul className="topmenu">
-                        <li><a href="#">{this.props.user.username}</a>
+                        <li>
+                            <img className="ico" src="http://cdn.onlinewebfonts.com/svg/img_51324.png" alt="ico"></img>
+                            <a className="maina" href="#">{this.props.user.username}</a>
                             <ul className="submenu">
-                                <li><a href="/users/">Личный кабинет</a></li>
-                                <li><a href="/mainpage" onClick={this.handleClickOut}>Выход</a></li>
+                                <li className="item"><a href={`/users/${this.props.user.username}`}>Личный кабинет</a></li>
+                                <li className="item"><a href="/settings">Настройки</a></li>
+                                <li className="item"><a href="/mainpage" onClick={this.handleClickOut}>Выход</a></li>
                                 {/*<NavLink className="toProfile" to="/users/">Личный кабинет</NavLink>*/}
                                 {/*<NavLink className="Logout" to="/mainpage" onClick={this.handleClickOut}>Выход</NavLink>*/}
                             </ul>
                         </li>
                     </ul>
                 </nav>
-                // <NavLink className="Logout" to="/mainpage" onClick={this.handleClickOut}>Выход</NavLink>,
-                // <NavLink className="Logout"  to="/">Личный кабинет</NavLink>,
             ];
         } else {
             menuItems = [
                 <NavLink className="Reg" to='/registration'> Регистрация </NavLink>,
-                <NavLink className="Enter" to='/login'>Вход</NavLink>,
+                <NavLink className="Enter" to='/login'>Вход</NavLink>
             ];
         }
         return (
             <header className="Abstract-header">
                 <div className="Header-components">
-                    <a className="Header-text" href="/mainpage">LEARN AND CREATE</a>
                     {menuItems}
+                    <a className="Header-text" href="/mainpage">LEARN AND CREATE</a>
                 </div>
             </header>
         )

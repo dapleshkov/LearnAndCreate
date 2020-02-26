@@ -14,14 +14,14 @@
     margin-top: 15%;
 }
 
-.Menu-item{
+.Menu-item {
     grid-area: content;
     display: inline;
     padding: 30px;
     text-align: center;
 }
 
-.Menu-head{
+.Menu-head {
     margin-top: 3vh;
     margin-bottom: 4vh;
 }
