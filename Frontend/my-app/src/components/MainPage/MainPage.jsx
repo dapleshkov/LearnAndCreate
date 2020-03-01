@@ -6,23 +6,37 @@ class MainPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lst: [
-                {name: "c1", id: 1, duration: 12, mark: 3},
-                {name: "asdlkg skajdhgkj sdfjkgh", id: 2, duration: 100, mark: 5},
-                {name: "qwrdfhs dsfhsdjs sdfa", id: 3, duration: 10, mark: 4.2},
-                {name: "c6", id: 4, duration: 122, mark: 3.4},
-                {name: "c5", id: 5, duration: 1231, mark: 1}
-            ]
-        }
+            courses: [],
+        };
+        this.loadCourses = this.loadCourses.bind(this);
     }
 
 
+    loadCourses() {
+        alert(1);
+        getRandomCourses().then(response => {
+            debugger;
+            alert(2)
+            const list = this.state.courses.slice();
+            this.setState({
+                courses: new Array(response)
+            });
+            alert(this.state.courses);
+        });
+        alert(this.state.courses);
+    }
+
+    componentDidMount() {
+        this.loadCourses();
+    }
     render() {
+        this.loadCourses();
+        alert(3)
         return (
             <div className="Main">
                 <Base/>
                 <Menu/>
-                <Courses courselst={this.state.lst}/>
+                <Courses courses={this.state.courses}/>
             </div>);
     }
 }
@@ -43,28 +57,27 @@ function Base() {
         </div>
     );
 }
+
 function CourseBlock(course) {
-    return(
+    return (
         <div className="CourseBlock">
-            <text className="Infa">{course.name}</text>
+            <text className="Infa">{course.title}</text>
             <br/>
             <text className="Infa">{course.duration}</text>
             <br/>
-            <text className="Infa">{course.mark}</text>
+            <text className="Infa">{course.category.name}</text>
         </div>
     )
 }
 
 function Courses(props) {
-    let course = props.courselst.map(p => CourseBlock(p));
-
-    // getRandomCourses().then(response => {
-    // });
+    let corses = props.courses.map(p => {
+        CourseBlock(p)
+    });
+    alert(4);
     return (
-        <div>
-            {course}
-        </div>
-    )
+        {corses}
+    );
 }
 
 function Menu() {

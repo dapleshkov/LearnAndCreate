@@ -48,16 +48,14 @@ class SingUp extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        debugger;
-
-
         let singupuser = {
             name: document.getElementById('name').value,
             email: document.getElementById('mail').value,
             username: document.getElementById('username').value,
             password: document.getElementById('password').value
-        }
+        };
         singUp(singupuser).then(response => {
+            debugger;
             if (response.success) {
                 window.location.assign('http://localhost:3000/login')
             }

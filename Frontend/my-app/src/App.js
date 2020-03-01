@@ -26,7 +26,7 @@ class App extends Component {
         };
         this.loadUser = this.loadUser.bind(this);
         this.logOut = this.logOut.bind(this);
-        this.loadUser();
+        this.loadUser=this.loadUser.bind(this);
     }
 
     loadUser() {
@@ -46,8 +46,10 @@ class App extends Component {
         });
     }
 
+    componentDidMount() {
+        this.loadUser();
+    }
     render() {
-        debugger;
         return (
             <div className="Abstract-wrapper">
                 <AbstractHeader LogOut={this.logOut} user={this.state.currentUser}
