@@ -13,30 +13,29 @@ class MainPage extends Component {
 
 
     loadCourses() {
-        alert(1);
         getRandomCourses().then(response => {
-            debugger;
-            alert(2)
-            const list = this.state.courses.slice();
             this.setState({
-                courses: new Array(response)
+                courses: JSON.parse(JSON.stringify(response))
             });
-            alert(this.state.courses);
         });
-        alert(this.state.courses);
     }
 
     componentDidMount() {
         this.loadCourses();
     }
+
     render() {
-        this.loadCourses();
-        alert(3)
+        const coursesList = [];
+        this.state.courses.forEach((course) => {
+            coursesList.push(<CourseBlock course={course}/>)
+            debugger;
+        });
+
         return (
             <div className="Main">
                 <Base/>
                 <Menu/>
-                <Courses courses={this.state.courses}/>
+                {coursesList}
             </div>);
     }
 }
@@ -58,26 +57,17 @@ function Base() {
     );
 }
 
-function CourseBlock(course) {
+
+function CourseBlock(props) {
     return (
         <div className="CourseBlock">
-            <text className="Infa">{course.title}</text>
+            <text className="Infa">{props.course.title}</text>
             <br/>
-            <text className="Infa">{course.duration}</text>
-            <br/>
-            <text className="Infa">{course.category.name}</text>
+            <text className="Infa">{props.course.description}</text>
+            {/*<br/>*/}
+            {/*<text className="Infa">{props.course.category.name}</text>*/}
         </div>
     )
-}
-
-function Courses(props) {
-    let corses = props.courses.map(p => {
-        CourseBlock(p)
-    });
-    alert(4);
-    return (
-        {corses}
-    );
 }
 
 function Menu() {
