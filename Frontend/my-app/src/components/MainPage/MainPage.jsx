@@ -61,6 +61,8 @@ function Base() {
 function CourseBlock(props) {
     return (
         <div className="CourseBlock">
+            <img src="https://yt3.ggpht.com/a/AGF-l7_tM_jmkKQ_T1sNRNBf-s7GZuhzFWbdEkSfHA=s900-c-k-c0xffffffff-no-rj-mo" width="50" height="50"/>
+            <br/>
             <text className="Infa">{props.course.title}</text>
             <br/>
             <text className="Infa">{props.course.description}</text>
