@@ -26,7 +26,6 @@ class App extends Component {
         };
         this.loadUser = this.loadUser.bind(this);
         this.logOut = this.logOut.bind(this);
-        this.loadUser=this.loadUser.bind(this);
     }
 
     loadUser() {
