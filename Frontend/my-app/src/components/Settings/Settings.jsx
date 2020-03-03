@@ -1,25 +1,25 @@
 import React, {Component} from "react";
-import "./Settings.css";import "./EditName";
+import "./Settings.css";
+import "./EditName";
 import EditName from "./EditName";
-import {Switch, Route} from "react-router-dom";
+import EditUserName from "./EditUserName";
+import EditPassword from "./EditPassword";
+import {Switch, Route, NavLink} from "react-router-dom";
 
 
-class Settings extends Component{
-    constructor(props)
-    {
+class Settings extends Component {
+    constructor(props) {
         super(props);
     }
-    render(){
+
+    render() {
         return (
             <div className="Settings">
                 <UserSettings/>
                 <Switch>
-                    <Route path="/editname" component={EditName}/>
-                    {/*<Route path="/login" render={(props) => <Login onLogin={this.loadUser}/>}/>*/}
-                    {/*<Route path='/registration' render={(props) => <Registration/>}/>*/}
-                    {/*<Route path='/mainpage' component={MainPage}/>*/}
-                    {/*<Route path='/settings' render={(props) => <Settings user={this.state.currentUser}/>}/>*/}
-                    {/*<Route path='/users/:username' render={(props) => <UserAccount user={this.state.currentUser}/>}/>*/}
+                    <Route path="/settings/editname" component={EditName}/>
+                    <Route path="/settings/editusername" component={EditUserName}/>
+                    <Route path="/settings/editpassword" component={EditPassword}/>
                 </Switch>
             </div>
         );
@@ -27,10 +27,20 @@ class Settings extends Component{
 }
 
 function UserSettings() {
-    return(
-        <div className="UserSettings">
-            This is Menu
-        </div>
+    return (
+        <ul className="UserSettings">
+            <li className="SettingsItem">
+                <NavLink to="/settings/editname" className="SettingsLink">Изменить имя</NavLink>
+            </li>
+            <li className="SettingsItem">
+                <NavLink to="/settings/editusername" className="SettingsLink">Изменить имя пользователя</NavLink>
+            </li>
+            <li className="SettingsItem">
+                <NavLink to="/settings/editpassword" className="SettingsLink">Изменить пароль</NavLink>
+            </li>
+        </ul>
+
     )
 }
+
 export default Settings;
