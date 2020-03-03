@@ -3,6 +3,7 @@ package com.lac.controller;
 import com.lac.model.Category;
 import com.lac.model.Course;
 import com.lac.model.User;
+import com.lac.payload.ApiResponse;
 import com.lac.payload.CourseRequest;
 import com.lac.repository.CategoryRepository;
 import com.lac.repository.UserRepository;
@@ -112,6 +113,12 @@ public class CoursesController {
     public ResponseEntity<?> getCoursesByCategoryId(@PathVariable("categoryId") Long categoryId) {
         Category category = categoryRepository.findByCategoryId(categoryId);
         List<Course> courses = coursesService.getCoursesByCategory(category);
+        return new ResponseEntity<>(courses, HttpStatus.OK);
+    }
+
+    @GetMapping("/find/{substring}")
+    public ResponseEntity<?> getCoursesBySubstring(@PathVariable("substring") String substring) {
+        List<Course> courses = coursesService.getCoursesByTitleSubstring(substring);
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 }

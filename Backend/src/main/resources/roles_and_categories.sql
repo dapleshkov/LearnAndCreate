@@ -10,7 +10,7 @@ insert into roles (name) values ('ROLE_ADMIN');
 
 create table categories (
     `category_id` bigint(20) not null auto_increment,
-    'name' varchar(60) not null,
+    `name` varchar(60) not null,
     primary key (`category_id`),
     unique key `uk_categories_name` (`name`)
 ) engine = InnoDB default charset = utf8;

@@ -35,6 +35,10 @@ public class CoursesService {
         return courseRepository.findAllByCategory(category);
     }
 
+    public List<Course> getCoursesByTitleSubstring(String substring) {
+        return courseRepository.findAllByTitleContaining(substring);
+    }
+
     public boolean addCourse(Course course) {
         if (!courseRepository.existsByTitleAndDescription(course.getTitle(), course.getDescription())) {
             courseRepository.save(course);

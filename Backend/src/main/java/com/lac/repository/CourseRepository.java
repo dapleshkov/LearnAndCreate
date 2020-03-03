@@ -14,4 +14,6 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     boolean existsByTitleAndDescription(String title, String description);
 
     List<Course> findAllByCategory(Category category);
+
+    List<Course> findAllByTitleContaining(String titleSubstring);
 }
