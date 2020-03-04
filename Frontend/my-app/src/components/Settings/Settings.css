@@ -1,8 +1,9 @@
 .Settings {
     grid-area: content;
-    background-color: white;
     height: 89vh;
     text-align: center;
+    /*background:url(https://yt3.ggpht.com/a/AGF-l78GN5pUODm6gQYDeTV9aMxYM8-F7nU1yM91jA=s900-c-k-c0xffffffff-no-rj-mo) no-repeat top;*/
+    /*background-size: 100%;*/
 }
 
 .UserSettings{
@@ -12,7 +13,6 @@
     border-left: 1px solid rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     border-right: 1px solid rgba(0, 0, 0, 0.3);
-
     border-top: 3px solid red;
     margin-left: 100px;
 }
@@ -25,6 +25,9 @@
 
 .SettingsLink{
     margin-top: 6px;
+    margin-left: -10px;
+    height: 100%;
+    width: 100%;
 }
 
 .SettingsItem:hover{
@@ -40,7 +43,9 @@
 
 .MainBlock{
     margin-left: 400px;
+    margin-top: 75px;
     align-items: center;
+    height: 220px;
 }
 
 
@@ -49,11 +54,13 @@
     border-radius: 5px;
     height: 5vh;
     width: 35vw;
-    margin: 2vh 2vh;
+    margin: 2vh 2vw;
     background-color: red;
     outline: none;
     color: white;
     border: 0;
+    float: right;
+    right: 100px;
 }
 
 .Changes{
@@ -62,9 +69,16 @@
     height: 5vh;
     width: 35vw;
     margin: 2vh 2vw;
+    float: right;
+    right: 100px;
 }
 
-.Info{
-    float: left;
-    margin-top: 20px;
+.Inform {
+    position: relative;
+    top: 20px;
+    margin: 10px;
+}
+
+.f{
+    height: 42px;
 }
