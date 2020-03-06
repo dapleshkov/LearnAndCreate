@@ -88,9 +88,9 @@ public class UserController {
                                        @RequestParam("email") String email) {
         User user = userRepository.findByUserId(currentUser.getUserId());
 
-        String code = emailService.sendCodeToConfirmEmail(user.getEmail(), email);
+        String code = emailService.sendCodeToConfirmEmail(user.getEmail(), email.toLowerCase());
 
-        return new ResponseEntity(new ApiResponse(true, "Confirmation code was sent to your email"), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(true, "Confirmation code was sent to your email"), HttpStatus.OK);
     }
 
     @PutMapping("/user/me/edit/email/confirm")
@@ -100,9 +100,9 @@ public class UserController {
         User user = userRepository.findByUserId(currentUser.getUserId());
 
         if (user.getEmailConfirmation() == null)
-            return new ResponseEntity(new ApiResponse(false, "You don't need to confirm email"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse(false, "You don't need to confirm email"), HttpStatus.BAD_REQUEST);
         if (!user.getEmailConfirmation().getCode().equals(code))
-            return new ResponseEntity(new ApiResponse(false, "Incorrect confirmation code"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse(false, "Incorrect confirmation code"), HttpStatus.BAD_REQUEST);
 
         EmailConfirmation confirmation = user.getEmailConfirmation();
         user.setEmail(confirmation.getNewEmail());
@@ -110,7 +110,7 @@ public class UserController {
         user.setEmailConfirmation(null);
         userRepository.save(user);
 
-        return new ResponseEntity(new ApiResponse(true, "Email was edited"), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(true, "Email was edited"), HttpStatus.OK);
     }
 
     @PostMapping("/user/me/image")

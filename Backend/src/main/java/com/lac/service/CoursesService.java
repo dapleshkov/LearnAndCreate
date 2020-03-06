@@ -8,6 +8,7 @@ import com.lac.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,6 +38,10 @@ public class CoursesService {
 
     public List<Course> getCoursesByTitleSubstring(String substring) {
         return courseRepository.findAllByTitleContaining(substring);
+    }
+
+    public List<Course> getTopCourses(Pageable pageable) {
+        return courseRepository.findTopPopularCourses(pageable);
     }
 
     public boolean addCourse(Course course) {

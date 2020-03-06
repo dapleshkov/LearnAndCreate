@@ -21,7 +21,7 @@ public class UserService {
         if (username.length() > 15 || username.length() < 4)
             return false;
         User user = userRepository.findByUserId(currentUser.getUserId());
-        user.setUsername(username);
+        user.setUsername(username.toLowerCase());
         userRepository.save(user);
         return true;
     }

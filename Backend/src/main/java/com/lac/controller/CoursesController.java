@@ -15,6 +15,9 @@ import com.lac.service.VideoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -119,6 +122,10 @@ public class CoursesController {
     @GetMapping("/find/{substring}")
     public ResponseEntity<?> getCoursesBySubstring(@PathVariable("substring") String substring) {
         List<Course> courses = coursesService.getCoursesByTitleSubstring(substring);
+        if (courses.isEmpty()) {
+            Pageable pageable = PageRequest.of(0, 5);
+            courses = coursesService.getTopCourses(pageable);
+        }
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 }

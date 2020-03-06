@@ -42,10 +42,10 @@ public class Course {
 //    @NotBlank
 //    private Integer duration;
 //
-    private Double mark ;
+    private Double mark = 0.0;
 
     @Column(name = "num_marks")
-    private Long numMarks;
+    private Long numMarks = 0L;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore

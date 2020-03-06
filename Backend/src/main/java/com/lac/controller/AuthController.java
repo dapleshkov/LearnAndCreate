@@ -65,18 +65,19 @@ public class AuthController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 
+
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
-            return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
+            return new ResponseEntity<>(new ApiResponse(false, "Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
         if (userRepository.existsByEmail(request.getEmail())) {
-            return new ResponseEntity(new ApiResponse(false, "Email is already in use!"),
+            return new ResponseEntity<>(new ApiResponse(false, "Email is already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
 
-        User user = new User(request.getName(), request.getUsername(), request.getEmail(), request.getPassword());
+        User user = new User(request.getName(), request.getUsername().toLowerCase(), request.getEmail().toLowerCase(), request.getPassword());
 
         Role userRole = roleRepository.findByName(RoleName.ROLE_USER);
         if (userRole == null)
@@ -99,7 +100,7 @@ public class AuthController {
         boolean success = emailService.sendPassword(usernameOrEmail);
 
         if (success)
-            return new ResponseEntity(new ApiResponse(success, "Temporary password was sent to your email"), HttpStatus.OK);
-        else return new ResponseEntity(new ApiResponse(success, "User with this email or username not found"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse(true, "Temporary password was sent to your email"), HttpStatus.OK);
+        else return new ResponseEntity<>(new ApiResponse(false, "User with this email or username not found"), HttpStatus.BAD_REQUEST);
     }
 }
