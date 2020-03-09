@@ -4,46 +4,50 @@
     height: 534px;
 }
 
-.UserSettings{
+.UserSettings {
     position: relative;
     float: left;
-    margin-top: 75px;
-    border-left: 1px solid rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    border-right: 1px solid rgba(0, 0, 0, 0.3);
-    border-top: 3px solid red;
+    margin-top: 100px;
+    width: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
     margin-left: 100px;
 }
 
-.SettingsItem{
-    height: 55px;
+.SettingsItem {
+    height: 40px;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    padding: 5px;
+    align-items: center;
 }
 
-.SettingsLink{
-    margin-top: 6px;
-    margin-left: -10px;
-    height: 100%;
-    width: 100%;
+.SettingsLink {
+    position: relative;
+    height: 20px;
+    color: black;
+    width: 268px;
 }
 
-.SettingsItem:hover{
+.selected_link {
+    color: red;
+    border-top: 3px solid red;
+}
+
+.SettingsItem:hover {
     background-color: #c7c5ce;
 }
 
-.separator{
+.separator1 {
     border: none;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.1);
     height: 1px;
     width: 635px;
 }
 
-.MainBlock{
-    margin-left: 400px;
+.MainBlock {
+    position: relative;
+    margin-left: 410px;
     margin-top: 75px;
     align-items: center;
-    height: 220px;
+    height: 280px;
 }
 
 
@@ -61,7 +65,7 @@
     right: 100px;
 }
 
-.Changes{
+.Changes {
     position: relative;
     border-radius: 5px;
     height: 33px;
@@ -77,6 +81,6 @@
     margin: 10px;
 }
 
-.f{
+.f {
     height: 42px;
 }

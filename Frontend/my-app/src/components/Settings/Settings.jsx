@@ -32,7 +32,7 @@ class EditName extends Component {
         return (
             <div className="MainBlock">
                 <text className="Title">Изменить имя</text>
-                <hr className="separator"/>
+                <hr className="separator1"/>
                 <div className="f">
                     <text className="Inform">Новое имя</text>
                     <input className="Changes" placeholder="name"/>
@@ -54,7 +54,7 @@ class EditUserName extends Component {
         return (
             <div className="MainBlock">
                 <text className="Title">Изменить имя пользователя</text>
-                <hr className="separator"/>
+                <hr className="separator1"/>
                 <div className="f">
                     <text className="Inform">Новое имя пользователя</text>
                     <input className="Changes" placeholder="username"/>
@@ -76,7 +76,7 @@ class EditPassword extends Component {
         return (
             <div className="MainBlock">
                 <text className="Title">Изменить пароль</text>
-                <hr className="separator"/>
+                <hr className="separator1"/>
                 <div className="f">
                     <text className="Inform">Текущий пароль</text>
                     <input className="Changes" placeholder="your password"/>
@@ -103,16 +103,18 @@ function UserSettings() {
     return (
         <ul className="UserSettings">
             <li className="SettingsItem">
-                <NavLink to="/settings/editname" className="SettingsLink">Изменить имя</NavLink>
+                <NavLink to="/settings/editname" className="SettingsLink" activeClassName="selected_link">Изменить
+                    имя</NavLink>
             </li>
             <li className="SettingsItem">
-                <NavLink to="/settings/editusername" className="SettingsLink">Изменить имя пользователя</NavLink>
+                <NavLink to="/settings/editusername" className="SettingsLink" activeClassName="selected_link">Изменить
+                    имя пользователя</NavLink>
             </li>
             <li className="SettingsItem">
-                <NavLink to="/settings/editpassword" className="SettingsLink">Изменить пароль</NavLink>
+                <NavLink to="/settings/editpassword" className="SettingsLink" activeClassName="selected_link">Изменить
+                    пароль</NavLink>
             </li>
         </ul>
-
     )
 }
 

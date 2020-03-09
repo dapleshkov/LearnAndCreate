@@ -58,13 +58,11 @@ function Base() {
 
 
 function CourseBlock(props) {
-    let path="";
-    if(props.course.image===null)
-    {
-        path="https://yt3.ggpht.com/a/AGF-l7_tM_jmkKQ_T1sNRNBf-s7GZuhzFWbdEkSfHA=s900-c-k-c0xffffffff-no-rj-mo";
-    }
-    else{
-        path=props.course.image;
+    let path = "";
+    if (props.course.image === null) {
+        path = "https://yt3.ggpht.com/a/AGF-l7_tM_jmkKQ_T1sNRNBf-s7GZuhzFWbdEkSfHA=s900-c-k-c0xffffffff-no-rj-mo";
+    } else {
+        path = props.course.image;
     }
 
     return (
@@ -83,15 +81,17 @@ function Menu() {
     return (
         <div className="Menu">
             <div className="Menu-head"> Открытый доступ ко всем направлениям искусства</div>
-            <MenuItem name="Все категории"/>
-            <MenuItem name="Дизайн"/>
-            <MenuItem name="Каллиграфия"/>
-            <MenuItem name="История"/>
-            <MenuItem name="Музыка"/>
-            <MenuItem name="Исскуство"/>
-            <MenuItem name="Кино"/>
-            <MenuItem name="Пение"/>
-            <MenuItem name="Литература"/>
+            <div className="Menu-categories">
+                <MenuItem name="Все категории"/>
+                <MenuItem name="Дизайн"/>
+                <MenuItem name="Каллиграфия"/>
+                <MenuItem name="История"/>
+                <MenuItem name="Музыка"/>
+                <MenuItem name="Исскуство"/>
+                <MenuItem name="Кино"/>
+                <MenuItem name="Пение"/>
+                <MenuItem name="Литература"/>
+            </div>
         </div>
     );
 }
