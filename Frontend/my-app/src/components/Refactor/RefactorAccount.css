@@ -1,14 +1,14 @@
 .Refactor {
     grid-area: content;
     background-color: white;
-    height: 89vh;
+    height: 534px;
     text-align: center;
 }
 
 .Inf {
     position: relative;
     font-size: large;
-    margin-right: -3vw;
+    margin-right: -37px;
 }
 
 button:hover{
@@ -18,9 +18,9 @@ button:hover{
 .Refactor-button {
     position: relative;
     border-radius: 5px;
-    height: 5vh;
-    width: 35vw;
-    margin: 2vh 2vh;
+    height: 30px;
+    width: 437px;
+    margin: 12px 25px;
     background-color: red;
     outline: none;
     color: white;
