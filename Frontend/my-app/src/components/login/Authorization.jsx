@@ -7,15 +7,15 @@ import {login} from "../ServerAPI/userAPI";
 class Login extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            usernameOrEmail:null,
+            password:null
+        }
     }
 
     handleSubmit = event => {
         event.preventDefault();
-        let user = {
-            usernameOrEmail: document.getElementById('login').value,
-            password: document.getElementById('pass').value
-        };
-        login(user).then(response => {
+        login(this.state).then(response => {
             localStorage.setItem('accessToken', response.accessToken);
             this.props.onLogin();
             window.location.assign('http://localhost:3000/mainpage')
@@ -28,8 +28,12 @@ class Login extends Component {
         });
     };
 
-    handleChange = event => {
-        this.setState({name: event.target.value});
+    handleChangeName = event => {
+        this.setState({usernameOrEmail: event.target.value});
+    };
+
+    handleChangePassword = event => {
+        this.setState({password: event.target.value});
     };
 
     render() {
@@ -42,11 +46,11 @@ class Login extends Component {
                         </text>
                     </div>
                     <div>
-                        <input className="Login" onChange={this.handleChange} id='login'>
+                        <input className="Login" onChange={this.handleChangeName} id='login'>
                         </input>
                     </div>
                     <div>
-                        <input className='Passwordi' type='password' onChange={this.handleChange} id='pass'>
+                        <input className='Passwordi' type='password' onChange={this.handleChangePassword} id='pass'>
                         </input>
                     </div>
                     <div>

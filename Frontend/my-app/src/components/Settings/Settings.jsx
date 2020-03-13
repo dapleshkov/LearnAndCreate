@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "./Settings.css";
 import {Switch, Route, NavLink} from "react-router-dom";
+import {editName} from "../ServerAPI/userAPI";
 
 
 class Settings extends Component {
@@ -27,12 +28,26 @@ class EditName extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLodaded: false
+            name:null
         }
     }
 
     handleSubmit = event => {
+        debugger;
+        event.preventDefault();
+        editName(this.state.name).then(response=>{
+            debugger;
+           alert(response);
+        }).catch(response=>{
+            alert(response);
+        });
+    };
 
+    handleChange=event=>{
+        debugger;
+      this.setState({
+          name:event.target.value
+      });
     };
 
     render() {
@@ -42,10 +57,10 @@ class EditName extends Component {
                 <hr className="separator1"/>
                 <div className="f">
                     <text className="Inform">Новое имя</text>
-                    <input className="Changes" placeholder="name"/>
+                    <input className="Changes" placeholder="name" onChange={this.handleChange}/>
                 </div>
                 <div>
-                    <button className='Submit'>Сохранить изменения</button>
+                    <button className='Submit' onClick={this.handleSubmit}>Сохранить изменения</button>
                 </div>
             </div>
         );

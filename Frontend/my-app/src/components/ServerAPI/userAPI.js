@@ -49,3 +49,11 @@ export function editPassword(password) {
         password: JSON.stringify(password)
     });
 }
+
+export function editName(name) {
+    return request({
+        url: API_BASE_URL + "/user/me/edit/name",
+        method: 'POST',
+        password: JSON.stringify(name)
+    });
+}
