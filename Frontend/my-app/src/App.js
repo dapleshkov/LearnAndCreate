@@ -74,7 +74,9 @@ class App extends Component {
         else
         {
             return (
-                <div>
+                <div className="Abstract-wrapper">
+                    <AbstractHeader LogOut={this.logOut} user={this.state.currentUser}
+                                    isAuthenticated={this.state.isAuthenticated}/>
                 </div>
             )
         }

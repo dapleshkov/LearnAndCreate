@@ -26,7 +26,14 @@ class Settings extends Component {
 class EditName extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isLodaded: false
+        }
     }
+
+    handleSubmit = event => {
+
+    };
 
     render() {
         return (
