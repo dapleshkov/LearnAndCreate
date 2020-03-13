@@ -11,7 +11,7 @@ public class Video extends File {
         super();
     }
 
-    public Video(String name, String type) {
-        super(name, type);
+    public Video(String url, String type) {
+        super(url, type);
     }
 }

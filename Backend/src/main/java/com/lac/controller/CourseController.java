@@ -8,7 +8,6 @@ import com.lac.model.Lesson;
 import com.lac.payload.*;
 import com.lac.repository.CommentRepository;
 import com.lac.repository.CourseRepository;
-import com.lac.repository.LessonRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
 import com.lac.security.UserPrincipal;
@@ -97,7 +96,7 @@ public class CourseController {
         course.setImage(image);
         courseRepository.save(course);
 
-        return new UploadFileResponse(image.getName(), image.getType(), file.getSize());
+        return new UploadFileResponse(image.getUrl(), image.getType(), file.getSize());
     }
 
     @PostMapping("/{courseId}")

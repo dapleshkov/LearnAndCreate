@@ -5,15 +5,12 @@ import com.lac.model.Lesson;
 import com.lac.model.Video;
 import com.lac.payload.CommentRequest;
 import com.lac.payload.UploadFileResponse;
-import com.lac.repository.CommentRepository;
 import com.lac.repository.LessonRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
 import com.lac.security.UserPrincipal;
 import com.lac.service.CommentService;
-import com.lac.service.CourseService;
 import com.lac.service.VideoService;
-import com.sun.mail.iap.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Date;
 
 @RestController
 @RequestMapping("api/lesson")
@@ -58,7 +54,7 @@ public class LessonController {
     public UploadFileResponse addVideoToLesson(@PathVariable("lessonId") Long lessonId,
                                                @RequestParam("video") MultipartFile file) throws IOException {
         Video video = videoService.store(file);
-        UploadFileResponse response = new UploadFileResponse(video.getName(), video.getType(), file.getSize());
+        UploadFileResponse response = new UploadFileResponse(video.getUrl(), video.getType(), file.getSize());
 
         Lesson lesson = lessonRepository.findByLessonId(lessonId);
         lesson.setVideo(video);

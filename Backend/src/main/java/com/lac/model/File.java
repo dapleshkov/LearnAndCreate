@@ -10,7 +10,7 @@ public class File {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long fileId;
 
-    private String name;
+    private String url;
 
     private String type;
 
@@ -18,8 +18,8 @@ public class File {
 
     }
 
-    public File(String name, String type) {
-        this.name = name;
+    public File(String url, String type) {
+        this.url = url;
         this.type = type;
     }
 
@@ -27,8 +27,8 @@ public class File {
         return fileId;
     }
 
-    public String getName() {
-        return name;
+    public String getUrl() {
+        return url;
     }
 
     public String getType() {
@@ -39,8 +39,8 @@ public class File {
         this.fileId = fileId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setType(String type) {

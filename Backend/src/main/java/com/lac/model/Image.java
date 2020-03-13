@@ -11,7 +11,7 @@ public class Image extends File {
         super();
     }
 
-    public Image(String name, String type) {
-        super(name, type);
+    public Image(String url, String type) {
+        super(url, type);
     }
 }

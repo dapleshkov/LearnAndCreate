@@ -63,11 +63,11 @@
             <version>${jjwt.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.paulcwarren</groupId>
-            <artifactId>spring-content-fs-boot-starter</artifactId>
-            <version>0.12.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.github.paulcwarren</groupId>-->
+<!--            <artifactId>spring-content-fs-boot-starter</artifactId>-->
+<!--            <version>0.12.0</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>commons-codec</groupId>
@@ -139,6 +139,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>1.11.106</version>
         </dependency>
 
     </dependencies>

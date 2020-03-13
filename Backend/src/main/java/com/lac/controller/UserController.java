@@ -52,6 +52,18 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
+    @GetMapping("/user/checkUsernameAvailability")
+    public ApiResponse checkUsernameAvailability(@RequestParam(value = "username") String username) {
+        boolean isAvailable = !userRepository.existsByUsername(username);
+        return new ApiResponse(isAvailable, "");
+    }
+
+    @GetMapping("/user/checkEmailAvailability")
+    public ApiResponse checkEmailAvailability(@RequestParam(value = "email") String email) {
+        boolean isAvailable = !userRepository.existsByEmail(email);
+        return new ApiResponse(isAvailable, "");
+    }
+
     @PutMapping("/user/me/edit/name")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> editName(@CurrentUser UserPrincipal currentUser,
@@ -124,7 +136,7 @@ public class UserController {
 
         userRepository.save(user);
 
-        return new UploadFileResponse(image.getName(), image.getType(), file.getSize());
+        return new UploadFileResponse(image.getUrl(), image.getType(), file.getSize());
     }
 
     @GetMapping("user/me/imagetype")

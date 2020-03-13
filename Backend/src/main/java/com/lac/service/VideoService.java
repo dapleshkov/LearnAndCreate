@@ -1,13 +1,19 @@
 package com.lac.service;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.lac.model.Video;
 import com.lac.repository.FileRepository;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.io.FilenameUtils;
+//import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,31 +27,56 @@ public class VideoService {
     @Autowired
     private FileRepository fileRepository;
 
-    private final static String[] extensions = {"mp4", "avi"};
+    private final static String[] extensions = {".mp4", ".avi"};
+
+    @Autowired
+    private AmazonS3 awsS3Client;
+
+    @Value("${jsa.s3.bucket}")
+    private String bucketName;
 
     //todo::replace it with your own storage path
-    private final static String STORAGE_PATH = "C:\\Users\\Admin\\IdeaProjects\\17.learn-and-create\\Backend\\src\\main\\resources\\storage\\videos";
+//    private final static String STORAGE_PATH = "C:\\Users\\Admin\\IdeaProjects\\17.learn-and-create\\Backend\\src\\main\\resources\\storage\\videos";
 
     public Video store(MultipartFile multipartFile) throws IOException {
-        if (!Arrays.asList(extensions).contains(FilenameUtils.getExtension(multipartFile.getOriginalFilename())))
+        String extension = multipartFile.getOriginalFilename().substring(multipartFile.getOriginalFilename().lastIndexOf('.'));
+        if (!Arrays.asList(extensions).contains(extension))
             throw new IOException("Bad extension");
 
         String fileName = generateFileName(multipartFile.getOriginalFilename());
-        String extension = "." + FilenameUtils.getExtension(multipartFile.getOriginalFilename());
+//        String extension = "." + FilenameUtils.getExtension(multipartFile.getOriginalFilename());
 
-        Video video = new Video(fileName + extension, multipartFile.getContentType());
+//        Video video = new Video(fileName + extension, multipartFile.getContentType());
 
-        upload(multipartFile.getBytes(), video.getName());
+        String url = upload(fileName, multipartFile);
+        Video video = new Video(url, multipartFile.getContentType());
 
         return fileRepository.save(video);
     }
+    private File convertMultiPartToFile(MultipartFile file) throws IOException {
+        File convertedFile = new File(file.getOriginalFilename());
+        FileOutputStream fos = new FileOutputStream(convertedFile);
+        fos.write(file.getBytes());
+        fos.close();
+        return convertedFile;
+    }
 
-    private void upload(byte[] data, String fileName) throws IOException {
-        Path path = Paths.get(STORAGE_PATH, fileName);
-        Path file = Files.createFile(path);
-        try (FileOutputStream outputStream = new FileOutputStream(file.toString())) {
-            outputStream.write(data);
-        }
+    private static final String endpointUrl = "https://lacbucket.s3.eu-west-2.amazonaws.com";
+
+    private String upload(String fileName, MultipartFile multipartFile) throws IOException {
+        String fileUrl = "";
+//        File file = convertMultiPartToFile(multipartFile);
+        fileUrl += endpointUrl + "/" + "videos/" + fileName;
+//        awsS3Client.putObject(new PutObjectRequest(bucketName, fileName, file)
+//                .withCannedAcl(CannedAccessControlList.PublicRead));
+//        file.delete();
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentType(multipartFile.getContentType());
+        metadata.setContentLength(multipartFile.getSize());
+        awsS3Client.putObject(new PutObjectRequest(bucketName, "videos/" + fileName,
+                multipartFile.getInputStream(), metadata)
+                .withCannedAcl(CannedAccessControlList.PublicRead));
+        return fileUrl;
     }
 
     private String generateFileName(String originalName) {
