@@ -1,12 +1,14 @@
 import React, {Component} from "react";
 import "./MainPage.css"
 import {getRandomCourses} from "../ServerAPI/courseAPI";
+import {NavLink} from "react-router-dom";
 
 class MainPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             courses: [],
+            isLoaded: false
         };
         this.loadCourses = this.loadCourses.bind(this);
     }
@@ -15,7 +17,8 @@ class MainPage extends Component {
     loadCourses() {
         getRandomCourses().then(response => {
             this.setState({
-                courses: JSON.parse(JSON.stringify(response))
+                courses: JSON.parse(JSON.stringify(response)),
+                isLoaded: true
             });
         });
     }
@@ -30,12 +33,20 @@ class MainPage extends Component {
             coursesList.push(<CourseBlock course={course}/>);
         });
 
-        return (
-            <div className="Main">
-                <Base/>
-                <Menu/>
-                {coursesList}
-            </div>);
+        if (this.state.isLoaded) {
+            return (
+                <div className="Main">
+                    <Base/>
+                    <Menu/>
+                    {coursesList}
+                </div>);
+        } else {
+            return (
+                <div>
+
+                </div>
+            )
+        }
     }
 }
 
@@ -56,7 +67,6 @@ function Base() {
     );
 }
 
-
 function CourseBlock(props) {
     let path = "";
     if (props.course.image === null) {
@@ -64,16 +74,18 @@ function CourseBlock(props) {
     } else {
         path = props.course.image;
     }
+    debugger;
 
+    let pathtocourse = "../courses/" + props.course.courseId;
     return (
-        <div className="CourseBlock">
+        <NavLink className="CourseBlock" to={pathtocourse}>
             <img className="ImgCourse" src={path}
                  width="100" height="100"/>
             <br/>
             <text className="Infa">{props.course.title}</text>
             <br/>
             <text className="Infa">{props.course.description}</text>
-        </div>
+        </NavLink>
     )
 }
 

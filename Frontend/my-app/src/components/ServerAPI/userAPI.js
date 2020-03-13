@@ -3,9 +3,9 @@ import {request} from "./request.js"
 
 export function login(user) {
     return request({
-        url:API_BASE_URL + "/auth/signin",
-        method:'POST',
-        body:JSON.stringify(user)
+        url: API_BASE_URL + "/auth/signin",
+        method: 'POST',
+        body: JSON.stringify(user)
     });
 }
 
@@ -18,7 +18,7 @@ export function singUp(user) {
 }
 
 export function getCurrentUser() {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
+    if (!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
     }
     return request({
@@ -39,5 +39,13 @@ export function checkUsernameAvailability(username) {
     return request({
         url: API_BASE_URL + "/user/checkUsernameAvailability?username=" + username,
         method: 'GET'
+    });
+}
+
+export function editPassword(password) {
+    return request({
+        url: API_BASE_URL + "/user/me/edit/password",
+        method: 'POST',
+        password: JSON.stringify(password)
     });
 }

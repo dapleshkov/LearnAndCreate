@@ -18,3 +18,9 @@ export function getRandomCourses() {
         method: 'GET'
     });
 }
+export function getCourseById(courseId) {
+    return request({
+        url: API_BASE_URL + "/course" +courseId,
+        method: 'GET',
+    });
+}

@@ -18,7 +18,9 @@ export function request(options){
                 if(!response.ok) {
                     return Promise.reject(json);
                 }
-                return json;
+                else {
+                    return Promise.resolve(json);
+                }
             })
         );
 }
