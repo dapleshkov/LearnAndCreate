@@ -30,11 +30,14 @@ class App extends Component {
     }
 
     loadUser() {
-
         getCurrentUser().then(response => {
             this.setState({
                 currentUser: response,
                 isAuthenticated: true,
+                isLoaded: true
+            });
+        }).catch(response => {
+            this.setState({
                 isLoaded: true
             });
         });
@@ -53,6 +56,7 @@ class App extends Component {
     }
 
     render() {
+        debugger;
         if (this.state.isLoaded) {
             return (
                 <div className="Abstract-wrapper">
@@ -70,13 +74,9 @@ class App extends Component {
                     </Switch>
                 </div>
             );
-        }
-        else
-        {
+        } else {
             return (
                 <div className="Abstract-wrapper">
-                    <AbstractHeader LogOut={this.logOut} user={this.state.currentUser}
-                                    isAuthenticated={this.state.isAuthenticated}/>
                 </div>
             )
         }
