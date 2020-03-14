@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './CoursePage.css';
 import {NavLink} from 'react-router-dom';
 import {getCourseById} from "../ServerAPI/courseAPI";
+import {subscribe} from "../ServerAPI/userAPI";
 
 
 class CoursePage extends Component {
@@ -12,14 +13,19 @@ class CoursePage extends Component {
             isLoaded: false
         };
         this.loadCourseInformation = this.loadCourseInformation.bind(this);
+        this.handleOnClick = this.handleOnClick.bind(this);
     }
 
     loadCourseInformation() {
+        alert(window.location.pathname);
         getCourseById(window.location.pathname).then(response => {
+            alert(response.message());
             this.setState({
                 course: response,
                 isLoaded: true
             });
+        }).catch(response=>{
+            alert(response.message);
         })
     }
 
@@ -27,21 +33,36 @@ class CoursePage extends Component {
         this.loadCourseInformation();
     }
 
+    handleOnClick () {
+        subscribe(this.state.course.courseId).then(response => {
+            alert(response.message);
+        }).catch(response => {
+            alert(response.message);
+        })
+    };
+
     render() {
-        if (this.state.isLoaded) {
-            debugger;
-            return (
-                <div>
-                    {this.state.course.title}
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    this is course page
-                </div>
-            );
-        }
+        // alert(12);
+        // if (this.state.isLoaded) {
+        //     alert(this.state.course.courseId);
+        //     return (
+        //         <div >
+        //             this is coursepage
+        //             {/*<button className="CPSub" onClick={this.handleOnClick}>Subscribe to {this.state.course.title}</button>*/}
+        //         </div>
+        //     );
+        // } else {
+        //     return (
+        //         <div >
+        //             this is course page
+        //         </div>
+        //     );
+        // }
+        return(
+            <div>
+                {window.location.pathname}
+            </div>
+        )
     }
 }
 

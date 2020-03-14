@@ -65,3 +65,10 @@ export function editName(name) {
         name: JSON.stringify(name)
     });
 }
+
+export  function subscribe(courseId) {
+    return request({
+        url: API_BASE_URL + "course/?courseId=" + courseId,
+        method: 'POST',
+    });
+}

@@ -48,7 +48,8 @@ class EditName extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        editName(this.state.name).then(response => {
+        debugger;
+        editName(this.state.name.value).then(response => {
             debugger;
             alert(response.message);
         }).catch(response => {
@@ -127,7 +128,8 @@ class EditUserName extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        editUsername(this.state.username).then(response => {
+        debugger;
+        editUsername(this.state.username.value).then(response => {
             alert(response.message);
         }).catch(response => {
             alert(response.message);
