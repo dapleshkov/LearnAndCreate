@@ -44,9 +44,17 @@ export function checkUsernameAvailability(username) {
 
 export function editPassword(password) {
     return request({
-        url: API_BASE_URL + "/user/me/edit/password",
+        url: API_BASE_URL + "/user/me/edit/password?password=" +password,
         method: 'PUT',
         password: JSON.stringify(password)
+    });
+}
+
+export function editUsername(username) {
+    return request({
+        url: API_BASE_URL + "/user/me/edit/username?username=" +username,
+        method: 'PUT',
+        password: JSON.stringify(username)
     });
 }
 

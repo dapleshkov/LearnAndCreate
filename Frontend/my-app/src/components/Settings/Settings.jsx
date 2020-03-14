@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import "./Settings.css";
 import {Switch, Route, NavLink} from "react-router-dom";
-import {editName} from "../ServerAPI/userAPI";
+import {editName, editPassword, editUsername} from "../ServerAPI/userAPI";
+import {PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH} from "../ServerAPI/utils";
+import {Form} from "antd";
 
 
 class Settings extends Component {
@@ -69,7 +71,27 @@ class EditName extends Component {
 class EditUserName extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            username: null
+        };
     }
+
+    handleSubmit = event => {
+        event.preventDefault();
+        editUsername(this.state.username).then(response => {
+            debugger;
+            alert(response.message);
+        }).catch(response => {
+            debugger;
+            alert(response.message);
+        });
+    };
+
+    handleChange = event => {
+        this.setState({
+            username: event.target.value
+        });
+    };
 
     render() {
         return (
@@ -78,10 +100,10 @@ class EditUserName extends Component {
                 <hr className="separator1"/>
                 <div className="f">
                     <text className="Inform">Новое имя пользователя</text>
-                    <input className="Changes" placeholder="username"/>
+                    <input className="Changes" placeholder="username" onChange={this.handleChange}/>
                 </div>
                 <div>
-                    <button className='Submit'>Сохранить изменения</button>
+                    <button className='Submit' onClick={this.handleSubmit}>Сохранить изменения</button>
                 </div>
             </div>
         );
@@ -91,33 +113,95 @@ class EditUserName extends Component {
 class EditPassword extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            firstpassword: {
+                value: ''
+            },
+            secondpassword: {
+                value: ''
+            }
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.validatePassword = this.validatePassword.bind(this);
     }
+
+    handleSubmit = event => {
+        event.preventDefault();
+        editPassword(this.state.password).then(response => {
+            alert(response.message);
+        }).catch(response => {
+            alert(response.message);
+        });
+    };
+
+    handleChange(event, validationFun) {
+        const target = event.target;
+        const inputName = target.name;
+        const inputValue = target.value;
+debugger;
+        this.setState({
+            [inputName]: {
+                value: inputValue,
+                ...validationFun(inputValue)
+            }
+        });
+    };
 
     render() {
         return (
-            <div className="MainBlock">
+            <Form onSubmit={this.handleSubmit} className="MainBlock">
                 <text className="Title">Изменить пароль</text>
                 <hr className="separator1"/>
-                <div className="f">
-                    <text className="Inform">Текущий пароль</text>
+                <text className="Inform">Текущий пароль</text>
+                <Form.Item className="f">
                     <input className="Changes" placeholder="your password"/>
-                </div>
-                <br/>
-                <div className="f">
-                    <text className="Inform">Новый пароль</text>
-                    <input className="Changes" placeholder="new password"/>
-                </div>
-                <br/>
-                <div className="f">
-                    <text className="Inform">Повторите новый пароль</text>
-                    <input className="Changes" placeholder="repeat new password"/>
-                </div>
+                </Form.Item>
+                <text className="Inform">Новый пароль</text>
+                <Form.Item className="f"
+                           validateStatus={this.state.firstpassword.validateStatus}
+                          help={this.state.firstpassword.errorMsg}>
+                    <input className="Changes"
+                           placeholder="new password"
+                           name="firstpassword"
+                           value={this.state.firstpassword.value}
+                           onChange={(event) => this.handleChange(event, this.validatePassword)}/>
+                </Form.Item>
+                <text className="Inform">Повторите новый пароль</text>
+                <Form.Item className="f"
+                           validateStatus={this.state.secondpassword.validateStatus}
+                          help={this.state.secondpassword.errorMsg}>
+                    <input className="Changes"
+                           placeholder="repeat new password"
+                           name="secondpassword"
+                           value={this.state.secondpassword.value}
+                           onChange={(event) => this.handleChange(event, this.validatePassword)}/>
+                </Form.Item>
                 <div>
                     <button className='Submit'>Сохранить изменения</button>
                 </div>
-            </div>
+            </Form>
         );
     }
+
+    validatePassword = (password) => {
+        if (password.length < PASSWORD_MIN_LENGTH) {
+            return {
+                validateStatus: 'error',
+                errorMsg: `Password is too short (Minimum ${PASSWORD_MIN_LENGTH} characters needed.)`
+            }
+        } else if (password.length > PASSWORD_MAX_LENGTH) {
+            return {
+                validationStatus: 'error',
+                errorMsg: `Password is too long (Maximum ${PASSWORD_MAX_LENGTH} characters allowed.)`
+            };
+        } else {
+            return {
+                validateStatus: 'success',
+                errorMsg: null,
+            };
+        }
+    };
 }
 
 function UserSettings() {
