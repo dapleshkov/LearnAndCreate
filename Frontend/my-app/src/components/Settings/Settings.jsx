@@ -298,7 +298,7 @@ class EditPassword extends Component {
             <Form onSubmit={this.handleSubmit} className="MainBlock">
                 <text className="Title">Изменить пароль</text>
                 <hr className="separator1"/>
-                {/*<text className="Inform">Текущий пароль</text>*/}
+                <text className="Inform">Текущий пароль</text>
                 <Form.Item className="f">
                     <input className="Changes"
                            placeholder="your password"
@@ -306,7 +306,7 @@ class EditPassword extends Component {
                            value={this.state.currentpassword.value}
                            onChange={(event) => this.handleChange(event, this.validateFirstPassword)}/>
                 </Form.Item>
-                {/*<text className="Inform">Новый пароль</text>*/}
+                <text className="Inform1">Новый пароль</text>
                 <Form.Item className="f"
                            validateStatus={this.state.firstpassword.validateStatus}
                            help={this.state.firstpassword.errorMsg}>
@@ -316,7 +316,7 @@ class EditPassword extends Component {
                            value={this.state.firstpassword.value}
                            onChange={(event) => this.handleChange(event, this.validateFirstPassword)}/>
                 </Form.Item>
-                {/*<text className="Inform">Повторите новый пароль</text>*/}
+                <text className="Inform2">Повторите новый пароль</text>
                 <Form.Item className="f"
                            validateStatus={this.state.secondpassword.validateStatus}
                            help={this.state.secondpassword.errorMsg}>
@@ -353,7 +353,7 @@ class EditPassword extends Component {
     };
 
     validateSecondPassword = (password) => {
-        if (password != this.state.firstpassword.value) {
+        if (password !== this.state.firstpassword.value) {
             return {
                 validateStatus: 'error',
                 errorMsg: `Passwords are not equal)`
