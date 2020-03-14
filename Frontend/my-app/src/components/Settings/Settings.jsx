@@ -14,9 +14,9 @@ class Settings extends Component {
             <div className="Settings">
                 <UserSettings/>
                 <Switch>
-                    <Route path="/settings/editname" component={EditName}/>
-                    <Route path="/settings/editusername" component={EditUserName}/>
-                    <Route path="/settings/editpassword" component={EditPassword}/>
+                    <Route path="/settings/editname" render={(props) => <EditName user={this.props.user}/>}/>
+                    <Route path="/settings/editusername" render={(props) => <EditUserName user={this.props.user}/>}/>
+                    <Route path="/settings/editpassword" render={(props) => <EditPassword user={this.props.user}/>}/>
                 </Switch>
             </div>
         );
@@ -28,26 +28,25 @@ class EditName extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name:null
+            name: null
         }
     }
 
     handleSubmit = event => {
-        debugger;
         event.preventDefault();
-        editName(this.state.name).then(response=>{
+        editName(this.state.name).then(response => {
             debugger;
-           alert(response);
-        }).catch(response=>{
-            alert(response);
+            alert(response.message);
+        }).catch(response => {
+            debugger;
+            alert(response.message);
         });
     };
 
-    handleChange=event=>{
-        debugger;
-      this.setState({
-          name:event.target.value
-      });
+    handleChange = event => {
+        this.setState({
+            name: event.target.value
+        });
     };
 
     render() {

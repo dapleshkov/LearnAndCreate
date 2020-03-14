@@ -45,15 +45,15 @@ export function checkUsernameAvailability(username) {
 export function editPassword(password) {
     return request({
         url: API_BASE_URL + "/user/me/edit/password",
-        method: 'POST',
+        method: 'PUT',
         password: JSON.stringify(password)
     });
 }
 
 export function editName(name) {
     return request({
-        url: API_BASE_URL + "/user/me/edit/name",
-        method: 'POST',
-        password: JSON.stringify(name)
+        url: API_BASE_URL + "/user/me/edit/name?name=" + name,
+        method: 'PUT',
+        name: JSON.stringify(name)
     });
 }
