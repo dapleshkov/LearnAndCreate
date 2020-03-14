@@ -6,25 +6,22 @@
 }
 
 
-.Menu {
+.Menu{
+    position: relative;
+    text-align: center;
+    background-color: aqua;
     width: 100%;
     height: 120px;
-    text-align: center;
     margin-top: 230px;
 }
 
-.Menu-item {
-    position: relative;
-    display: table-cell;
-    padding: 30px;
-    text-align: center;
+.Menu-categories{
+    display: inline-block;
 }
 
-.Menu-categories{
-    position: relative;
-    text-align: center;
-    margin-left: 50px;
-    right: 0;
+.Menu-item{
+    float: left;
+    padding: 30px;
 }
 
 .Label {

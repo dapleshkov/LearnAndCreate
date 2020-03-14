@@ -79,8 +79,10 @@
     position: relative;
     top: 20px;
     margin: 10px;
+    //float: left;
 }
 
 .f {
-    height: 42px;
+    height: 60px;
+    background-color: aqua;
 }
