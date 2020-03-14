@@ -189,7 +189,7 @@ class EditUserName extends Component {
             }
         }
     };
-    
+
     validateUsernameAvailability() {
         // First check for client side errors in username
         debugger;
