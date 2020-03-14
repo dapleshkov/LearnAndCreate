@@ -224,7 +224,7 @@ class SingUp extends Component {
 
         checkUsernameAvailability(usernameValue)
             .then(response => {
-                if (response.available) {
+                if (response.success) {
                     this.setState({
                         username: {
                             value: usernameValue,
@@ -278,7 +278,8 @@ class SingUp extends Component {
 
         checkEmailAvailability(emailValue)
             .then(response => {
-                if (response.available) {
+                debugger;
+                if (response.success) {
                     this.setState({
                         email: {
                             value: emailValue,

@@ -2,7 +2,14 @@ import React, {Component} from "react";
 import "./Settings.css";
 import {Switch, Route, NavLink} from "react-router-dom";
 import {editName, editPassword, editUsername} from "../ServerAPI/userAPI";
-import {PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH} from "../ServerAPI/utils";
+import {
+    NAME_MAX_LENGTH,
+    NAME_MIN_LENGTH,
+    PASSWORD_MAX_LENGTH,
+    PASSWORD_MIN_LENGTH,
+    USERNAME_MAX_LENGTH,
+    USERNAME_MIN_LENGTH
+} from "../ServerAPI/utils";
 import {Form} from "antd";
 
 
@@ -30,7 +37,9 @@ class EditName extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: null
+            name: {
+                value: ''
+            }
         }
     }
 
@@ -45,69 +54,130 @@ class EditName extends Component {
         });
     };
 
-    handleChange = event => {
+    handleChange(event, validationFun) {
+        const target = event.target;
+        const inputName = target.name;
+        const inputValue = target.value;
+
         this.setState({
-            name: event.target.value
+            [inputName]: {
+                value: inputValue,
+                ...validationFun(inputValue)
+            }
         });
     };
 
     render() {
         return (
-            <div className="MainBlock">
+            <Form className="MainBlock">
                 <text className="Title">Изменить имя</text>
                 <hr className="separator1"/>
-                <div className="f">
-                    <text className="Inform">Новое имя</text>
-                    <input className="Changes" placeholder="name" onChange={this.handleChange}/>
-                </div>
-                <div>
+                <text className="Inform">Новое имя</text>
+                <Form.Item className="f"
+                           validateStatus={this.state.name.validateStatus}
+                           help={this.state.name.errorMsg}>
+                    <input className="Changes"
+                           placeholder="name"
+                           name="name"
+                           onChange={(event) => this.handleChange(event, this.validateName)}/>
+                </Form.Item>
+                <Form.Item>
                     <button className='Submit' onClick={this.handleSubmit}>Сохранить изменения</button>
-                </div>
-            </div>
+                </Form.Item>
+            </Form>
         );
     }
+
+    validateName = (name) => {
+        if (name.length < NAME_MIN_LENGTH) {
+            return {
+                validateStatus: 'error',
+                errorMsg: `Name is too short (Minimum ${NAME_MIN_LENGTH} characters needed.)`
+            }
+        } else if (name.length > NAME_MAX_LENGTH) {
+            return {
+                validationStatus: 'error',
+                errorMsg: `Name is too long (Maximum ${NAME_MAX_LENGTH} characters allowed.)`
+            }
+        } else {
+            return {
+                validateStatus: 'success',
+                errorMsg: null,
+            };
+        }
+    };
 }
 
 class EditUserName extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: null
+            username: {
+                value: ''
+            }
         };
     }
 
     handleSubmit = event => {
         event.preventDefault();
         editUsername(this.state.username).then(response => {
-            debugger;
             alert(response.message);
         }).catch(response => {
-            debugger;
             alert(response.message);
         });
     };
 
-    handleChange = event => {
+    handleChange(event, validationFun) {
+        const target = event.target;
+        const inputName = target.name;
+        const inputValue = target.value;
+
         this.setState({
-            username: event.target.value
+            [inputName]: {
+                value: inputValue,
+                ...validationFun(inputValue)
+            }
         });
     };
 
     render() {
         return (
-            <div className="MainBlock">
+            <Form className="MainBlock" onSubmit={this.handleSubmit}>
                 <text className="Title">Изменить имя пользователя</text>
                 <hr className="separator1"/>
-                <div className="f">
-                    <text className="Inform">Новое имя пользователя</text>
-                    <input className="Changes" placeholder="username" onChange={this.handleChange}/>
-                </div>
-                <div>
-                    <button className='Submit' onClick={this.handleSubmit}>Сохранить изменения</button>
-                </div>
-            </div>
+                <text className="Inform">Новое имя пользователя</text>
+                <Form.Item className="f"
+                           validateStatus={this.state.username.validateStatus}
+                           help={this.state.username.errorMsg}>
+                    <input className="Changes"
+                           placeholder="username"
+                           onChange={(event) => this.handleChange(event, this.validateUsername)}/>
+                </Form.Item>
+                <Form.Item>
+                    <button className='Submit'>Сохранить изменения</button>
+                </Form.Item>
+            </Form>
         );
     }
+
+    validateUsername = (username) => {
+        if (username.length < USERNAME_MIN_LENGTH) {
+            return {
+                validateStatus: 'error',
+                errorMsg: `Username is too short (Minimum ${USERNAME_MIN_LENGTH} characters needed.)`
+            }
+        } else if (username.length > USERNAME_MAX_LENGTH) {
+            return {
+                validationStatus: 'error',
+                errorMsg: `Username is too long (Maximum ${USERNAME_MAX_LENGTH} characters allowed.)`
+            }
+        } else {
+            return {
+                validateStatus: null,
+                errorMsg: null
+            }
+        }
+    };
 }
 
 class EditPassword extends Component {
@@ -154,8 +224,7 @@ class EditPassword extends Component {
 
     isFormValid() {
         return !(this.state.firstpassword.validateStatus === 'success' &&
-            this.state.secondpassword.validateStatus === 'success' &&
-            this.state.currentpassword.validateStatus === 'success');
+            this.state.secondpassword.validateStatus === 'success');
     }
 
     render() {
@@ -165,7 +234,11 @@ class EditPassword extends Component {
                 <hr className="separator1"/>
                 <text className="Inform">Текущий пароль</text>
                 <Form.Item className="f">
-                    <input className="Changes" placeholder="your password"/>
+                    <input className="Changes"
+                           placeholder="your password"
+                           name="currentpassword"
+                           value={this.state.currentpassword.value}
+                           onChange={(event) => this.handleChange(event, this.validateFirstPassword)}/>
                 </Form.Item>
                 <text className="Inform">Новый пароль</text>
                 <Form.Item className="f"
@@ -214,7 +287,7 @@ class EditPassword extends Component {
     };
 
     validateSecondPassword = (password) => {
-        if (password < this.state.firstpassword.value) {
+        if (password != this.state.firstpassword.value) {
             return {
                 validateStatus: 'error',
                 errorMsg: `Passwords are not equal)`
