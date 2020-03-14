@@ -68,7 +68,7 @@ export function editName(name) {
 
 export  function subscribe(courseId) {
     return request({
-        url: API_BASE_URL + "course/?courseId=" + courseId,
-        method: 'POST',
+        url: API_BASE_URL + "/course/" + courseId,
+        method: 'POST'
     });
 }

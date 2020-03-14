@@ -69,7 +69,7 @@ class App extends Component {
                         <Route path='/settings' render={(props) => <Settings user={this.state.currentUser}/>}/>
                         <Route path='/users/:username'
                                render={(props) => <UserAccount user={this.state.currentUser}/>}/>
-                        <Route path='courses/:courseId' render={(props) => <CoursePage/>}/>
+                        <Route path='/course/:courseId' render={(props) => <CoursePage/>}/>
                     </Switch>
                 </div>
             );

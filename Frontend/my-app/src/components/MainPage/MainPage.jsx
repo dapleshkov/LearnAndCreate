@@ -74,9 +74,8 @@ function CourseBlock(props) {
     } else {
         path = props.course.image;
     }
-    debugger;
 
-    let pathtocourse = "../courses/" + props.course.courseId;
+    let pathtocourse = "../course/" + props.course.courseId;
     return (
         <NavLink className="CourseBlock" to={pathtocourse}>
             <img className="ImgCourse" src={path}

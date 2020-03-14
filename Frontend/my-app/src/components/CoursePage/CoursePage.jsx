@@ -17,9 +17,7 @@ class CoursePage extends Component {
     }
 
     loadCourseInformation() {
-        alert(window.location.pathname);
         getCourseById(window.location.pathname).then(response => {
-            alert(response.message());
             this.setState({
                 course: response,
                 isLoaded: true
@@ -35,36 +33,30 @@ class CoursePage extends Component {
 
     handleOnClick () {
         subscribe(this.state.course.courseId).then(response => {
-            alert(response.message);
+            alert(12);
         }).catch(response => {
+            debugger;
             alert(response.message);
         })
     };
 
     render() {
-        // alert(12);
-        // if (this.state.isLoaded) {
-        //     alert(this.state.course.courseId);
-        //     return (
-        //         <div >
-        //             this is coursepage
-        //             {/*<button className="CPSub" onClick={this.handleOnClick}>Subscribe to {this.state.course.title}</button>*/}
-        //         </div>
-        //     );
-        // } else {
-        //     return (
-        //         <div >
-        //             this is course page
-        //         </div>
-        //     );
-        // }
-        return(
-            <div>
-                {window.location.pathname}
-            </div>
-        )
+        if (this.state.isLoaded) {
+            debugger;
+            return (
+                <div >
+                    <button onClick={this.handleOnClick}>Subscribe to {this.state.course.title}</button>
+                </div>
+            );
+        } else {
+            return (
+                <div >
+                    this is course page
+                </div>
+            );
+        }
+
     }
 }
-
 
 export default CoursePage;
