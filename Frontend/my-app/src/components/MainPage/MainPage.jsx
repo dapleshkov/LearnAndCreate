@@ -97,7 +97,6 @@ function Menu() {
                 <MenuItem name="Все категории"/>
                 <MenuItem name="Дизайн"/>
                 <MenuItem name="Каллиграфия"/>
-                <MenuItem name="История"/>
                 <MenuItem name="Музыка"/>
                 <MenuItem name="Исскуство"/>
                 <MenuItem name="Кино"/>

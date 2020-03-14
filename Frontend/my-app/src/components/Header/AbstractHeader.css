@@ -2,8 +2,8 @@
     grid-area: header;
     background-color: white;
     height: 60px;
-    //width: 98.5vw;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    min-width: 1000px;
 }
 
 .Header-components {
@@ -74,7 +74,7 @@
 }
 
 .dropDownMenu {
-    width: 13%;
+    width: 150px;
     margin-right: 5px;
     float: right;
     position: relative;
