@@ -46,7 +46,6 @@
     position: relative;
     margin-left: 410px;
     margin-top: 75px;
-    align-items: center;
     height: 280px;
 }
 
@@ -56,13 +55,10 @@
     border-radius: 5px;
     height: 33px;
     width: 450px;
-    /*margin: 10px 25px;*/
     background-color: red;
     outline: none;
     color: white;
     border: 0;
-    /*float: right;*/
-    /*right: 100px;*/
 }
 
 .Changes {
@@ -70,16 +66,27 @@
     border-radius: 5px;
     height: 33px;
     width: 445px;
-    /*margin: 10px 25px;*/
-    /*float: right;*/
-    /*right: 100px;*/
 }
 
 .Inform {
-    position: relative;
-    margin: 10px;
-    float: left;
-    top: 10px
+    position: fixed;
+    top: 100px;
+    right: 800px;
+    margin-top: 105px;
+}
+
+.Inform1 {
+    position: fixed;
+    top: 100px;
+    right: 800px;
+    margin-top: 185px;
+}
+
+.Inform2 {
+    position: fixed;
+    top: 100px;
+    right: 800px;
+    margin-top: 265px;
 }
 
 .f {
@@ -88,9 +95,5 @@
     position: relative;
     font-size: small;
     text-align: center;
-    /*padding-left: 400px;*/
+    padding: 10px;
 }
-
-/*.f.help{*/
-/*    color: aqua;*/
-/*}*/
