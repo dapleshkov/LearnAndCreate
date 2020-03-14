@@ -203,7 +203,6 @@ class SingUp extends Component {
         // First check for client side errors in username
         const usernameValue = this.state.username.value;
         const usernameValidation = this.validateUsername(usernameValue);
-
         if (usernameValidation.validateStatus === 'error') {
             this.setState({
                 username: {
@@ -224,6 +223,7 @@ class SingUp extends Component {
 
         checkUsernameAvailability(usernameValue)
             .then(response => {
+                debugger;
                 if (response.success) {
                     this.setState({
                         username: {
