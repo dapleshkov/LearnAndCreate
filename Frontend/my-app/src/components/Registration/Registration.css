@@ -26,7 +26,6 @@ button:hover{
     text-blink: password;
 }
 
-
 .Register {
     position: relative;
     border-radius: 5px;
@@ -38,6 +37,7 @@ button:hover{
     color: white;
     border: 0;
 }
+
 .help{
     color:red;
     position: relative;

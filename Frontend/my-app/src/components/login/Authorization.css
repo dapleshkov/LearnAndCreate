@@ -1,9 +1,10 @@
-.Autofication {
+.Autofication{
     grid-area: content;
     background-color:white;
     height: 534px;
     text-align: center;
 }
+
 .Inf{
     width: 100%;
     position: relative;
@@ -11,6 +12,7 @@
     margin-right: 400px;
     margin-top: 120px;
 }
+
 .Login {
     position: relative;
     border-radius: 5px;
@@ -18,12 +20,14 @@
     width: 437px;
     margin: 12px 25px;
     padding-left: 5px;
+
 }
 
 .ForgetPassword{
     margin-right: 337px;
     color: red;
 }
+
 .Check{
     position: relative;
     border-radius: 5px;

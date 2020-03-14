@@ -56,13 +56,13 @@
     border-radius: 5px;
     height: 33px;
     width: 450px;
-    margin: 10px 25px;
+    /*margin: 10px 25px;*/
     background-color: red;
     outline: none;
     color: white;
     border: 0;
-    float: right;
-    right: 100px;
+    /*float: right;*/
+    /*right: 100px;*/
 }
 
 .Changes {
@@ -70,22 +70,27 @@
     border-radius: 5px;
     height: 33px;
     width: 445px;
-    margin: 10px 25px;
-    float: right;
-    right: 100px;
+    /*margin: 10px 25px;*/
+    /*float: right;*/
+    /*right: 100px;*/
 }
 
 .Inform {
     position: relative;
-    top: 20px;
     margin: 10px;
-    //float: left;
+    float: left;
+    top: 10px
 }
 
 .f {
-
     height: 60px;
     color:red;
     position: relative;
     font-size: small;
+    text-align: center;
+    /*padding-left: 400px;*/
 }
+
+/*.f.help{*/
+/*    color: aqua;*/
+/*}*/
