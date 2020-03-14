@@ -56,7 +56,6 @@ class App extends Component {
     }
 
     render() {
-        debugger;
         if (this.state.isLoaded) {
             return (
                 <div className="Abstract-wrapper">

@@ -149,7 +149,7 @@ class SingUp extends Component {
                 errorMsg: null,
             };
         }
-    }
+    };
 
     validateEmail = (email) => {
         if (!email) {
@@ -178,7 +178,7 @@ class SingUp extends Component {
             validateStatus: null,
             errorMsg: null
         }
-    }
+    };
 
     validateUsername = (username) => {
         if (username.length < USERNAME_MIN_LENGTH) {
@@ -197,7 +197,7 @@ class SingUp extends Component {
                 errorMsg: null
             }
         }
-    }
+    };
 
     validateUsernameAvailability() {
         // First check for client side errors in username
