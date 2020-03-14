@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./Settings.css";
 import {Switch, Route, NavLink} from "react-router-dom";
-import {editName, editPassword, editUsername} from "../ServerAPI/userAPI";
+import {checkUsernameAvailability, editName, editPassword, editUsername} from "../ServerAPI/userAPI";
 import {
     NAME_MAX_LENGTH,
     NAME_MIN_LENGTH,
@@ -40,7 +40,10 @@ class EditName extends Component {
             name: {
                 value: ''
             }
-        }
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.validateName = this.validateName.bind(this);
     }
 
     handleSubmit = event => {
@@ -116,6 +119,10 @@ class EditUserName extends Component {
                 value: ''
             }
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.validateUsernameAvailability = this.validateUsernameAvailability.bind(this);
+        this.validateUsername = this.validateUsername.bind(this);
     }
 
     handleSubmit = event => {
@@ -140,6 +147,8 @@ class EditUserName extends Component {
         });
     };
 
+
+
     render() {
         return (
             <Form className="MainBlock" onSubmit={this.handleSubmit}>
@@ -151,6 +160,8 @@ class EditUserName extends Component {
                            help={this.state.username.errorMsg}>
                     <input className="Changes"
                            placeholder="username"
+                           onBlur={this.validateUsernameAvailability}
+                           name="username"
                            onChange={(event) => this.handleChange(event, this.validateUsername)}/>
                 </Form.Item>
                 <Form.Item>
@@ -178,6 +189,61 @@ class EditUserName extends Component {
             }
         }
     };
+    
+    validateUsernameAvailability() {
+        // First check for client side errors in username
+        debugger;
+        const usernameValue = this.state.username.value;
+        const usernameValidation = this.validateUsername(usernameValue);
+        if (usernameValidation.validateStatus === 'error') {
+            this.setState({
+                username: {
+                    value: usernameValue,
+                    ...usernameValidation
+                }
+            });
+            return;
+        }
+
+        this.setState({
+            username: {
+                value: usernameValue,
+                validateStatus: 'validating',
+                errorMsg: null
+            }
+        });
+
+        checkUsernameAvailability(usernameValue)
+            .then(response => {
+                if (response.success) {
+                    this.setState({
+                        username: {
+                            value: usernameValue,
+                            validateStatus: 'success',
+                            errorMsg: null
+                        }
+                    });
+                } else {
+                    this.setState({
+                        username: {
+                            value: usernameValue,
+                            validateStatus: 'error',
+                            errorMsg: 'This username is already taken'
+                        }
+                    });
+                }
+            }).catch(error => {
+            // Marking validateStatus as success, Form will be recchecked at server
+            this.setState({
+                username: {
+                    value: usernameValue,
+                    validateStatus: 'success',
+                    errorMsg: null
+                }
+            });
+        });
+    };
+
 }
 
 class EditPassword extends Component {
