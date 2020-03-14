@@ -56,8 +56,8 @@ class EditName extends Component {
             <div className="MainBlock">
                 <text className="Title">Изменить имя</text>
                 <hr className="separator1"/>
+                <text className="Inform">Новое имя</text>
                 <div className="f">
-                    <text className="Inform">Новое имя</text>
                     <input className="Changes" placeholder="name" onChange={this.handleChange}/>
                 </div>
                 <div>
@@ -98,8 +98,8 @@ class EditUserName extends Component {
             <div className="MainBlock">
                 <text className="Title">Изменить имя пользователя</text>
                 <hr className="separator1"/>
+                <text className="Inform">Новое имя пользователя</text>
                 <div className="f">
-                    <text className="Inform">Новое имя пользователя</text>
                     <input className="Changes" placeholder="username" onChange={this.handleChange}/>
                 </div>
                 <div>
@@ -163,11 +163,11 @@ class EditPassword extends Component {
             <Form onSubmit={this.handleSubmit} className="MainBlock">
                 <text className="Title">Изменить пароль</text>
                 <hr className="separator1"/>
-                <text className="Inform">Текущий пароль</text>
+                {/*<text className="Inform">Текущий пароль</text>*/}
                 <Form.Item className="f">
                     <input className="Changes" placeholder="your password"/>
                 </Form.Item>
-                <text className="Inform">Новый пароль</text>
+                {/*<text className="Inform">Новый пароль</text>*/}
                 <Form.Item className="f"
                            validateStatus={this.state.firstpassword.validateStatus}
                            help={this.state.firstpassword.errorMsg}>
@@ -177,7 +177,7 @@ class EditPassword extends Component {
                            value={this.state.firstpassword.value}
                            onChange={(event) => this.handleChange(event, this.validateFirstPassword)}/>
                 </Form.Item>
-                <text className="Inform">Повторите новый пароль</text>
+                {/*<text className="Inform">Повторите новый пароль</text>*/}
                 <Form.Item className="f"
                            validateStatus={this.state.secondpassword.validateStatus}
                            help={this.state.secondpassword.errorMsg}>
