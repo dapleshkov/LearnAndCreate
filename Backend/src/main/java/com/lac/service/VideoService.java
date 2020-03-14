@@ -16,9 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -27,28 +24,20 @@ public class VideoService {
     @Autowired
     private FileRepository fileRepository;
 
-    private final static String[] extensions = {".mp4", ".avi"};
-
     @Autowired
     private AmazonS3 awsS3Client;
 
     @Value("${jsa.s3.bucket}")
     private String bucketName;
 
-    //todo::replace it with your own storage path
-//    private final static String STORAGE_PATH = "C:\\Users\\Admin\\IdeaProjects\\17.learn-and-create\\Backend\\src\\main\\resources\\storage\\videos";
+    private static final String ENDPOINT_URL = "https://lacbucket.s3.eu-west-2.amazonaws.com";
 
     public Video store(MultipartFile multipartFile) throws IOException {
         String extension = multipartFile.getOriginalFilename().substring(multipartFile.getOriginalFilename().lastIndexOf('.'));
-        if (!Arrays.asList(extensions).contains(extension))
-            throw new IOException("Bad extension");
 
         String fileName = generateFileName(multipartFile.getOriginalFilename());
-//        String extension = "." + FilenameUtils.getExtension(multipartFile.getOriginalFilename());
 
-//        Video video = new Video(fileName + extension, multipartFile.getContentType());
-
-        String url = upload(fileName, multipartFile);
+        String url = upload(fileName + extension, multipartFile);
         Video video = new Video(url, multipartFile.getContentType());
 
         return fileRepository.save(video);
@@ -61,22 +50,24 @@ public class VideoService {
         return convertedFile;
     }
 
-    private static final String endpointUrl = "https://lacbucket.s3.eu-west-2.amazonaws.com";
-
     private String upload(String fileName, MultipartFile multipartFile) throws IOException {
-        String fileUrl = "";
-//        File file = convertMultiPartToFile(multipartFile);
-        fileUrl += endpointUrl + "/" + "videos/" + fileName;
-//        awsS3Client.putObject(new PutObjectRequest(bucketName, fileName, file)
-//                .withCannedAcl(CannedAccessControlList.PublicRead));
-//        file.delete();
+        String fileUrl = ENDPOINT_URL + "/videos/" + fileName;
+
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentType(multipartFile.getContentType());
         metadata.setContentLength(multipartFile.getSize());
+
         awsS3Client.putObject(new PutObjectRequest(bucketName, "videos/" + fileName,
                 multipartFile.getInputStream(), metadata)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
+
         return fileUrl;
+    }
+
+    public void deleteVideo(Video video) {
+        String key = video.getUrl().substring(ENDPOINT_URL.length() + 1);
+        fileRepository.delete(video);
+        awsS3Client.deleteObject(bucketName, key);
     }
 
     private String generateFileName(String originalName) {

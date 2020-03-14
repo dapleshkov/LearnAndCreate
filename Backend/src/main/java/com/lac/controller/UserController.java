@@ -6,6 +6,7 @@ import com.lac.model.User;
 import com.lac.payload.ApiResponse;
 import com.lac.payload.UploadFileResponse;
 import com.lac.repository.EmailConfirmationRepository;
+import com.lac.repository.FileRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
 import com.lac.security.UserPrincipal;
@@ -130,6 +131,9 @@ public class UserController {
     public UploadFileResponse setUserImage(@CurrentUser UserPrincipal currentUser,
                                            @RequestParam("file") MultipartFile file) throws IOException {
         User user = userRepository.findByUserId(currentUser.getUserId());
+        if (user.getImage() != null)
+            imageService.deleteImage(user.getImage());
+
         Image image = imageService.store(file);
 
         user.setImage(image);

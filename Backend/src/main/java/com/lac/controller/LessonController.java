@@ -52,14 +52,15 @@ public class LessonController {
 
     @PostMapping("{lessonId}/video")
     public UploadFileResponse addVideoToLesson(@PathVariable("lessonId") Long lessonId,
-                                               @RequestParam("video") MultipartFile file) throws IOException {
-        Video video = videoService.store(file);
-        UploadFileResponse response = new UploadFileResponse(video.getUrl(), video.getType(), file.getSize());
-
+                                               @RequestParam("file") MultipartFile file) throws IOException {
         Lesson lesson = lessonRepository.findByLessonId(lessonId);
+        if (lesson.getVideo() != null)
+            videoService.deleteVideo(lesson.getVideo());
+
+        Video video = videoService.store(file);
         lesson.setVideo(video);
         lessonRepository.save(lesson);
 
-        return response;
+        return new UploadFileResponse(video.getUrl(), video.getType(), file.getSize());
     }
 }

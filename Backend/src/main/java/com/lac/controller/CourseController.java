@@ -91,6 +91,8 @@ public class CourseController {
     public UploadFileResponse setCourseImage(@RequestParam(name = "file") MultipartFile file,
                                              @PathVariable("courseId") Long courseId) throws IOException {
         Course course = courseRepository.findByCourseId(courseId);
+        if (course.getImage() != null)
+            imageService.deleteImage(course.getImage());
 
         Image image = imageService.store(file);
         course.setImage(image);
