@@ -114,6 +114,9 @@ class EditPassword extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentpassword: {
+                value: ''
+            },
             firstpassword: {
                 value: ''
             },
@@ -123,7 +126,8 @@ class EditPassword extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.validatePassword = this.validatePassword.bind(this);
+        this.validateFirstPassword = this.validateFirstPassword.bind(this);
+        this.validateSecondPassword = this.validateSecondPassword.bind(this);
     }
 
     handleSubmit = event => {
@@ -139,7 +143,7 @@ class EditPassword extends Component {
         const target = event.target;
         const inputName = target.name;
         const inputValue = target.value;
-debugger;
+
         this.setState({
             [inputName]: {
                 value: inputValue,
@@ -147,6 +151,12 @@ debugger;
             }
         });
     };
+
+    isFormValid() {
+        return !(this.state.firstpassword.validateStatus === 'success' &&
+            this.state.secondpassword.validateStatus === 'success' &&
+            this.state.currentpassword.validateStatus === 'success');
+    }
 
     render() {
         return (
@@ -160,31 +170,31 @@ debugger;
                 <text className="Inform">Новый пароль</text>
                 <Form.Item className="f"
                            validateStatus={this.state.firstpassword.validateStatus}
-                          help={this.state.firstpassword.errorMsg}>
+                           help={this.state.firstpassword.errorMsg}>
                     <input className="Changes"
                            placeholder="new password"
                            name="firstpassword"
                            value={this.state.firstpassword.value}
-                           onChange={(event) => this.handleChange(event, this.validatePassword)}/>
+                           onChange={(event) => this.handleChange(event, this.validateFirstPassword)}/>
                 </Form.Item>
                 <text className="Inform">Повторите новый пароль</text>
                 <Form.Item className="f"
                            validateStatus={this.state.secondpassword.validateStatus}
-                          help={this.state.secondpassword.errorMsg}>
+                           help={this.state.secondpassword.errorMsg}>
                     <input className="Changes"
                            placeholder="repeat new password"
                            name="secondpassword"
                            value={this.state.secondpassword.value}
-                           onChange={(event) => this.handleChange(event, this.validatePassword)}/>
+                           onChange={(event) => this.handleChange(event, this.validateSecondPassword)}/>
                 </Form.Item>
                 <div>
-                    <button className='Submit'>Сохранить изменения</button>
+                    <button className='Submit' disabled={this.isFormValid}>Сохранить изменения</button>
                 </div>
             </Form>
         );
     }
 
-    validatePassword = (password) => {
+    validateFirstPassword = (password) => {
         if (password.length < PASSWORD_MIN_LENGTH) {
             return {
                 validateStatus: 'error',
@@ -195,6 +205,20 @@ debugger;
                 validationStatus: 'error',
                 errorMsg: `Password is too long (Maximum ${PASSWORD_MAX_LENGTH} characters allowed.)`
             };
+        } else {
+            return {
+                validateStatus: 'success',
+                errorMsg: null,
+            };
+        }
+    };
+
+    validateSecondPassword = (password) => {
+        if (password < this.state.firstpassword.value) {
+            return {
+                validateStatus: 'error',
+                errorMsg: `Passwords are not equal)`
+            }
         } else {
             return {
                 validateStatus: 'success',
