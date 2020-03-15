@@ -7,7 +7,6 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.lac.model.Video;
 import com.lac.repository.FileRepository;
 import org.apache.commons.codec.digest.DigestUtils;
-//import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
 @Service
 public class VideoService {

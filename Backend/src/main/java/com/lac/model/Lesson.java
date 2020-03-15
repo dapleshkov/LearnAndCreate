@@ -27,8 +27,7 @@ public class Lesson {
    @NotBlank
    private String duration;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @OneToOne
     @JoinTable(name = "lesson_video",
             joinColumns = @JoinColumn(name = "lesson_id"),
             inverseJoinColumns = @JoinColumn(name = "file_id"))
