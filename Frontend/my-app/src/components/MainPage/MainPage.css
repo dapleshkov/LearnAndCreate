@@ -2,7 +2,6 @@
     background: url(../../sourses/mainpage_pics/main_back.png) no-repeat center top;
     grid-area: content;
     text-align: center;
-    margin-top: 0;
     min-width: 1000px;
 }
 
@@ -54,7 +53,7 @@ button:hover {
     position: relative;
     margin: 0 auto;
     height: 150px;
-    width: 1000px;
+    width: 950px;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 
 }

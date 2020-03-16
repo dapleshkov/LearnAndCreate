@@ -33,7 +33,7 @@ class CoursePage extends Component {
 
     handleOnClick () {
         subscribe(this.state.course.courseId).then(response => {
-            alert(12);
+            alert(response);
         }).catch(response => {
             debugger;
             alert(response.message);

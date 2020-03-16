@@ -16,7 +16,7 @@ class UserAccount extends Component {
                          alt="ava"/>
                     <text className="username">{this.props.user.username}</text>
                     <text className="name">{this.props.user.name}</text>
-                    <text className="coursesCount">{`Number of course subscriptions 0`}</text>
+                    <text className="coursesCount">Number of course subscriptions 0</text>
                 </div>
                 <hr className="separator"></hr>
                 <div className="courses">
