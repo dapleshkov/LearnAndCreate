@@ -12,7 +12,6 @@ import {
 } from "../ServerAPI/utils";
 import {Form} from "antd";
 
-
 class Settings extends Component {
     constructor(props) {
         super(props);
@@ -21,12 +20,33 @@ class Settings extends Component {
     render() {
         return (
             <div className="Settings">
+                {/*<UserAccountHead/>*/}
                 <UserSettings/>
                 <Switch>
                     <Route path="/settings/editname" render={(props) => <EditName user={this.props.user}/>}/>
                     <Route path="/settings/editusername" render={(props) => <EditUserName user={this.props.user}/>}/>
                     <Route path="/settings/editpassword" render={(props) => <EditPassword user={this.props.user}/>}/>
                 </Switch>
+            </div>
+        );
+    }
+}
+
+class UserAccountHead extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="Wrapper">
+                <div className="info">
+                    <img className="avatar" src="https://www.stickpng.com/assets/images/585e4bcdcb11b227491c3396.png"
+                         alt="ava"/>
+                    <text className="username">Popka</text>
+                    <text className="name">Vasya</text>
+                    <text className="coursesCount">{`Number of course subscriptions 0`}</text>
+                </div>
             </div>
         );
     }
@@ -148,7 +168,6 @@ class EditUserName extends Component {
             }
         });
     };
-
 
 
     render() {

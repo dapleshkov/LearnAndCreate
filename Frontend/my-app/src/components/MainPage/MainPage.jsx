@@ -72,18 +72,16 @@ function CourseBlock(props) {
     if (props.course.image === null) {
         path = "https://yt3.ggpht.com/a/AGF-l7_tM_jmkKQ_T1sNRNBf-s7GZuhzFWbdEkSfHA=s900-c-k-c0xffffffff-no-rj-mo";
     } else {
-        path = props.course.image;
+        path = props.course.image.url;
     }
 
     let pathtocourse = "../course/" + props.course.courseId;
     return (
         <NavLink className="CourseBlock" to={pathtocourse}>
-            <img className="ImgCourse" src={path}
-                 width="100" height="100"/>
+            <img className="ImgCourse" src={path}/>
+            <text className="CourseName">{props.course.title}</text>
             <br/>
-            <text className="Infa">{props.course.title}</text>
-            <br/>
-            <text className="Infa">{props.course.description}</text>
+            <text className="CourseDescription">Дескрипшн: {props.course.description}</text>
         </NavLink>
     )
 }
