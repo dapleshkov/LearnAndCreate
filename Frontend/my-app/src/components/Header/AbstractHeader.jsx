@@ -15,7 +15,6 @@ class AbstractHeader extends Component {
     render() {
         let menuItems;
         if (this.props.isAuthenticated) {
-            let pathToUser = "/users/" + this.props.user.username;
             menuItems = [
                 <nav className="dropDownMenu">
                     <ul className="topmenu">

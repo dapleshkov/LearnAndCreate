@@ -6,7 +6,7 @@
     min-width: 1000px;
 }
 
-.Menu{
+.Menu {
     position: relative;
     text-align: center;
     width: 100%;
@@ -15,11 +15,11 @@
     min-width: 1000px;
 }
 
-.Menu-categories{
+.Menu-categories {
     display: inline-block;
 }
 
-.Menu-item{
+.Menu-item {
     float: left;
     padding: 25px;
 }
@@ -52,22 +52,35 @@ button:hover {
 
 .CourseBlock {
     position: relative;
-    margin: 0 auto;
-    height: 150px;
-    width: 1000px;
+    margin: 8px 10px;
+    height: 120px;
+    width: 500px;
+    display: inline-block;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-
+    background-color: #cebbab;
+    border-radius: 10px;
 }
 
-.Infa {
+.CourseName {
     position: relative;
-    float: right;
-    right: 100px;
+    margin: 0 auto;
+    top: 30px;
+    text-decoration: none;
+    color: black;
 }
 
 .ImgCourse {
-    position: relative;
     float: left;
-    top: 2.5vh;
-    margin: 10px;
+    border-radius: 10px;
+    height: 120px;
+    margin: 0;
 }
+
+.CourseDescription{
+    position: relative;
+    margin: 0 auto;
+    top: 40px;
+    text-decoration: none;
+    color: black;
+}
+

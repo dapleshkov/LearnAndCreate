@@ -18,7 +18,7 @@ class UserAccount extends Component {
                     <text className="name">{this.props.user.name}</text>
                     <text className="coursesCount">{`Number of course subscriptions 0`}</text>
                 </div>
-                <hr className="separator"></hr>
+                <hr className="separator"/>
                 <div className="courses">
                     <UsersCourses/>
                 </div>
