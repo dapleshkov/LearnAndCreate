@@ -1,7 +1,7 @@
 .Main {
     grid-area: content;
     text-align: center;
-    min-width: 1000px;
+    min-width: 1200px;
     font-family: Roboto;
 }
 
