@@ -22,6 +22,9 @@ public class UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     public boolean editUsername(UserPrincipal currentUser, String username){
         if (username.length() > 15 || username.length() < 4)
             return false;
@@ -39,9 +42,6 @@ public class UserService {
         userRepository.save(user);
         return true;
     }
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
     public ApiResponse editPassword(UserPrincipal currentUser, String oldPassword,
                                     String newPassword, String repeatedPassword){
