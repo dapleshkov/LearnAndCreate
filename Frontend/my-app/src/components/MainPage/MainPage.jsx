@@ -53,15 +53,10 @@ class MainPage extends Component {
 function Base() {
     return (
         <div className="Label">
-            <div>
-                <text fontSize="60">
-                    LEARN AND CREATE
-                </text>
-            </div>
-            <div>
-                <button className="Try-button">
-                    Попробовать бесплатно
-                </button>
+            <div className="MPTitle">
+                <text>LEARN AND CREATE</text>
+                <br/>
+                <button className="Try-button">Попробовать бесплатно</button>
             </div>
         </div>
     );
@@ -81,7 +76,7 @@ function CourseBlock(props) {
             <img className="ImgCourse" src={path}/>
             <text className="CourseName">{props.course.title}</text>
             <br/>
-            <text className="CourseDescription">Дескрипшн: {props.course.description}</text>
+            <text className="CourseDescription">{props.course.description}</text>
         </NavLink>
     )
 }
@@ -89,7 +84,7 @@ function CourseBlock(props) {
 function Menu() {
     return (
         <div className="Menu">
-            <div className="Menu-head"> Открытый доступ ко всем направлениям искусства</div>
+            <div> Открытый доступ ко всем направлениям искусства</div>
             <div className="Menu-categories">
                 <MenuItem name="Все категории"/>
                 <MenuItem name="Дизайн"/>

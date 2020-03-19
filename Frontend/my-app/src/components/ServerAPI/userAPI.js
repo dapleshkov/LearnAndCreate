@@ -54,7 +54,7 @@ export function editUsername(username) {
     return request({
         url: API_BASE_URL + "/user/me/edit/username?username=" +username,
         method: 'PUT',
-        password: JSON.stringify(username)
+        username: JSON.stringify(username)
     });
 }
 

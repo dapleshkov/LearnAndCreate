@@ -58,7 +58,6 @@ class UsersCourses extends Component{
         if(this.state.isLoaded) {
             return (
                 <div>
-                    <text>Work</text>
                     {coursesList}
                 </div>
             );

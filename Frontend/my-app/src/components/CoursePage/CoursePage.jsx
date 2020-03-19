@@ -35,7 +35,6 @@ class CoursePage extends Component {
         subscribe(this.state.course.courseId).then(response => {
             alert(response);
         }).catch(response => {
-            debugger;
             alert(response.message);
         })
     };
