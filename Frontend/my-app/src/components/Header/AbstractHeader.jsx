@@ -13,6 +13,14 @@ class AbstractHeader extends Component {
     };
 
     render() {
+        let path="";
+        if(this.props.user.image!==null)
+        {
+            path=this.props.user.image;
+        }
+        else{
+            path="http://cdn.onlinewebfonts.com/svg/img_51324.png";
+        }
         let menuItems;
         if (this.props.isAuthenticated) {
             menuItems = [
@@ -21,7 +29,7 @@ class AbstractHeader extends Component {
                         <li>
                             <a className="maina" href="#">
                                 <text className="ddusn">{this.props.user.username}</text>
-                                <img className="ico" src="http://cdn.onlinewebfonts.com/svg/img_51324.png" alt="ico"/>
+                                <img className="ico" src={path} alt="ico"/>
                                 <div className="arrow-wrapper">
                                     &or;
                                 </div>
