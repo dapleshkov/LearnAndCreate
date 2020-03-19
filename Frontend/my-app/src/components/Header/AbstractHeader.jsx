@@ -19,9 +19,13 @@ class AbstractHeader extends Component {
                 <nav className="dropDownMenu">
                     <ul className="topmenu">
                         <li>
-                            <span className="arrow"/>
-                            <img className="ico" src="http://cdn.onlinewebfonts.com/svg/img_51324.png" alt="ico"/>
-                            <a className="maina" href="#">{this.props.user.username}</a>
+                            <a className="maina" href="#">
+                                <text>{this.props.user.username}</text>
+                                <img className="ico" src="http://cdn.onlinewebfonts.com/svg/img_51324.png" alt="ico"/>
+                                <div className="arrow-wrapper">
+                                    &or;
+                                </div>
+                            </a>
                             <ul className="submenu">
                                 <li className="item"><NavLink to={`/users/${this.props.user.username}`}>Личный
                                     кабинет</NavLink></li>
