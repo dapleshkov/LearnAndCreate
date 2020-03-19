@@ -4,9 +4,9 @@ import com.lac.model.EmailConfirmation;
 import com.lac.model.Image;
 import com.lac.model.User;
 import com.lac.payload.ApiResponse;
+import com.lac.payload.PasswordRequest;
 import com.lac.payload.UploadFileResponse;
 import com.lac.repository.EmailConfirmationRepository;
-import com.lac.repository.FileRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
 import com.lac.security.UserPrincipal;
@@ -88,11 +88,12 @@ public class UserController {
     @PutMapping("user/me/edit/password")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> editPassword(@CurrentUser UserPrincipal currentUser,
-                                            @RequestParam(name = "password") String password) {
-        if(userService.editPassword(currentUser, password))
-            return new ResponseEntity<>(new ApiResponse(true, "Password was edited successfully"), HttpStatus.OK);
-        return new ResponseEntity<>(new ApiResponse(false, "Password was not edited. Password is incorrect"), HttpStatus.BAD_REQUEST);
-
+                                            @RequestBody PasswordRequest request) {
+        ApiResponse response = userService.editPassword(currentUser, request.getOldPassword(),
+                request.getNewPassword(), request.getRepeatedPassword());
+        if (response.getSuccess())
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("/user/me/edit/email")
