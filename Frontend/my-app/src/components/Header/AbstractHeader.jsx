@@ -20,15 +20,14 @@ class AbstractHeader extends Component {
                     <ul className="topmenu">
                         <li>
                             <a className="maina" href="#">
-                                <text>{this.props.user.username}</text>
+                                <text className="ddusn">{this.props.user.username}</text>
                                 <img className="ico" src="http://cdn.onlinewebfonts.com/svg/img_51324.png" alt="ico"/>
                                 <div className="arrow-wrapper">
                                     &or;
                                 </div>
                             </a>
                             <ul className="submenu">
-                                <li className="item"><NavLink to={`/users/${this.props.user.username}`}>Личный
-                                    кабинет</NavLink></li>
+                                <li className="item"><NavLink to={`/users/${this.props.user.username}`}>Личный кабинет</NavLink></li>
                                 <li className="item"><NavLink to="/settings/editname">Настройки</NavLink></li>
                                 <li className="item"><NavLink to="/mainpage"
                                                               onClick={this.handleClickOut}>Выход</NavLink></li>

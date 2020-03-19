@@ -50,7 +50,8 @@
 
 .dropDownMenu {
     position: relative;
-    width: 175px;
+    width: auto;
+    min-width: 90px;
     height: 40px;
     float: right;
 }
@@ -66,39 +67,44 @@ ul {
 }
 
 .topmenu > li {
+    position: relative;
     display: inline-block;
+    height: 40px;
     margin-right: 20px;
     margin-top: 0;
-    position: relative;
 }
 
 .maina {
     position: relative;
-    margin-left: 0;
+}
+
+.ddusn {
+    position: relative;
+    top:2px;
 }
 
 .arrow-wrapper {
-    position: absolute;
-    right: 0;
-    bottom: 7px;
+    position: relative;
     display: inline-block;
+    float: right;
+    left: 40px;
+    bottom: 2px;
     width: 15px;
     height: 24px;
 }
 
 .ico {
-    position: absolute;
+    position: relative;
     border-radius: 15px;
-    margin-left: 10px;
     float: right;
+    bottom: 3px;
+    right: 10px;
     width: 30px;
-    top: 6px;
-    left: 115px
 }
 
 a {
     display: block;
-    padding: 10px 15px;
+    padding: 10px 10px 10px 5px;
     text-decoration: none;
     outline: none;
     font-family: 'Lora', serif;
@@ -108,8 +114,9 @@ a {
 .submenu {
     position: absolute;
     top: 100%;
-    left: 0;
+    right: 0;
     width: 100%;
+    min-width: 130px;
     z-index: 10;
     -webkit-transition: 0.5s ease-in-out;
     -moz-transition: 0.5s ease-in-out;
@@ -118,7 +125,7 @@ a {
 }
 
 .dropDownMenu ul li {
-    width: 100%;
+    width: auto;
 }
 
 .dropDownMenu ul a {
