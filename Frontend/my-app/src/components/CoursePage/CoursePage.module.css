@@ -1,0 +1,60 @@
+.CoursePage{
+    grid-area: content;
+    text-align: center;
+    height: 534px;
+}
+
+.NavBar{
+    margin-left: 100px;
+    position: relative;
+    float: left;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+
+.SettingsItem{
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    align-items: center;
+    display: inline-block;
+    width: 300px;
+}
+
+.SettingsLink{
+        position: relative;
+        height: 20px;
+        color: black;
+        width: 282px;
+}
+
+.selected_link {
+    color: red;
+    border-top: 3px solid red ;
+}
+
+.SettingsLink:hover {
+    background-color: #c7c5ce;
+}
+
+.ImgAbout{
+    width: 500px;
+}
+
+.Subscribe{
+    margin: 0 auto;
+    position: relative;
+    border-radius: 5px;
+    height: 33px;
+    width: 455px;
+    background-color: red;
+    outline: none;
+    color: white;
+    border: 0;
+    top: 50px;
+    float: left;
+    left: 100px;
+}
+
+.Content{
+    float: left;
+}
