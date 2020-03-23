@@ -63,10 +63,14 @@ class App extends Component {
                                     isAuthenticated={this.state.isAuthenticated}/>
                     <Switch>
                         <Route path="/refactoraccount" component={RefactorAccount}/>
-                        <Route path="/login" render={(props) => <Login onLogin={this.loadUser}/>}/>
-                        <Route path='/registration' render={(props) => <Registration/>}/>
-                        <Route path='/mainpage' component={MainPage}/>
-                        <Route path='/settings' render={(props) => <Settings user={this.state.currentUser}/>}/>
+                        <Route path="/login"
+                               render={(props) => <Login onLogin={this.loadUser}/>}/>
+                        <Route path='/registration'
+                               render={(props) => <Registration/>}/>
+                        <Route path='/mainpage'
+                               render={(props) => <MainPage isAuthenticated={this.state.isAuthenticated}/>}/>
+                        <Route path='/settings'
+                               render={(props) => <Settings user={this.state.currentUser}/>}/>
                         <Route path='/users/:username'
                                render={(props) => <UserAccount user={this.state.currentUser}/>}/>
                         <Route path='/course/:courseId' render={(props) => <CoursePage/>}/>

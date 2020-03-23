@@ -47,25 +47,28 @@ button:hover {
 
 .Try-button {
     position: relative;
+    font-size: 18px;
     border-radius: 5px;
-    height: 30px;
-    width: 187px;
-    margin: 12px 25px;
+    padding: 8px;
+    width: 185px;
+    display:block;
+    margin-top: 15px;
+    margin-left: 45%;
     background-color: red;
     outline: none;
     color: white;
-    border: 0;
 }
 
 .CourseBlock {
     font-family: Roboto;
     position: relative;
     margin: 8px 10px;
+    padding: 0;
     height: 120px;
     width: 500px;
     display: inline-block;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: #cebbab;
+    background-color: #f5f5f5;
     border-radius: 10px;
 }
 
@@ -82,7 +85,7 @@ button:hover {
     float: left;
     border-radius: 10px;
     height: 120px;
-    margin: 0;
+    width: 160px;
 }
 
 .CourseDescription {

@@ -289,7 +289,7 @@ class EditPassword extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        editPassword(this.state.password).then(response => {
+        editPassword(this.state.currentpassword, this.state.password).then(response => {
             alert(response.message);
         }).catch(response => {
             alert(response.message);

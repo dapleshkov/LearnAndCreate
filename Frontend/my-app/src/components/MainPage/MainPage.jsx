@@ -36,30 +36,42 @@ class MainPage extends Component {
         if (this.state.isLoaded) {
             return (
                 <div className="Main">
-                    <Base/>
+                    <Base isAuthenticated={this.props.isAuthenticated}/>
                     <Menu/>
                     {coursesList}
                 </div>);
         } else {
             return (
-                <div>
-
+                <div className="Main">
+                    <Base isAuthenticated={this.props.isAuthenticated}/>
+                    <Menu/>
                 </div>
-            )
+            );
         }
     }
 }
 
-function Base() {
-    return (
-        <div className="Label">
-            <div className="MPTitle">
-                <text>LEARN AND CREATE</text>
-                <br/>
-                <button className="Try-button">Попробовать бесплатно</button>
+function Base(props) {
+    if (props.isAuthenticated) {
+        return (
+            <div className="Label">
+                <div className="MPTitle">
+                    <text>LEARN AND CREATE</text>
+                    <br/>
+                </div>
             </div>
-        </div>
-    );
+        );
+    } else {
+        return (
+            <div className="Label">
+                <div className="MPTitle">
+                    <text>LEARN AND CREATE</text>
+                    <NavLink className="Try-button" to='/registration'>Попробовать бесплатно</NavLink>
+                    <br/>
+                </div>
+            </div>
+        );
+    }
 }
 
 function CourseBlock(props) {

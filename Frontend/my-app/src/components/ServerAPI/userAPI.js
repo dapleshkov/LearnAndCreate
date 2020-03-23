@@ -42,11 +42,13 @@ export function checkUsernameAvailability(username) {
     });
 }
 
-export function editPassword(password) {
+export function editPassword(oldpassword, password) {
     return request({
-        url: API_BASE_URL + "/user/me/edit/password?password=" +password,
+        url: API_BASE_URL + "/user/me/edit/password",
         method: 'PUT',
-        password: JSON.stringify(password)
+        oldPassword:JSON.stringify(oldpassword),
+        newPassword:JSON.stringify(password),
+        repeatedPassword: JSON.stringify(password)
     });
 }
 

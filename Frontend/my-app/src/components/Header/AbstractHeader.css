@@ -20,33 +20,28 @@
 
 .Reg {
     position: relative;
-    right: 3%;
-    padding: 6px 10px;
-    outline: none;
-    height: 40%;
+    right: 15px;
+    top: 7px;
+    padding: 5px;
     background: #FF1A2E;
-    border-radius: 6px;
+    border-radius: 7px;
     color: white;
-    top: 15%;
-    text-decoration: none;
-    border: 0;
     float: right;
+    border: black 3px;
 }
 
 .Enter {
     position: relative;
-    padding: 6px 10px;
-    right: 3%;
-    top: 15%;
-    height: 40%;
-    text-decoration: none;
+    padding: 7px;
+    top: 7px;
+    padding: 5px;
+    right: 25px;
     background-color: white;
-    border: 0 white;
-    animation: none;
+    border-radius: 7px;
     outline: none;
+    border: black 1px;
     float: right;
 }
-
 
 .dropDownMenu {
     position: relative;
