@@ -42,19 +42,18 @@ export function checkUsernameAvailability(username) {
     });
 }
 
-export function editPassword(oldpassword, password) {
+export function editPassword(Password) {
+    debugger;
     return request({
         url: API_BASE_URL + "/user/me/edit/password",
         method: 'PUT',
-        oldPassword:JSON.stringify(oldpassword),
-        newPassword:JSON.stringify(password),
-        repeatedPassword: JSON.stringify(password)
+        body: JSON.stringify(Password)
     });
 }
 
 export function editUsername(username) {
     return request({
-        url: API_BASE_URL + "/user/me/edit/username?username=" +username,
+        url: API_BASE_URL + "/user/me/edit/username?username=" + username,
         method: 'PUT',
         username: JSON.stringify(username)
     });
@@ -68,7 +67,7 @@ export function editName(name) {
     });
 }
 
-export  function subscribe(courseId) {
+export function subscribe(courseId) {
     return request({
         url: API_BASE_URL + "/course/" + courseId,
         method: 'POST'

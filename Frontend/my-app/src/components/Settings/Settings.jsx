@@ -267,7 +267,12 @@ class EditPassword extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        editPassword(this.state.currentpassword, this.state.password).then(response => {
+        let PasswordRequest={
+            oldPassword: this.state.currentpassword.value,
+            newPassword:  this.state.firstpassword.value,
+            repeatedPassword: this.state.secondpassword.value
+        };
+        editPassword(PasswordRequest).then(response => {
             alert(response.message);
         }).catch(response => {
             alert(response.message);
@@ -289,7 +294,8 @@ class EditPassword extends Component {
 
     isFormValid() {
         return !(this.state.firstpassword.validateStatus === 'success' &&
-            this.state.secondpassword.validateStatus === 'success');
+            this.state.secondpassword.validateStatus === 'success' &&
+            this.state.currentpassword.value !== '');
     }
 
     render() {
