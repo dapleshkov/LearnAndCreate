@@ -10,12 +10,15 @@
 .Header-components {
     position: relative;
     margin: 10px;
-    height: 40px;
+    height:40px;
 }
 
 .Header-text {
-    position: absolute;
+    position: relative;
+    text-align: center;
     color: #42444C;
+    width: 160px;
+    height: 20px;
 }
 
 .Reg {
@@ -32,9 +35,8 @@
 
 .Enter {
     position: relative;
-    padding: 7px;
-    top: 7px;
     padding: 5px;
+    top: 7px;
     right: 25px;
     background-color: white;
     border-radius: 7px;
@@ -142,4 +144,29 @@ a {
 
 .maina:hover {
     background-color: #c7c5ce;
+}
+
+
+.InputForm{
+    position: relative;
+    width: 500px;
+    margin: 0 auto 0 250px;
+    height: 0;
+}
+
+.SearchInput{
+    position: relative;
+    background: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
+    width: 400px;
+    height: 33px;
+    margin-top: 2px;
+    padding-left: 5px;
+}
+
+.SearchSubmit{
+    position: relative;
+    width: 100px;
+    content: "\f105";
 }

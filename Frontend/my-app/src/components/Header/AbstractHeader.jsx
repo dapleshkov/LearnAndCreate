@@ -13,13 +13,11 @@ class AbstractHeader extends Component {
     };
 
     render() {
-        let path="";
-        if(this.props.user.image!==null)
-        {
-            path=this.props.user.image;
-        }
-        else{
-            path="http://cdn.onlinewebfonts.com/svg/img_51324.png";
+        let path = "";
+        if (this.props.user.image !== null) {
+            path = this.props.user.image;
+        } else {
+            path = "http://cdn.onlinewebfonts.com/svg/img_51324.png";
         }
         let menuItems;
         if (this.props.isAuthenticated) {
@@ -35,7 +33,8 @@ class AbstractHeader extends Component {
                                 </div>
                             </a>
                             <ul className="submenu">
-                                <li className="item"><NavLink to={`/users/${this.props.user.username}`}>Личный кабинет</NavLink></li>
+                                <li className="item"><NavLink to={`/users/${this.props.user.username}`}>Личный
+                                    кабинет</NavLink></li>
                                 <li className="item"><NavLink to="/settings/editname">Настройки</NavLink></li>
                                 <li className="item"><NavLink to="/mainpage"
                                                               onClick={this.handleClickOut}>Выход</NavLink></li>
@@ -54,11 +53,27 @@ class AbstractHeader extends Component {
             <header className="Abstract-header">
                 <div className="Header-components">
                     {menuItems}
+                    <SearchField/>
                     <NavLink className="Header-text" to="/mainpage">LEARN AND CREATE</NavLink>
                 </div>
             </header>
         )
     };
+}
+
+class SearchField extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <form className="InputForm">
+                <input className="SearchInput" name="s" placeholder="Что ты хочешь узнать сегодня?" type="search"/>
+                <button className="SearchSubmit" type="submit"></button>
+            </form>
+        )
+    }
 }
 
 export default AbstractHeader;

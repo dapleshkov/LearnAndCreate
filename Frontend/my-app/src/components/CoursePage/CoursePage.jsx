@@ -75,7 +75,7 @@ class NavBar extends Component {
             <ul className={styles.NavBar}>
                 <li className={styles.SettingsItem}>
                     <NavLink to={"/course/" + this.props.courseId} className={styles.SettingsLink}
-                             activeClassName={styles.selected_link}>О курсе</NavLink>
+                             exact activeClassName={styles.selected_link}>О курсе</NavLink>
                 </li>
                 <li className={styles.SettingsItem}>
                     <NavLink to={"/course/" + this.props.courseId + "/comments"} className={styles.SettingsLink}
