@@ -164,8 +164,10 @@ a {
 }
 
 .SearchIcon {
-    height: 33px;
-    order: -1;
+    position: relative;
+    height: 22px;
+    order: 1;
+    margin-top: 6px;
     margin-left: 10px;
     margin-right: 10px;
 }
