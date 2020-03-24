@@ -1,7 +1,9 @@
 .CoursePage {
     grid-area: content;
     text-align: center;
-    height: 534px;
+    height: 1200px;
+    font-family: Roboto;
+    min-width: 1200px;
 }
 
 .NavBar {
@@ -32,7 +34,7 @@
 }
 
 .SettingsLink:hover {
-    background-color: rgb(238, 236, 245);
+    background-color: rgba(255, 0, 0, 0.26);
 }
 
 .ImgAbout {
@@ -55,5 +57,21 @@
 }
 
 .Content {
-    float: left;
+    background-color: rgba(255, 0, 0, 0.07);
+    position: relative;
+    margin: 20px ;
+    min-width: 1120px;
+    padding: 15px;
+    height: 500px;
+}
+
+.CourseName{
+    font-weight: bold;
+    font-size: 25px;
+}
+.InformationAboutCourse{
+    position: absolute;
+    margin-top: 10px;
+    width: 700px;
+    height: auto;
 }
