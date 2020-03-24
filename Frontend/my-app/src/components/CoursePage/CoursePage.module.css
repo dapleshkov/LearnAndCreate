@@ -69,9 +69,62 @@
     font-weight: bold;
     font-size: 25px;
 }
+.HeadOfINfCourse{
+    position: relative;
+    font-weight: bold;
+    font-size: 20px;
+    left:5px;
+    float:left;
+}
+.ImageOfCourse{
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
 .InformationAboutCourse{
     position: absolute;
-    margin-top: 10px;
+    background-color: white;
+    margin-top: 5px;
+    padding: 15px;
     width: 700px;
     height: auto;
+}
+.InformationMainBody{
+    position: relative;
+    margin-top: 30px;
+    padding: 5px;
+}
+.TextInMainBody{
+    text-transform: capitalize;
+    text-align-all: start;
+}
+
+.MarkOfTheCourse{
+    margin-top: 5px;
+    position: absolute;
+    display: inline;
+    margin-left: 50px;
+    background-color: white;
+    width: 300px;
+    float: right;
+    height: 200px;
+}
+
+.rating-result {
+    width: 265px;
+    margin: 0 auto;
+}
+.rating-result span {
+    padding: 0;
+    font-size: 40px;
+    line-height: 1;
+    color: lightgrey;
+    text-shadow: 1px 1px #bbb;
+}
+.rating-result > span:before {
+    content: '★';
+}
+.rating-result > span.active {
+    color: gold;
+    text-shadow: 1px 1px #c60;
 }

@@ -107,15 +107,35 @@ class AboutCourse extends Component {
             <div className={styles.Content}>
                 <header className={styles.CourseName}>{this.props.course.title}</header>
                 <div className={styles.InformationAboutCourse}>
-                    <header>О курсе</header>
-                    <div>
-                    <img src={this.props.course.image.url}/>
+                    <header className={styles.HeadOfINfCourse}>О курсе</header>
+                    <div className={styles.InformationMainBody}>
+                    <img className={styles.ImageOfCourse} src={this.props.course.image.url}/>
+                    <text className={styles.TextInMainBody}>
+                        The UI/UX Design Specialization brings a design-centric approach to user interface and user experience design, and offers practical, skill-based instruction centered around a visual communications perspective, rather than on one focused on marketing or programming alone. In this sequence of four courses, you will summarize and demonstrate all stages of the UI/UX development process, from user research to defining a project’s strategy, scope, and information architecture, to developing sitemaps and wireframes. You’ll learn current best practices and conventions in UX design and apply them to create effective and compelling screen-based experiences for websites or <apps className=""></apps>
+                        User interface and user experience design is a high-demand field, but the skills and knowledge you will learn in this Specialization are applicable to a wide variety of careers, from marketing to web design to human-computer interaction.
+                    </text>
                     </div>
+                </div>
+                <div className={styles.MarkOfTheCourse}>
+                    <RatingBlock />
+
                 </div>
 
             </div>
         );
     }
+}
+
+function RatingBlock() {
+    return(
+        <div className="rating-mini">
+            <span className="active"></span>
+            <span className="active"></span>
+            <span className="active"></span>
+            <span></span>
+            <span></span>
+        </div>
+    );
 }
 
 

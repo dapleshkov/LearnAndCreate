@@ -71,7 +71,7 @@ class SearchField extends Component {
             <form className="InputForm">
                 <div className="Search">
                     <input className="SearchInput" name="s" placeholder="Что ты хочешь узнать сегодня?" type="search"/>
-                    <img src="https://www.epa.org.ae/img/icon-search.png" alt="" className="SearchIcon"/>
+                        <img src="https://www.epa.org.ae/img/icon-search.png" alt="" className="SearchIcon"/>
                 </div>
             </form>
         )
