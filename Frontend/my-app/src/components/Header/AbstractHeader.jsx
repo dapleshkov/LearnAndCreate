@@ -9,7 +9,7 @@ class AbstractHeader extends Component {
 
     handleClickOut = event => {
         this.props.LogOut();
-        window.location.assign('/mainpage');
+        window.location.assign('https://learning-app-client.herokuapp.com/mainpage');
     };
 
     render() {
