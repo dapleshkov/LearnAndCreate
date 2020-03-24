@@ -18,7 +18,7 @@ class Login extends Component {
         login(this.state).then(response => {
             localStorage.setItem('accessToken', response.accessToken);
             this.props.onLogin();
-            window.location.assign('http://localhost:3000/mainpage')
+            window.location.assign('/mainpage')
         }).catch(error => {
             if (error.status === 401) {
                 alert('Your Username or Password is incorrect. Please try again!');
