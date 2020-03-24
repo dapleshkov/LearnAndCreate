@@ -69,8 +69,10 @@ class SearchField extends Component {
     render() {
         return (
             <form className="InputForm">
-                <input className="SearchInput" name="s" placeholder="Что ты хочешь узнать сегодня?" type="search"/>
-                <button className="SearchSubmit" type="submit"></button>
+                <div className="Search">
+                    <input className="SearchInput" name="s" placeholder="Что ты хочешь узнать сегодня?" type="search"/>
+                    <img src="https://www.epa.org.ae/img/icon-search.png" alt="" className="SearchIcon"/>
+                </div>
             </form>
         )
     }
