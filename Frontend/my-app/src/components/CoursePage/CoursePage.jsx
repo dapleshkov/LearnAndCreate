@@ -47,6 +47,8 @@ class CoursePage extends Component {
                 <div className={styles.CoursePage}>
                     <NavBar courseId={this.state.course.courseId}/>
                     <br/>
+                    <br/>
+                    <br/>
                     <Switch>
                         <Route exact path={"/course/" + this.state.course.courseId}
                                render={(props) => <AboutCourse user={this.props.user} course={this.state.course}/>}/>
@@ -100,11 +102,17 @@ class AboutCourse extends Component {
     }
 
     render() {
+        debugger;
         return (
             <div className={styles.Content}>
-                wekjwehjtwehgltjhegtljqhegrl
-                <button className={styles.Subscribe} onClick={this.handleOnClick}>Subscribe
-                    to {this.props.course.title}</button>
+                <header className={styles.CourseName}>{this.props.course.title}</header>
+                <div className={styles.InformationAboutCourse}>
+                    <header>О курсе</header>
+                    <div>
+                    <img src={this.props.course.image.url}/>
+                    </div>
+                </div>
+
             </div>
         );
     }
