@@ -53,6 +53,8 @@ class CoursePage extends Component {
                                render={(props) => <AboutCourse user={this.props.user} course={this.state.course}/>}/>
                         <Route exact path={"/course/" + this.state.course.courseId + "/comments"}
                                render={(props) => <CommentsCourse user={this.props.user}/>}/>
+                        <Route exact path={"/course/" + this.state.course.courseId + "/content"}
+                               render={(props) => <CourseContent user={this.props.user}/>}/>
                     </Switch>
                     <br/>
                 </div>
@@ -72,6 +74,7 @@ class NavBar extends Component {
     }
 
     render() {
+        debugger;
         return (
             <ul className={styles.NavBar}>
                 <li className={styles.SettingsItem}>
@@ -87,7 +90,7 @@ class NavBar extends Component {
                              activeClassName={styles.selected_link}>Отзывы</NavLink>
                 </li>
                 <li className={styles.SettingsItem}>
-                    <NavLink to={"/course/" + this.props.courseId + "/xyi"} className={styles.SettingsLink}
+                    <NavLink to={"/course/" + this.props.courseId + "/content"} className={styles.SettingsLink}
                              activeClassName={styles.selected_link}>Содержание</NavLink>
                 </li>
             </ul>
@@ -128,6 +131,38 @@ class AboutCourse extends Component {
                     <RatingBlock/>
 
                 </div>
+
+            </div>
+        );
+    }
+}
+
+
+class CourseContent extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
+                <div>
+                    Курс содержит:
+                </div>
+                <ul>
+                    <li>
+                        n уроков
+                    </li>
+                    <li>
+                        Автор курса: я
+                    </li>
+                    <li>
+                        Студентов подписалось: 101
+                    </li>
+                    <li>
+                        Категория: дезигн
+                    </li>
+                </ul>
 
             </div>
         );
