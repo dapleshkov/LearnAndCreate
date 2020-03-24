@@ -18,7 +18,7 @@ class Login extends Component {
         login(this.state).then(response => {
             localStorage.setItem('accessToken', response.accessToken);
             this.props.onLogin();
-            window.location.assign('/mainpage')
+            window.location.assign('https://learning-app-client.herokuapp.com/mainpage')
         }).catch(error => {
             if (error.status === 401) {
                 alert('Your Username or Password is incorrect. Please try again!');

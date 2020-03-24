@@ -59,8 +59,8 @@
 .Content {
     background-color: rgba(255, 0, 0, 0.07);
     position: relative;
-    margin: 20px ;
-    min-width: 1120px;
+    margin: 20px 100px ;
+    min-width: 1000px;
     padding: 15px;
     height: 500px;
 }
@@ -103,28 +103,49 @@
     margin-top: 5px;
     position: absolute;
     display: inline;
-    margin-left: 50px;
+    right: 15px;
     background-color: white;
     width: 300px;
     float: right;
     height: 200px;
 }
 
-.rating-result {
+.rating-area {
+    overflow: hidden;
     width: 265px;
     margin: 0 auto;
 }
-.rating-result span {
+.rating-area:not(:checked) > input {
+    display: none;
+}
+.rating-area:not(:checked) > label {
+    float: right;
+    width: 42px;
     padding: 0;
-    font-size: 40px;
-    line-height: 1;
+    cursor: pointer;
+    font-size: 50px;
+    line-height: 50px;
     color: lightgrey;
     text-shadow: 1px 1px #bbb;
 }
-.rating-result > span:before {
-    content: '★';
+.rating_block {
+    width: 125px;
+    height: 25px;
 }
-.rating-result > span.active {
-    color: gold;
-    text-shadow: 1px 1px #c60;
+.rating_block input[type="radio"] {
+    display: none;
+}
+.label_rating {
+    float: right;
+    display: block;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+/*Пишем правила смены положения background-а*/
+.rating_block .label_rating:hover, /*Правило для ховера на текущий лейбл*/
+.rating_block .label_rating:hover ~ .label_rating, /*Правило для всех следующих лейблов по DOM дереву*/
+.rating_block input[type="radio"]:checked ~ .label_rating /*Правило для всех следующих лейблов после выбранного инпута, чтобы звездочки как бы зафиксировались*/
+{
+    background-position: 50% -25px;
 }
