@@ -4,14 +4,24 @@ import {Switch, Route, NavLink} from "react-router-dom";
 import {getCourseById} from "../ServerAPI/courseAPI";
 import {subscribe} from "../ServerAPI/userAPI";
 import styles from "./CoursePage.module.css";
-
+import {
+    Player,
+    ControlBar,
+    ReplayControl,
+    ForwardControl,
+    CurrentTimeDisplay,
+    TimeDivider,
+    PlaybackRateMenuButton,
+    VolumeMenuButton
+} from 'video-react';
 
 class CoursePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             course: null,
-            isLoaded: false
+            isLoaded: false,
+            user:{}
         };
         this.loadCourseInformation = this.loadCourseInformation.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
@@ -30,6 +40,9 @@ class CoursePage extends Component {
 
     componentDidMount() {
         this.loadCourseInformation();
+        this.setState({
+            user:this.props.user
+        })
     }
 
     handleOnClick() {
@@ -50,11 +63,11 @@ class CoursePage extends Component {
                     <br/>
                     <Switch>
                         <Route exact path={"/course/" + this.state.course.courseId}
-                               render={(props) => <AboutCourse user={this.props.user} course={this.state.course}/>}/>
+                               render={(props) => <AboutCourse user={this.state.user} course={this.state.course}/>}/>
                         <Route exact path={"/course/" + this.state.course.courseId + "/comments"}
-                               render={(props) => <CommentsCourse user={this.props.user}/>}/>
+                               render={(props) => <CommentsCourse user={this.state.user}/>}/>
                         <Route exact path={"/course/" + this.state.course.courseId + "/content"}
-                               render={(props) => <CourseContent user={this.props.user}/>}/>
+                               render={(props) => <CourseContent user={this.state.user}/>}/>
                     </Switch>
                     <br/>
                 </div>
@@ -146,23 +159,19 @@ class CourseContent extends Component {
     render() {
         return (
             <div>
-                <div>
-                    Курс содержит:
-                </div>
-                <ul>
-                    <li>
-                        n уроков
-                    </li>
-                    <li>
-                        Автор курса: я
-                    </li>
-                    <li>
-                        Студентов подписалось: 101
-                    </li>
-                    <li>
-                        Категория: дезигн
-                    </li>
-                </ul>
+                <Player >
+                    <source src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4" />
+                    <source src="http://mirrorblender.top-ix.org/movies/sintel-1024-surround.mp4" />
+
+                    <ControlBar>
+                        <ReplayControl seconds={10} order={1.1} />
+                        <ForwardControl seconds={30} order={1.2} />
+                        <CurrentTimeDisplay order={4.1} />
+                        <TimeDivider order={4.2} />
+                        <PlaybackRateMenuButton rates={[5, 2, 1, 0.5, 0.1]} order={7.1} />
+                        <VolumeMenuButton disabled />
+                    </ControlBar>
+                </Player>
 
             </div>
         );
@@ -199,7 +208,7 @@ class CommentsCourse extends Component {
     render() {
         return (
             <div className={styles.Content}>
-                asdsdad
+            courses
             </div>
         );
     }

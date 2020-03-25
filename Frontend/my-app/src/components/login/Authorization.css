@@ -50,5 +50,6 @@ button:hover{
     margin: 12px 25px;
     height: 30px;
     width: 437px;
+    padding-left: 5px;
     text-blink: password;
 }
