@@ -4,17 +4,7 @@ import {Switch, Route, NavLink} from "react-router-dom";
 import {getCourseById} from "../ServerAPI/courseAPI";
 import {subscribe} from "../ServerAPI/userAPI";
 import styles from "./CoursePage.module.css";
-import {
-    Player,
-    ControlBar,
-    ReplayControl,
-    ForwardControl,
-    CurrentTimeDisplay,
-    TimeDivider,
-    PlaybackRateMenuButton,
-    VolumeMenuButton
-} from 'video-react';
-
+import ReactPlayer from "react-player";
 class CoursePage extends Component {
     constructor(props) {
         super(props);
@@ -28,12 +18,13 @@ class CoursePage extends Component {
     }
 
     loadCourseInformation() {
-        getCourseById(window.location.pathname).then(response => {
+        getCourseById(this.props.match.params.courseId).then(response => {
             this.setState({
                 course: response,
                 isLoaded: true
             });
         }).catch(response => {
+            debugger;
             alert(response.message);
         })
     }
@@ -87,7 +78,6 @@ class NavBar extends Component {
     }
 
     render() {
-        debugger;
         return (
             <ul className={styles.NavBar}>
                 <li className={styles.SettingsItem}>
@@ -159,20 +149,7 @@ class CourseContent extends Component {
     render() {
         return (
             <div>
-                <Player >
-                    <source src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4" />
-                    <source src="http://mirrorblender.top-ix.org/movies/sintel-1024-surround.mp4" />
-
-                    <ControlBar>
-                        <ReplayControl seconds={10} order={1.1} />
-                        <ForwardControl seconds={30} order={1.2} />
-                        <CurrentTimeDisplay order={4.1} />
-                        <TimeDivider order={4.2} />
-                        <PlaybackRateMenuButton rates={[5, 2, 1, 0.5, 0.1]} order={7.1} />
-                        <VolumeMenuButton disabled />
-                    </ControlBar>
-                </Player>
-
+                <ReactPlayer url="https://d3c33hcgiwev3.cloudfront.net/Thz5oiWmEeeErgpOFanBSA.processed/full/540p/index.webm?Expires=1585353600&Signature=hoARjJH9eCI4yw~iDMr20tc1Re5eqdCWo7Ug8RZXdh0rur2absDTTKH7dC8BT-6~sNInI3CAiAJ9x0GClY21W-sTQju1F3wv0lBn8MJswpiAm1iu1ADVosX2Y0YfEV3QxwcwySqbWiff1ASEv8RdC-BhzVkKvMz0cXcgtSi8jh4_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A" controls={true}/>
             </div>
         );
     }
@@ -180,7 +157,7 @@ class CourseContent extends Component {
 
 function RatingBlock() {
     return (
-        <div className="rating_block">
+        <div className={styles.rating_block}>
             <input name="rating" value="5" id="rating_5" type="radio"/>
             <label htmlFor="rating_5" className="label_rating"></label>
 
