@@ -4,32 +4,36 @@ import {Switch, Route, NavLink} from "react-router-dom";
 import {getCourseById} from "../ServerAPI/courseAPI";
 import {subscribe} from "../ServerAPI/userAPI";
 import styles from "./CoursePage.module.css";
-
-
+import ReactPlayer from "react-player";
 class CoursePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             course: null,
-            isLoaded: false
+            isLoaded: false,
+            user:{}
         };
         this.loadCourseInformation = this.loadCourseInformation.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
     }
 
     loadCourseInformation() {
-        getCourseById(window.location.pathname).then(response => {
+        getCourseById(this.props.match.params.courseId).then(response => {
             this.setState({
                 course: response,
                 isLoaded: true
             });
         }).catch(response => {
+            debugger;
             alert(response.message);
         })
     }
 
     componentDidMount() {
         this.loadCourseInformation();
+        this.setState({
+            user:this.props.user
+        })
     }
 
     handleOnClick() {
@@ -50,11 +54,11 @@ class CoursePage extends Component {
                     <br/>
                     <Switch>
                         <Route exact path={"/course/" + this.state.course.courseId}
-                               render={(props) => <AboutCourse user={this.props.user} course={this.state.course}/>}/>
+                               render={(props) => <AboutCourse user={this.state.user} course={this.state.course}/>}/>
                         <Route exact path={"/course/" + this.state.course.courseId + "/comments"}
-                               render={(props) => <CommentsCourse user={this.props.user}/>}/>
+                               render={(props) => <CommentsCourse user={this.state.user}/>}/>
                         <Route exact path={"/course/" + this.state.course.courseId + "/content"}
-                               render={(props) => <CourseContent user={this.props.user}/>}/>
+                               render={(props) => <CourseContent user={this.state.user}/>}/>
                     </Switch>
                     <br/>
                 </div>
@@ -74,7 +78,6 @@ class NavBar extends Component {
     }
 
     render() {
-        debugger;
         return (
             <ul className={styles.NavBar}>
                 <li className={styles.SettingsItem}>
@@ -145,30 +148,8 @@ class CourseContent extends Component {
 
     render() {
         return (
-            <div className={styles.CourseContent}>
-                <div>Курс посвящен разработке серверной части web-приложений, их архитектуре и протоколу HTTP. По итогам
-                    курса вы научитесь: разрабатывать приложения на языке python, использовать MVC фреймворки, изучите
-                    верстку HTML страниц, погрузитесь в тематику web разработки и сможете выбирать конкретные
-                    технологии.
-                </div>
-                <div>
-                    Курс содержит:
-                </div>
-                <ul>
-                    <li>
-                        n уроков
-                    </li>
-                    <li>
-                        Автор курса: я
-                    </li>
-                    <li>
-                        Студентов подписалось: 101
-                    </li>
-                    <li>
-                        Категория: дезигн
-                    </li>
-                </ul>
-
+            <div>
+                <ReactPlayer url="https://d3c33hcgiwev3.cloudfront.net/Thz5oiWmEeeErgpOFanBSA.processed/full/540p/index.webm?Expires=1585353600&Signature=hoARjJH9eCI4yw~iDMr20tc1Re5eqdCWo7Ug8RZXdh0rur2absDTTKH7dC8BT-6~sNInI3CAiAJ9x0GClY21W-sTQju1F3wv0lBn8MJswpiAm1iu1ADVosX2Y0YfEV3QxwcwySqbWiff1ASEv8RdC-BhzVkKvMz0cXcgtSi8jh4_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A" controls={true}/>
             </div>
         );
     }
@@ -176,7 +157,7 @@ class CourseContent extends Component {
 
 function RatingBlock() {
     return (
-        <div className="rating_block">
+        <div className={styles.rating_block}>
             <input name="rating" value="5" id="rating_5" type="radio"/>
             <label htmlFor="rating_5" className="label_rating"></label>
 
@@ -204,7 +185,7 @@ class CommentsCourse extends Component {
     render() {
         return (
             <div className={styles.Content}>
-                asdsdad
+            courses
             </div>
         );
     }

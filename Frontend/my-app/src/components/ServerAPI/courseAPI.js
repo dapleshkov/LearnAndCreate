@@ -21,7 +21,7 @@ export function getRandomCourses() {
 
 export function getCourseById(courseId) {
     return request({
-        url: API_BASE_URL + courseId,
+        url: API_BASE_URL + "/course/" + courseId,
         method: 'GET',
     });
 }

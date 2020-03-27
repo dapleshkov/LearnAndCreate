@@ -57,7 +57,7 @@ class SingUp extends Component {
         singUp(singupuser).then(response => {
             debugger;
             if (response.success) {
-                window.location.assign('https://learning-app-client.herokuapp.com/login')
+                window.location.assign('http://localhost:3000/login')
             }
         });
     };
