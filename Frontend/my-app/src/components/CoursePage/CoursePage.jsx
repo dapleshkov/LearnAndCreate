@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './CoursePage.module.css';
-import {Switch, Route, NavLink} from "react-router-dom";
-import {getCourseById} from "../ServerAPI/courseAPI";
-import {subscribe} from "../ServerAPI/userAPI";
+import { Switch, Route, NavLink } from "react-router-dom";
+import { getCourseById } from "../ServerAPI/courseAPI";
+import { subscribe } from "../ServerAPI/userAPI";
 import styles from "./CoursePage.module.css";
 import ReactPlayer from "react-player";
 class CoursePage extends Component {
@@ -11,7 +11,7 @@ class CoursePage extends Component {
         this.state = {
             course: null,
             isLoaded: false,
-            user:{}
+            user: {}
         };
         this.loadCourseInformation = this.loadCourseInformation.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
@@ -32,11 +32,12 @@ class CoursePage extends Component {
     componentDidMount() {
         this.loadCourseInformation();
         this.setState({
-            user:this.props.user
+            user: this.props.user
         })
     }
 
     handleOnClick() {
+        alert("1");
         subscribe(this.state.course.courseId).then(response => {
             alert(response);
         }).catch(response => {
@@ -48,19 +49,19 @@ class CoursePage extends Component {
         if (this.state.isLoaded) {
             return (
                 <div className={styles.CoursePage}>
-                    <NavBar courseId={this.state.course.courseId}/>
-                    <br/>
-                    <br/>
-                    <br/>
+                    <NavBar courseId={this.state.course.courseId} courseName={this.state.course.title}/>
+                    <br />
+                    <br />
+                    <br />
                     <Switch>
                         <Route exact path={"/course/" + this.state.course.courseId}
-                               render={(props) => <AboutCourse user={this.state.user} course={this.state.course}/>}/>
+                            render={(props) => <AboutCourse user={this.state.user} course={this.state.course} />} />
                         <Route exact path={"/course/" + this.state.course.courseId + "/comments"}
-                               render={(props) => <CommentsCourse user={this.state.user}/>}/>
+                            render={(props) => <CommentsCourse user={this.state.user} />} />
                         <Route exact path={"/course/" + this.state.course.courseId + "/content"}
-                               render={(props) => <CourseContent user={this.state.user}/>}/>
+                            render={(props) => <CourseContent user={this.state.user} />} />
                     </Switch>
-                    <br/>
+                    <br />
                 </div>
             );
         } else {
@@ -79,24 +80,27 @@ class NavBar extends Component {
 
     render() {
         return (
-            <ul className={styles.NavBar}>
-                <li className={styles.SettingsItem}>
-                    <NavLink to={"/course/" + this.props.courseId} className={styles.SettingsLink}
-                             exact activeClassName={styles.selected_link}>О курсе</NavLink>
-                </li>
-                <li className={styles.SettingsItem}>
-                    <NavLink to={"/course/" + this.props.courseId + "/comments"} className={styles.SettingsLink}
-                             activeClassName={styles.selected_link}>Комментарии</NavLink>
-                </li>
-                <li className={styles.SettingsItem}>
-                    <NavLink to={"/course/" + this.props.courseId + "/feedback"} className={styles.SettingsLink}
-                             activeClassName={styles.selected_link}>Отзывы</NavLink>
-                </li>
-                <li className={styles.SettingsItem}>
-                    <NavLink to={"/course/" + this.props.courseId + "/content"} className={styles.SettingsLink}
-                             activeClassName={styles.selected_link}>Содержание</NavLink>
-                </li>
-            </ul>
+            <div>
+                <ul className={styles.NavBar}>
+                    <li className={styles.SettingsItem}>
+                        <NavLink to={"/course/" + this.props.courseId} className={styles.SettingsLink}
+                            exact activeClassName={styles.selected_link}>О курсе</NavLink>
+                    </li>
+                    <li className={styles.SettingsItem}>
+                        <NavLink to={"/course/" + this.props.courseId + "/comments"} className={styles.SettingsLink}
+                            activeClassName={styles.selected_link}>Комментарии</NavLink>
+                    </li>
+                    <li className={styles.SettingsItem}>
+                        <NavLink to={"/course/" + this.props.courseId + "/feedback"} className={styles.SettingsLink}
+                            activeClassName={styles.selected_link}>Отзывы</NavLink>
+                    </li>
+                    <li className={styles.SettingsItem}>
+                        <NavLink to={"/course/" + this.props.courseId + "/content"} className={styles.SettingsLink}
+                            activeClassName={styles.selected_link}>Содержание</NavLink>
+                    </li>
+                </ul>
+                <button className={styles.Subscribe} onClick="handleOnClick()">Подписаться на {this.props.courseName}</button>
+            </div>
         )
     };
 }
@@ -114,7 +118,7 @@ class AboutCourse extends Component {
                 <div className={styles.InformationAboutCourse}>
                     <header className={styles.HeadOfINfCourse}>О курсе</header>
                     <div className={styles.InformationMainBody}>
-                        <img className={styles.ImageOfCourse} src={this.props.course.image.url}/>
+                        <img className={styles.ImageOfCourse} src={this.props.course.image.url} />
                         <text className={styles.TextInMainBody}>
                             The UI/UX Design Specialization brings a design-centric approach to user interface and user
                             experience design, and offers practical, skill-based instruction centered around a visual
@@ -131,10 +135,12 @@ class AboutCourse extends Component {
                     </div>
                 </div>
                 <div className={styles.MarkOfTheCourse}>
-                    <RatingBlock/>
+                    <RatingBlock />
                 </div>
-                <CourseContent/>
-
+                <br/>
+                <br/>
+                <br/>
+                <DescriptionBlock />
             </div>
         );
     }
@@ -149,7 +155,7 @@ class CourseContent extends Component {
     render() {
         return (
             <div>
-                <ReactPlayer url="https://d3c33hcgiwev3.cloudfront.net/Thz5oiWmEeeErgpOFanBSA.processed/full/540p/index.webm?Expires=1585353600&Signature=hoARjJH9eCI4yw~iDMr20tc1Re5eqdCWo7Ug8RZXdh0rur2absDTTKH7dC8BT-6~sNInI3CAiAJ9x0GClY21W-sTQju1F3wv0lBn8MJswpiAm1iu1ADVosX2Y0YfEV3QxwcwySqbWiff1ASEv8RdC-BhzVkKvMz0cXcgtSi8jh4_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A" controls={true}/>
+                <ReactPlayer url="https://d3c33hcgiwev3.cloudfront.net/Thz5oiWmEeeErgpOFanBSA.processed/full/540p/index.webm?Expires=1585353600&Signature=hoARjJH9eCI4yw~iDMr20tc1Re5eqdCWo7Ug8RZXdh0rur2absDTTKH7dC8BT-6~sNInI3CAiAJ9x0GClY21W-sTQju1F3wv0lBn8MJswpiAm1iu1ADVosX2Y0YfEV3QxwcwySqbWiff1ASEv8RdC-BhzVkKvMz0cXcgtSi8jh4_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A" controls={true} />
             </div>
         );
     }
@@ -157,21 +163,46 @@ class CourseContent extends Component {
 
 function RatingBlock() {
     return (
-        <div className={styles.rating_block}>
-            <input name="rating" value="5" id="rating_5" type="radio"/>
-            <label htmlFor="rating_5" className="label_rating"></label>
+        <div className={styles.rating_area}>
+            <input name="rating" value="5" id="rating_5" type="radio" />
+            <label htmlFor="rating_5" className={styles.label_rating}></label>
 
-            <input name="rating" value="4" id="rating_4" type="radio"/>
-            <label htmlFor="rating_4" className="label_rating"></label>
+            <input name="rating" value="4" id="rating_4" type="radio" />
+            <label htmlFor="rating_4" className={styles.label_rating}></label>
 
-            <input name="rating" value="3" id="rating_3" type="radio"/>
-            <label htmlFor="rating_3" className="label_rating"></label>
+            <input name="rating" value="3" id="rating_3" type="radio" />
+            <label htmlFor="rating_3" className={styles.label_rating}></label>
 
-            <input name="rating" value="2" id="rating_2" type="radio"/>
-            <label htmlFor="rating_2" className="label_rating"></label>
+            <input name="rating" value="2" id="rating_2" type="radio" />
+            <label htmlFor="rating_2" className={styles.label_rating}></label>
 
-            <input name="rating" value="1" id="rating_1" type="radio"/>
-            <label htmlFor="rating_1" className="label_rating"></label>
+            <input name="rating" value="1" id="rating_1" type="radio" />
+            <label htmlFor="rating_1" className={styles.label_rating}></label>
+        </div>
+    );
+}
+
+function DescriptionBlock() {
+    return (
+        <div className={styles.Description}>
+            <div>
+                описание курса
+            </div>
+            <div>
+                asdasdas
+            </div>
+            <div>
+                asdasdas
+            </div>
+            <div>
+                asdasdas
+            </div>
+            <div>
+                asdasdas
+            </div>
+            <div>
+                asdasdas
+            </div>
         </div>
     );
 }
@@ -185,7 +216,7 @@ class CommentsCourse extends Component {
     render() {
         return (
             <div className={styles.Content}>
-            courses
+                courses
             </div>
         );
     }

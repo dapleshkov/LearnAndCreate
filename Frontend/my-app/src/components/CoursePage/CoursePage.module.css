@@ -46,14 +46,16 @@
     position: relative;
     border-radius: 5px;
     height: 33px;
-    width: 455px;
+    width: 300px;
     background-color: red;
     outline: none;
     color: white;
     border: 0;
-    top: 50px;
+    right: 40px;
+    top: 14px;
+    /* top: 50px;
     float: left;
-    left: 100px;
+    left: 100px; */
 }
 
 .Content {
@@ -101,18 +103,7 @@
 
 .TextInMainBody {
     text-transform: capitalize;
-    text-align-all: start;
-}
-
-.MarkOfTheCourse {
-    margin-top: 5px;
-    position: absolute;
-    display: inline;
-    right: 15px;
-    background-color: white;
-    width: 300px;
-    float: right;
-    height: 200px;
+    text-align: start;
 }
 
 .rating-area {
@@ -161,15 +152,25 @@
     background-position: 50% -25px;
 }
 
-.CourseContent {
-    width: 300px;
-    float: right;
-    display: inline;
-    background-color: aquamarine;
-    margin-top: 250px;
-    position: absolute;
-    right: 15px;
-}
 .video{
 
+}
+
+.MarkOfTheCourse {
+    margin-top: 5px;
+    position: absolute;     
+    background-color: white;
+    width: 250px;
+    float: right;
+    height: 50px;
+    right: 15px;
+}
+
+.Description{
+    width: 250px;
+    float: right;
+    background-color: white;
+    margin-top: 35px;
+    position: absolute;
+    right: 15px;
 }
