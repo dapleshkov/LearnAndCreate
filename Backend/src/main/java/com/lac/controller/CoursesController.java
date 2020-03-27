@@ -6,6 +6,7 @@ import com.lac.model.User;
 import com.lac.payload.ApiResponse;
 import com.lac.payload.CourseRequest;
 import com.lac.repository.CategoryRepository;
+import com.lac.repository.CourseRepository;
 import com.lac.repository.UserRepository;
 import com.lac.security.CurrentUser;
 import com.lac.security.UserPrincipal;
@@ -47,6 +48,9 @@ public class CoursesController {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(CoursesController.class);
 
@@ -112,6 +116,15 @@ public class CoursesController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{courseId}")
+    public ResponseEntity<?> removeCourse(@PathVariable("courseId") Long courseId) {
+        Course course = courseRepository.findByCourseId(courseId);
+        boolean success = coursesService.removeCourse(course);
+        if (success)
+            return new ResponseEntity<>(new ApiResponse(true, "Course is removed"), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(false, "Course with this id doesn't exist"), HttpStatus.BAD_REQUEST);
+    }
+
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<?> getCoursesByCategoryId(@PathVariable("categoryId") Long categoryId) {
         Category category = categoryRepository.findByCategoryId(categoryId);
@@ -119,7 +132,7 @@ public class CoursesController {
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{substring}")
+    @GetMapping("/search/{substring}")
     public ResponseEntity<?> getCoursesBySubstring(@PathVariable("substring") String substring) {
         List<Course> courses = coursesService.getCoursesByTitleSubstring(substring);
         if (courses.isEmpty()) {

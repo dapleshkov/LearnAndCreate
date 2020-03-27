@@ -23,7 +23,7 @@ public class Course {
     @Size(max = 10000)
     private String description;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "course_image",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "file_id"))

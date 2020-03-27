@@ -27,7 +27,7 @@ public class Lesson {
    @NotBlank
    private String duration;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "lesson_video",
             joinColumns = @JoinColumn(name = "lesson_id"),
             inverseJoinColumns = @JoinColumn(name = "file_id"))
