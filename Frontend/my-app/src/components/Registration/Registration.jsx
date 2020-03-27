@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+   import React, {Component} from "react";
 import "./Registration.css";
 import {checkEmailAvailability, checkUsernameAvailability, singUp} from "../ServerAPI/userAPI";
 import {Form} from "antd";

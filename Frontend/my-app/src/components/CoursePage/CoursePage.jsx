@@ -5,13 +5,14 @@ import {getCourseById} from "../ServerAPI/courseAPI";
 import {subscribe} from "../ServerAPI/userAPI";
 import styles from "./CoursePage.module.css";
 import ReactPlayer from "react-player";
+
 class CoursePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             course: null,
             isLoaded: false,
-            user:{}
+            user: {}
         };
         this.loadCourseInformation = this.loadCourseInformation.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
@@ -32,11 +33,12 @@ class CoursePage extends Component {
     componentDidMount() {
         this.loadCourseInformation();
         this.setState({
-            user:this.props.user
+            user: this.props.user
         })
     }
 
     handleOnClick() {
+        alert("1");
         subscribe(this.state.course.courseId).then(response => {
             alert(response);
         }).catch(response => {
@@ -48,7 +50,7 @@ class CoursePage extends Component {
         if (this.state.isLoaded) {
             return (
                 <div className={styles.CoursePage}>
-                    <NavBar courseId={this.state.course.courseId}/>
+                    <NavBar courseId={this.state.course.courseId} courseName={this.state.course.title}/>
                     <br/>
                     <br/>
                     <br/>
@@ -79,24 +81,28 @@ class NavBar extends Component {
 
     render() {
         return (
-            <ul className={styles.NavBar}>
-                <li className={styles.SettingsItem}>
-                    <NavLink to={"/course/" + this.props.courseId} className={styles.SettingsLink}
-                             exact activeClassName={styles.selected_link}>О курсе</NavLink>
-                </li>
-                <li className={styles.SettingsItem}>
-                    <NavLink to={"/course/" + this.props.courseId + "/comments"} className={styles.SettingsLink}
-                             activeClassName={styles.selected_link}>Комментарии</NavLink>
-                </li>
-                <li className={styles.SettingsItem}>
-                    <NavLink to={"/course/" + this.props.courseId + "/feedback"} className={styles.SettingsLink}
-                             activeClassName={styles.selected_link}>Отзывы</NavLink>
-                </li>
-                <li className={styles.SettingsItem}>
-                    <NavLink to={"/course/" + this.props.courseId + "/content"} className={styles.SettingsLink}
-                             activeClassName={styles.selected_link}>Содержание</NavLink>
-                </li>
-            </ul>
+            <div>
+                <ul className={styles.NavBar}>
+                    <li className={styles.SettingsItem}>
+                        <NavLink to={"/course/" + this.props.courseId} className={styles.SettingsLink}
+                                 exact activeClassName={styles.selected_link}>О курсе</NavLink>
+                    </li>
+                    <li className={styles.SettingsItem}>
+                        <NavLink to={"/course/" + this.props.courseId + "/comments"} className={styles.SettingsLink}
+                                 activeClassName={styles.selected_link}>Комментарии</NavLink>
+                    </li>
+                    <li className={styles.SettingsItem}>
+                        <NavLink to={"/course/" + this.props.courseId + "/feedback"} className={styles.SettingsLink}
+                                 activeClassName={styles.selected_link}>Отзывы</NavLink>
+                    </li>
+                    <li className={styles.SettingsItem}>
+                        <NavLink to={"/course/" + this.props.courseId + "/content"} className={styles.SettingsLink}
+                                 activeClassName={styles.selected_link}>Содержание</NavLink>
+                    </li>
+                </ul>
+                <button className={styles.Subscribe} onClick="handleOnClick()">Подписаться
+                    на {this.props.courseName}</button>
+            </div>
         )
     };
 }
@@ -133,8 +139,10 @@ class AboutCourse extends Component {
                 <div className={styles.MarkOfTheCourse}>
                     <RatingBlock/>
                 </div>
-                <CourseContent/>
-
+                <br/>
+                <br/>
+                <br/>
+                <DescriptionBlock/>
             </div>
         );
     }
@@ -157,21 +165,46 @@ class CourseContent extends Component {
 
 function RatingBlock() {
     return (
-        <div className={styles.rating_block}>
+        <div className={styles.rating_area}>
             <input name="rating" value="5" id="rating_5" type="radio"/>
-            <label htmlFor="rating_5" className="label_rating"></label>
+            <label htmlFor="rating_5" className={styles.label_rating}></label>
 
             <input name="rating" value="4" id="rating_4" type="radio"/>
-            <label htmlFor="rating_4" className="label_rating"></label>
+            <label htmlFor="rating_4" className={styles.label_rating}></label>
 
             <input name="rating" value="3" id="rating_3" type="radio"/>
-            <label htmlFor="rating_3" className="label_rating"></label>
+            <label htmlFor="rating_3" className={styles.label_rating}></label>
 
             <input name="rating" value="2" id="rating_2" type="radio"/>
-            <label htmlFor="rating_2" className="label_rating"></label>
+            <label htmlFor="rating_2" className={styles.label_rating}></label>
 
             <input name="rating" value="1" id="rating_1" type="radio"/>
-            <label htmlFor="rating_1" className="label_rating"></label>
+            <label htmlFor="rating_1" className={styles.label_rating}></label>
+        </div>
+    );
+}
+
+function DescriptionBlock() {
+    return (
+        <div className={styles.Description}>
+            <div>
+                описание курса
+            </div>
+            <div>
+                asdasdas
+            </div>
+            <div>
+                asdasdas
+            </div>
+            <div>
+                asdasdas
+            </div>
+            <div>
+                asdasdas
+            </div>
+            <div>
+                asdasdas
+            </div>
         </div>
     );
 }
@@ -185,7 +218,7 @@ class CommentsCourse extends Component {
     render() {
         return (
             <div className={styles.Content}>
-            courses
+                courses
             </div>
         );
     }

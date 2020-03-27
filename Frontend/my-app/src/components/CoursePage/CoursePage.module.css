@@ -46,14 +46,13 @@
     position: relative;
     border-radius: 5px;
     height: 33px;
-    width: 455px;
+    width: 300px;
     background-color: red;
     outline: none;
     color: white;
     border: 0;
-    top: 50px;
-    float: left;
-    left: 100px;
+    right: 40px;
+    top: 14px;
 }
 
 .Content {
@@ -101,31 +100,35 @@
 
 .TextInMainBody {
     text-transform: capitalize;
-    text-align-all: start;
+    text-align: start;
+}
+
+.CourseContent {
+    width: 300px;
 }
 
 .MarkOfTheCourse {
     margin-top: 5px;
     position: absolute;
-    display: inline;
-    right: 15px;
     background-color: white;
-    width: 300px;
+    width: 250px;
     float: right;
-    height: 200px;
-}
-.CourseContent {
-    width: 300px;
-    float: right;
-    display: inline;
-    background-color: aquamarine;
-    margin-top: 250px;
-    position: absolute;
+    height: 50px;
     right: 15px;
 }
 
-.video{
-display: inline-block;
+.video {
+    display: inline-block;
     position: relative;
     margin: 100px;
+}
+
+.Description {
+    width: 250px;
+    float: right;
+    background-color: white;
+    margin-top: 35px;
+    position: absolute;
+    right: 15px;
+
 }
