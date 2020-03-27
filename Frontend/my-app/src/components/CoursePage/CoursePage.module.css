@@ -59,29 +59,32 @@
 .Content {
     background-color: rgba(255, 0, 0, 0.07);
     position: relative;
-    margin: 20px 100px ;
+    margin: 20px 100px;
     min-width: 1000px;
     padding: 15px;
-    height: 500px;
+    height: 800px;
 }
 
-.CourseName{
+.CourseName {
     font-weight: bold;
     font-size: 25px;
 }
-.HeadOfINfCourse{
+
+.HeadOfINfCourse {
     position: relative;
     font-weight: bold;
     font-size: 20px;
-    left:5px;
-    float:left;
+    left: 5px;
+    float: left;
 }
-.ImageOfCourse{
+
+.ImageOfCourse {
     float: left;
     margin-right: 15px;
     margin-bottom: 5px;
 }
-.InformationAboutCourse{
+
+.InformationAboutCourse {
     position: absolute;
     background-color: white;
     margin-top: 5px;
@@ -89,17 +92,19 @@
     width: 700px;
     height: auto;
 }
-.InformationMainBody{
+
+.InformationMainBody {
     position: relative;
     margin-top: 30px;
     padding: 5px;
 }
-.TextInMainBody{
+
+.TextInMainBody {
     text-transform: capitalize;
     text-align-all: start;
 }
 
-.MarkOfTheCourse{
+.MarkOfTheCourse {
     margin-top: 5px;
     position: absolute;
     display: inline;
@@ -115,9 +120,11 @@
     width: 265px;
     margin: 0 auto;
 }
+
 .rating-area:not(:checked) > input {
     display: none;
 }
+
 .rating-area:not(:checked) > label {
     float: right;
     width: 42px;
@@ -128,13 +135,16 @@
     color: lightgrey;
     text-shadow: 1px 1px #bbb;
 }
+
 .rating_block {
     width: 125px;
     height: 25px;
 }
+
 .rating_block input[type="radio"] {
     display: none;
 }
+
 .label_rating {
     float: right;
     display: block;
@@ -142,10 +152,21 @@
     height: 25px;
     cursor: pointer;
 }
+
 /*Пишем правила смены положения background-а*/
 .rating_block .label_rating:hover, /*Правило для ховера на текущий лейбл*/
 .rating_block .label_rating:hover ~ .label_rating, /*Правило для всех следующих лейблов по DOM дереву*/
 .rating_block input[type="radio"]:checked ~ .label_rating /*Правило для всех следующих лейблов после выбранного инпута, чтобы звездочки как бы зафиксировались*/
 {
     background-position: 50% -25px;
+}
+
+.CourseContent {
+    width: 300px;
+    float: right;
+    display: inline;
+    background-color: aquamarine;
+    margin-top: 250px;
+    position: absolute;
+    right: 15px;
 }

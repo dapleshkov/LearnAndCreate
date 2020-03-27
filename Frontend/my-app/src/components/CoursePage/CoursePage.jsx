@@ -129,8 +129,8 @@ class AboutCourse extends Component {
                 </div>
                 <div className={styles.MarkOfTheCourse}>
                     <RatingBlock/>
-
                 </div>
+                <CourseContent/>
 
             </div>
         );
@@ -145,7 +145,12 @@ class CourseContent extends Component {
 
     render() {
         return (
-            <div>
+            <div className={styles.CourseContent}>
+                <div>Курс посвящен разработке серверной части web-приложений, их архитектуре и протоколу HTTP. По итогам
+                    курса вы научитесь: разрабатывать приложения на языке python, использовать MVC фреймворки, изучите
+                    верстку HTML страниц, погрузитесь в тематику web разработки и сможете выбирать конкретные
+                    технологии.
+                </div>
                 <div>
                     Курс содержит:
                 </div>
