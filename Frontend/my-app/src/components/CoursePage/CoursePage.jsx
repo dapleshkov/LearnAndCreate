@@ -149,7 +149,7 @@ class CourseContent extends Component {
     render() {
         return (
             <div>
-                <ReactPlayer url="https://d3c33hcgiwev3.cloudfront.net/Thz5oiWmEeeErgpOFanBSA.processed/full/540p/index.webm?Expires=1585353600&Signature=hoARjJH9eCI4yw~iDMr20tc1Re5eqdCWo7Ug8RZXdh0rur2absDTTKH7dC8BT-6~sNInI3CAiAJ9x0GClY21W-sTQju1F3wv0lBn8MJswpiAm1iu1ADVosX2Y0YfEV3QxwcwySqbWiff1ASEv8RdC-BhzVkKvMz0cXcgtSi8jh4_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A" controls={true}/>
+                <ReactPlayer url="https://www.youtube.com/watch?v=hFOZYaVHD6A" controls={true}/>
             </div>
         );
     }
