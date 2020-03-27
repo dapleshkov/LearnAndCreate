@@ -132,8 +132,8 @@ class AboutCourse extends Component {
                 </div>
                 <div className={styles.MarkOfTheCourse}>
                     <RatingBlock/>
-
                 </div>
+                <CourseContent/>
 
             </div>
         );
