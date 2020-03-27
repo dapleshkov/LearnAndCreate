@@ -9,7 +9,7 @@ class AbstractHeader extends Component {
 
     handleClickOut = event => {
         this.props.LogOut();
-        window.location.assign('http://localhost:3000/mainpage');
+        window.location.assign('/mainpage');
     };
 
     render() {

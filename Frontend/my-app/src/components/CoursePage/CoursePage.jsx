@@ -6,6 +6,22 @@ import {subscribe} from "../ServerAPI/userAPI";
 import styles from "./CoursePage.module.css";
 import ReactPlayer from "react-player";
 
+var lessons = {
+    url: [
+        "https://www.youtube.com/watch?v=xJZa2_aldDs",
+        "https://www.youtube.com/watch?v=Nm8GpLCAgwk",
+        "https://www.youtube.com/watch?v=GiAIhgB2I0M",
+        "https://www.youtube.com/watch?v=hFOZYaVHD6A"
+    ],
+    description: "    JavaScript (принято произносить \"Джаваскрипт\") - это язык программирования, выполняющийся на стороне\n" +
+        "                    пользователя с помощью браузера. Он позволяет управлять элементами веб-страницы - заставлять их\n" +
+        "                    менять свои свойства и расположение, двигаться, реагировать на события, такие как перемещение мыши\n" +
+        "                    или нажатия клавиатуры, а также создавать множество других интересных эффектов.\n" +
+        "\n" +
+        "                    JavaScript часто сокращают до аббревиатуры JS, что часто используется в названиях различных\n" +
+        "                    фреймворков (Node.js, Ember.js) а также в расширении файлов с JavaScript-кодом."
+}
+
 class CoursePage extends Component {
     constructor(props) {
         super(props);
@@ -63,7 +79,7 @@ class CoursePage extends Component {
 class NavBar extends Component {
     constructor(props) {
         super(props)
-        this.handleOnClick=this.handleOnClick.bind(this);
+        this.handleOnClick = this.handleOnClick.bind(this);
     }
 
     handleOnClick() {
@@ -73,6 +89,7 @@ class NavBar extends Component {
             alert(response.message);
         })
     };
+
     render() {
         return (
             <div className={styles.secondHead}>
@@ -148,21 +165,25 @@ class CourseContent extends Component {
     }
 
     render() {
-        debugger;
         return (
             <div className={styles.videoWithDescription}>
                 <text className={styles.titleOfCourse}>Урок 1</text>
-                <ReactPlayer url="https://www.youtube.com/watch?v=hFOZYaVHD6A" controls={true}/>
+                <ReactPlayer url="https://www.youtube.com/watch?v=xJZa2_aldDs" controls={true}/>
                 <div className={styles.videoDescription}>
-                    JavaScript (принято произносить "Джаваскрипт") - это язык программирования, выполняющийся на стороне пользователя с помощью браузера. Он позволяет управлять элементами веб-страницы - заставлять их менять свои свойства и расположение, двигаться, реагировать на события, такие как перемещение мыши или нажатия клавиатуры, а также создавать множество других интересных эффектов.
-
-                    JavaScript часто сокращают до аббревиатуры JS, что часто используется в названиях различных фреймворков (Node.js, Ember.js) а также в расширении файлов с JavaScript-кодом.
+                    "    JavaScript (принято произносить \"Джаваскрипт\") - это язык программирования, выполняющийся на стороне\n" +
+                    "                    пользователя с помощью браузера. Он позволяет управлять элементами веб-страницы - заставлять их\n" +
+                    "                    менять свои свойства и расположение, двигаться, реагировать на события, такие как перемещение мыши\n" +
+                    "                    или нажатия клавиатуры, а также создавать множество других интересных эффектов.\n" +
+                    "\n" +
+                    "                    JavaScript часто сокращают до аббревиатуры JS, что часто используется в названиях различных\n" +
+                    "                    фреймворков (Node.js, Ember.js) а также в расширении файлов с JavaScript-кодом."
                 </div>
 
             </div>
         );
     }
 }
+
 
 function RatingBlock() {
     return (

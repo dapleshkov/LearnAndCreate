@@ -57,7 +57,7 @@ class SingUp extends Component {
         singUp(singupuser).then(response => {
             debugger;
             if (response.success) {
-                window.location.assign('http://localhost:3000/login')
+                window.location.assign('/login')
             }
         });
     };
