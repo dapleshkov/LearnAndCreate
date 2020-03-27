@@ -7,9 +7,9 @@
 }
 
 .NavBar {
-    margin-left: 100px;
     position: relative;
     float: left;
+    height: 70px;
 }
 
 
@@ -42,24 +42,24 @@
 }
 
 .Subscribe {
-    margin: 0 auto;
     position: relative;
     border-radius: 5px;
-    height: 33px;
+    height: 40px;
     width: 300px;
-    background-color: red;
+    float: right;
+    right: 10px;
+    background-color: rgba(255, 0, 0, 0.81);
     outline: none;
     color: white;
     border: 0;
-    right: 40px;
-    top: 14px;
+    top:15px;
 }
 
 .Content {
-    background-color: rgba(255, 0, 0, 0.07);
     position: relative;
-    margin: 20px 100px;
-    min-width: 1000px;
+    width: 85vw;
+    display: inline-block;
+    min-width: 1050px;
     padding: 15px;
     height: 800px;
 }
@@ -117,18 +117,49 @@
     right: 15px;
 }
 
-.video {
-    display: inline-block;
+.videoWithDescription {
     position: relative;
-    margin: 100px;
+    padding: 15px;
+    min-width: 1050px;
+    width: 85vw;
+    height: auto;
+    display: inline-block;
+}
+
+.video {
+    display: inline;
+    position: relative;
+}
+.titleOfCourse{
+    position: relative;
+    font-weight: bold;
+    font-size: 20px;
+    top:0;
+}
+
+.videoDescription {
+    display: inline;
+    top: 45px;
+    margin-left:20px;
+    height: 360px;
+    float: right;
+    position: absolute;
+    min-width: 390px;
 }
 
 .Description {
     width: 250px;
     float: right;
     background-color: white;
+    height: 400px;
     margin-top: 35px;
-    position: absolute;
+    position: relative;
     right: 15px;
 
+}
+.secondHead{
+    height:70px;
+    min-width: 1050px;
+    display: inline-block;
+    width: 87vw;
 }

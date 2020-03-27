@@ -74,7 +74,7 @@ function Base(props) {
     }
 }
 
-function CourseBlock(props) {
+ export function CourseBlock(props) {
     let path = "";
     if (props.course.image === null) {
         path = "https://yt3.ggpht.com/a/AGF-l7_tM_jmkKQ_T1sNRNBf-s7GZuhzFWbdEkSfHA=s900-c-k-c0xffffffff-no-rj-mo";

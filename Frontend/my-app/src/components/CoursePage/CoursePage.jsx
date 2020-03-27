@@ -11,11 +11,9 @@ class CoursePage extends Component {
         super(props);
         this.state = {
             course: null,
-            isLoaded: false,
-            user: {}
+            isLoaded: false
         };
         this.loadCourseInformation = this.loadCourseInformation.bind(this);
-        this.handleOnClick = this.handleOnClick.bind(this);
     }
 
     loadCourseInformation() {
@@ -32,19 +30,7 @@ class CoursePage extends Component {
 
     componentDidMount() {
         this.loadCourseInformation();
-        this.setState({
-            user: this.props.user
-        })
     }
-
-    handleOnClick() {
-        alert("1");
-        subscribe(this.state.course.courseId).then(response => {
-            alert(response);
-        }).catch(response => {
-            alert(response.message);
-        })
-    };
 
     render() {
         if (this.state.isLoaded) {
@@ -56,11 +42,11 @@ class CoursePage extends Component {
                     <br/>
                     <Switch>
                         <Route exact path={"/course/" + this.state.course.courseId}
-                               render={(props) => <AboutCourse user={this.state.user} course={this.state.course}/>}/>
+                               render={(props) => <AboutCourse course={this.state.course}/>}/>
                         <Route exact path={"/course/" + this.state.course.courseId + "/comments"}
-                               render={(props) => <CommentsCourse user={this.state.user}/>}/>
+                               render={(props) => <CommentsCourse/>}/>
                         <Route exact path={"/course/" + this.state.course.courseId + "/content"}
-                               render={(props) => <CourseContent user={this.state.user}/>}/>
+                               render={(props) => <CourseContent/>}/>
                     </Switch>
                     <br/>
                 </div>
@@ -77,11 +63,19 @@ class CoursePage extends Component {
 class NavBar extends Component {
     constructor(props) {
         super(props)
+        this.handleOnClick=this.handleOnClick.bind(this);
     }
 
+    handleOnClick() {
+        subscribe(this.props.courseId).then(response => {
+            alert(response);
+        }).catch(response => {
+            alert(response.message);
+        })
+    };
     render() {
         return (
-            <div>
+            <div className={styles.secondHead}>
                 <ul className={styles.NavBar}>
                     <li className={styles.SettingsItem}>
                         <NavLink to={"/course/" + this.props.courseId} className={styles.SettingsLink}
@@ -100,7 +94,7 @@ class NavBar extends Component {
                                  activeClassName={styles.selected_link}>Содержание</NavLink>
                     </li>
                 </ul>
-                <button className={styles.Subscribe} onClick="handleOnClick()">Подписаться
+                <button className={styles.Subscribe} onClick={this.handleOnClick}>Подписаться
                     на {this.props.courseName}</button>
             </div>
         )
@@ -148,16 +142,23 @@ class AboutCourse extends Component {
     }
 }
 
-
 class CourseContent extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
+        debugger;
         return (
-            <div>
+            <div className={styles.videoWithDescription}>
+                <text className={styles.titleOfCourse}>Урок 1</text>
                 <ReactPlayer url="https://www.youtube.com/watch?v=hFOZYaVHD6A" controls={true}/>
+                <div className={styles.videoDescription}>
+                    JavaScript (принято произносить "Джаваскрипт") - это язык программирования, выполняющийся на стороне пользователя с помощью браузера. Он позволяет управлять элементами веб-страницы - заставлять их менять свои свойства и расположение, двигаться, реагировать на события, такие как перемещение мыши или нажатия клавиатуры, а также создавать множество других интересных эффектов.
+
+                    JavaScript часто сокращают до аббревиатуры JS, что часто используется в названиях различных фреймворков (Node.js, Ember.js) а также в расширении файлов с JavaScript-кодом.
+                </div>
+
             </div>
         );
     }
