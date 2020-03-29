@@ -107,16 +107,6 @@
     width: 300px;
 }
 
-.MarkOfTheCourse {
-    margin-top: 5px;
-    position: absolute;
-    background-color: white;
-    width: 250px;
-    float: right;
-    height: 50px;
-    right: 15px;
-}
-
 .videoWithDescription {
     position: relative;
     padding: 15px;
@@ -147,19 +137,81 @@
     min-width: 390px;
 }
 
+.MarkOfTheCourse {
+    margin-top: 5px;
+    position: absolute;
+    background-color: white;
+    width: 250px;
+    float: right;
+    height: 150px;
+    right: 15px;
+}
+
 .Description {
     width: 250px;
     float: right;
     background-color: white;
     height: 400px;
-    margin-top: 35px;
-    position: relative;
+    margin-top: 135px;
+    position: absolute;
     right: 15px;
-
 }
+
 .secondHead{
     height:70px;
     min-width: 1050px;
     display: inline-block;
     width: 87vw;
+}
+
+.rating_block {
+    width: 125px;
+    height: 25px;
+    position: relative;
+    top: 9px;
+    left: 7px;
+  }
+
+  .rating_block input[type="radio"] {
+    display: none;
+  }
+
+  .label_rating {
+    float: right;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url(..\..\sourses\rating_pic\rating.png) no-repeat 50% 0;
+    cursor: pointer;
+  }
+
+  /*Пишем правила смены положения background-а*/
+.rating_block .label_rating:hover, /*Правило для ховера на текущий лейбл*/
+.rating_block .label_rating:hover ~ .label_rating, /*Правило для всех следующих лейблов по DOM дереву*/
+.rating_block input[type="radio"]:checked ~ .label_rating /*Правило для всех следующих лейблов после выбранного инпута, чтобы звездочки как бы зафиксировались*/
+{
+  background-position: 50% -25px;
+}
+
+.FeedbackSend{
+    position: absolute;
+    border-radius: 5px;
+    height: 33px;
+    width: 100px;
+    float: right;
+    right: 7px;
+    background-color: rgba(255, 0, 0, 0.81);
+    outline: none;
+    color: white;
+    border: 0;
+    top: 5px;
+}
+
+.FeedbackText{
+    position: relative;
+    top: 30px;
+    max-width: 225px;
+    min-width: 225px;
+    min-height: 75px;
+    max-height: 75px;
 }

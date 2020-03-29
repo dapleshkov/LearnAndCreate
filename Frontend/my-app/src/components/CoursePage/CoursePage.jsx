@@ -70,6 +70,7 @@ class CoursePage extends Component {
         } else {
             return (
                 <div>
+                    Course page
                 </div>
             );
         }
@@ -149,6 +150,8 @@ class AboutCourse extends Component {
                 </div>
                 <div className={styles.MarkOfTheCourse}>
                     <RatingBlock/>
+                    <button className={styles.FeedbackSend}>Оставить отзыв</button>
+                    <textarea className={styles.FeedbackText} name="comment" cols="30" rows="5"></textarea>
                 </div>
                 <br/>
                 <br/>
@@ -187,7 +190,7 @@ class CourseContent extends Component {
 
 function RatingBlock() {
     return (
-        <div className={styles.rating_area}>
+        <div className={styles.rating_block}>
             <input name="rating" value="5" id="rating_5" type="radio"/>
             <label htmlFor="rating_5" className={styles.label_rating}></label>
 
@@ -225,7 +228,7 @@ function DescriptionBlock() {
                 asdasdas
             </div>
             <div>
-                asdasdas
+                asdasdas111
             </div>
         </div>
     );
