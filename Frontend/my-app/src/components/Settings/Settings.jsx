@@ -74,10 +74,10 @@ class EditName extends Component {
             <Form className="MainBlock">
                 <text className="Title">Изменить имя</text>
                 <hr className="separator1"/>
-                <text className="Inform">Новое имя</text>
                 <Form.Item className="f"
                            validateStatus={this.state.name.validateStatus}
                            help={this.state.name.errorMsg}>
+                    <text className="Inform">Новое имя</text>
                     <input className="Changes"
                            placeholder="name"
                            name="name"
@@ -153,10 +153,10 @@ class EditUserName extends Component {
             <Form className="MainBlock" onSubmit={this.handleSubmit}>
                 <text className="Title">Изменить имя пользователя</text>
                 <hr className="separator1"/>
-                <text className="Inform">Новое имя пользователя</text>
                 <Form.Item className="f"
                            validateStatus={this.state.username.validateStatus}
                            help={this.state.username.errorMsg}>
+                    <text className="Inform">Новое имя пользователя</text>
                     <input className="Changes"
                            placeholder="username"
                            onBlur={this.validateUsernameAvailability}
@@ -267,9 +267,9 @@ class EditPassword extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        let PasswordRequest={
+        let PasswordRequest = {
             oldPassword: this.state.currentpassword.value,
-            newPassword:  this.state.firstpassword.value,
+            newPassword: this.state.firstpassword.value,
             repeatedPassword: this.state.secondpassword.value
         };
         editPassword(PasswordRequest).then(response => {
@@ -303,28 +303,28 @@ class EditPassword extends Component {
             <Form onSubmit={this.handleSubmit} className="MainBlock">
                 <text className="Title">Изменить пароль</text>
                 <hr className="separator1"/>
-                <text className="Inform">Текущий пароль</text>
                 <Form.Item className="f">
                     <input className="Changes"
                            placeholder="your password"
                            name="currentpassword"
                            value={this.state.currentpassword.value}
                            onChange={(event) => this.handleChange(event, this.validateFirstPassword)}/>
+                    <text className="Inform">Текущий пароль</text>
                 </Form.Item>
-                <text className="Inform1">Новый пароль</text>
                 <Form.Item className="f"
                            validateStatus={this.state.firstpassword.validateStatus}
                            help={this.state.firstpassword.errorMsg}>
+                    <text className="Inform">Новый пароль</text>
                     <input className="Changes"
                            placeholder="new password"
                            name="firstpassword"
                            value={this.state.firstpassword.value}
                            onChange={(event) => this.handleChange(event, this.validateFirstPassword)}/>
                 </Form.Item>
-                <text className="Inform2">Повторите новый пароль</text>
                 <Form.Item className="f"
                            validateStatus={this.state.secondpassword.validateStatus}
                            help={this.state.secondpassword.errorMsg}>
+                    <text className="Inform">Повторите новый пароль</text>
                     <input className="Changes"
                            placeholder="repeat new password"
                            name="secondpassword"
