@@ -69,6 +69,8 @@ class App extends Component {
                                render={(props) => <Registration/>}/>
                         <Route path='/mainpage'
                                render={(props) => <MainPage isAuthenticated={this.state.isAuthenticated}/>}/>
+                        <Route exact path='/'
+                               render={(props) => <MainPage isAuthenticated={this.state.isAuthenticated}/>}/>
                         <Route path='/settings'
                                render={(props) => <Settings user={this.state.currentUser}/>}/>
                         <Route path='/users/:username'
