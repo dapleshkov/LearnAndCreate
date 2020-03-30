@@ -18,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -62,5 +63,17 @@ public class LessonController {
         lessonRepository.save(lesson);
 
         return new UploadFileResponse(video.getUrl(), video.getType(), file.getSize());
+    }
+
+    @PostMapping("{lessonId}/videourl")
+    public ResponseEntity<?> addVideoUrl(@PathVariable("lessonId") Long lessonId,
+                                         @RequestParam("url") String url) {
+        Lesson lesson = lessonRepository.findByLessonId(lessonId);
+        Video video = videoService.saveUrl(url);
+
+        lesson.setVideo(video);
+        lessonRepository.save(lesson);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

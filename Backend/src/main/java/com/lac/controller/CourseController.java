@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import lombok.Builder;
+
 @RestController
 @RequestMapping("api/course/")
 public class CourseController {
@@ -158,5 +160,25 @@ public class CourseController {
         if (lesson != null)
             return new ResponseEntity<>(lesson, HttpStatus.OK);
         return new ResponseEntity<>(new ApiResponse(false, "Previous lesson doesn't exist"), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("{courseId}/info")
+    public ResponseEntity<?> getCourseInfo(@PathVariable("courseId") Long courseId) {
+        Course course = courseRepository.findByCourseId(courseId);
+        if (course == null)
+            return new ResponseEntity<>(new ApiResponse(false, "course doesn't exist"), HttpStatus.BAD_REQUEST);
+        CourseInfo info = new CourseInfo(
+                course.getCourseId(),
+                course.getTitle(),
+                course.getDescription(),
+                course.getImage().getUrl(),
+                course.getCategory().getName(),
+                course.getMark(),
+                course.getNumMarks(),
+                course.getUsers().size(),
+                course.getLessons().size(),
+                course.getComments().size()
+        );
+        return new ResponseEntity<>(info, HttpStatus.OK);
     }
 }

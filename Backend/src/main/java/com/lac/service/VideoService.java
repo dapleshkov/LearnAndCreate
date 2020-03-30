@@ -40,6 +40,7 @@ public class VideoService {
 
         return fileRepository.save(video);
     }
+
     private File convertMultiPartToFile(MultipartFile file) throws IOException {
         File convertedFile = new File(file.getOriginalFilename());
         FileOutputStream fos = new FileOutputStream(convertedFile);
@@ -66,6 +67,12 @@ public class VideoService {
         String key = video.getUrl().substring(ENDPOINT_URL.length() + 1);
         fileRepository.delete(video);
         awsS3Client.deleteObject(bucketName, key);
+    }
+
+    public Video saveUrl(String url) {
+        Video video = new Video(url, "empty");
+        fileRepository.save(video);
+        return video;
     }
 
     private String generateFileName(String originalName) {

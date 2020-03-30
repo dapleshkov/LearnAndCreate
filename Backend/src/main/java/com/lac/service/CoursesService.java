@@ -75,7 +75,9 @@ public class CoursesService {
     }
 
     private void removeContent(File file) {
-        String key = file.getUrl().substring(ENDPOINT_URL.length() + 1);
-        awsS3Client.deleteObject(bucketName, key);
+        if (!file.getType().equals("empty")) {
+            String key = file.getUrl().substring(ENDPOINT_URL.length() + 1);
+            awsS3Client.deleteObject(bucketName, key);
+        }
     }
 }
