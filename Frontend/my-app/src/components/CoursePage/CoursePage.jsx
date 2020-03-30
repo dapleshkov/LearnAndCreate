@@ -6,21 +6,6 @@ import {subscribe} from "../ServerAPI/userAPI";
 import styles from "./CoursePage.module.css";
 import ReactPlayer from "react-player";
 
-var lessons = {
-    url: [
-        "https://www.youtube.com/watch?v=xJZa2_aldDs",
-        "https://www.youtube.com/watch?v=Nm8GpLCAgwk",
-        "https://www.youtube.com/watch?v=GiAIhgB2I0M",
-        "https://www.youtube.com/watch?v=hFOZYaVHD6A"
-    ],
-    description: "    JavaScript (принято произносить \"Джаваскрипт\") - это язык программирования, выполняющийся на стороне\n" +
-        "                    пользователя с помощью браузера. Он позволяет управлять элементами веб-страницы - заставлять их\n" +
-        "                    менять свои свойства и расположение, двигаться, реагировать на события, такие как перемещение мыши\n" +
-        "                    или нажатия клавиатуры, а также создавать множество других интересных эффектов.\n" +
-        "\n" +
-        "                    JavaScript часто сокращают до аббревиатуры JS, что часто используется в названиях различных\n" +
-        "                    фреймворков (Node.js, Ember.js) а также в расширении файлов с JavaScript-кодом."
-}
 
 class CoursePage extends Component {
     constructor(props) {
@@ -39,7 +24,6 @@ class CoursePage extends Component {
                 isLoaded: true
             });
         }).catch(response => {
-            debugger;
             alert(response.message);
         })
     }
@@ -79,7 +63,7 @@ class CoursePage extends Component {
 
 class NavBar extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.handleOnClick = this.handleOnClick.bind(this);
     }
 
@@ -112,8 +96,7 @@ class NavBar extends Component {
                                  activeClassName={styles.selected_link}>Содержание</NavLink>
                     </li>
                 </ul>
-                <button className={styles.Subscribe} onClick={this.handleOnClick}>Подписаться
-                    на {this.props.courseName}</button>
+                <button className={styles.Subscribe} onClick={this.handleOnClick}>Подписаться на {this.props.courseName}</button>
             </div>
         )
     };
@@ -134,17 +117,10 @@ class AboutCourse extends Component {
                     <div className={styles.InformationMainBody}>
                         <img className={styles.ImageOfCourse} src={this.props.course.image.url}/>
                         <text className={styles.TextInMainBody}>
-                            The UI/UX Design Specialization brings a design-centric approach to user interface and user
-                            experience design, and offers practical, skill-based instruction centered around a visual
-                            communications perspective, rather than on one focused on marketing or programming alone. In
-                            this sequence of four courses, you will summarize and demonstrate all stages of the UI/UX
-                            development process, from user research to defining a project’s strategy, scope, and
-                            information architecture, to developing sitemaps and wireframes. You’ll learn current best
-                            practices and conventions in UX design and apply them to create effective and compelling
-                            screen-based experiences for websites or <apps className=""></apps>
-                            User interface and user experience design is a high-demand field, but the skills and
-                            knowledge you will learn in this Specialization are applicable to a wide variety of careers,
-                            from marketing to web design to human-computer interaction.
+                            Мы приглашаем всех совершить online-путешествие по Басманному району! Почему именно этот район Москвы? Все просто: он сохранил дух и настроение настоящей Москвы, время и городские трансформации оказались не властны над уникальной живой атмосферой Басманного района.
+
+                            Басманный район - настоящий музей Москвы под открытым небом. Наш адрес - не дом, не улица, а вся территория Басманного района столицы, от Маросейки до Электрозавода. Это единство культурно-исторического наследия, территории и, самое главное, опыта жителей. Это музей городских микроисторий. Музей памятников культуры и архитектуры, знаковых деталей, которых не всегда заметны глазу. Музей памяти о тех местах, которые исчезли из-за модернизации города, но живы в воспоминаниях жителей...
+
                         </text>
                     </div>
                 </div>
@@ -170,16 +146,18 @@ class CourseContent extends Component {
     render() {
         return (
             <div className={styles.videoWithDescription}>
-                <text className={styles.titleOfCourse}>Урок 1</text>
-                <ReactPlayer url="https://www.youtube.com/watch?v=xJZa2_aldDs" controls={true}/>
+                <text className={styles.titleOfCourse}>Басманные посиделки у директора Книжного клуба «Депо», журналиста, писателя и краеведа Олега Фочкина</text>
+                <ReactPlayer url="https://www.youtube.com/watch?v=uEP3Cx4Tu7E" controls={true}/>
                 <div className={styles.videoDescription}>
-                    "    JavaScript (принято произносить \"Джаваскрипт\") - это язык программирования, выполняющийся на стороне\n" +
-                    "                    пользователя с помощью браузера. Он позволяет управлять элементами веб-страницы - заставлять их\n" +
-                    "                    менять свои свойства и расположение, двигаться, реагировать на события, такие как перемещение мыши\n" +
-                    "                    или нажатия клавиатуры, а также создавать множество других интересных эффектов.\n" +
-                    "\n" +
-                    "                    JavaScript часто сокращают до аббревиатуры JS, что часто используется в названиях различных\n" +
-                    "                    фреймворков (Node.js, Ember.js) а также в расширении файлов с JavaScript-кодом."
+                    Олег Фочкин может очень эмоционально отстаивать то, что считает правильным. Может быть уютным и гостеприимным. Ещё может быть совершенно кабинетным аналитиком - и ярким экскурсоводом...
+                    Краевед, журналист, историк, автор книг о Москве, поэт и, конечно, житель Басманного Олег Фочкин. Летом мы пришли к нему в гости и сняли фильм проекта «Басманные посиделки».
+
+                    Когда появились в России баклажаны и при чём здесь палаты Щербаковых? Что объединяет разведчика Николая Кузнецова и любовницу товарища Берии? Как связаны Музей Басманного района и семейная жизнь Олега Фочкина? А морг больницы №6 - с пиццей? Где в Басманном были залежи курительных трубок и обрывков тканей 17 века?..
+
+                    А ещё мы говорили о том, как подружить Басманный с соседним Красносельским в пространстве книжного клуба «Депо» - и вот прошло всего ничего, а «Депо», увы, уже история...
+
+                    Всё это - в фильме, фильм на ютюбе Басмании - смотрим по ссылке Олег Фочкин в проекте «Басманные посиделки: в гостях у московских краеведов».
+
                 </div>
 
             </div>
