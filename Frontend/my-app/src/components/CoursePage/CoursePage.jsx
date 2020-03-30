@@ -96,7 +96,8 @@ class NavBar extends Component {
                                  activeClassName={styles.selected_link}>Содержание</NavLink>
                     </li>
                 </ul>
-                <button className={styles.Subscribe} onClick={this.handleOnClick}>Подписаться на {this.props.courseName}</button>
+                <button className={styles.Subscribe} onClick={this.handleOnClick}>Подписаться
+                    на {this.props.courseName}</button>
             </div>
         )
     };
@@ -115,11 +116,18 @@ class AboutCourse extends Component {
                 <div className={styles.InformationAboutCourse}>
                     <header className={styles.HeadOfINfCourse}>О курсе</header>
                     <div className={styles.InformationMainBody}>
-                        <img className={styles.ImageOfCourse} src={this.props.course.image.url}/>
+                        <img className={styles.ImageOfCourse} src={this.props.course.image.url} alt=""/>
                         <text className={styles.TextInMainBody}>
-                            Мы приглашаем всех совершить online-путешествие по Басманному району! Почему именно этот район Москвы? Все просто: он сохранил дух и настроение настоящей Москвы, время и городские трансформации оказались не властны над уникальной живой атмосферой Басманного района.
+                            Мы приглашаем всех совершить online-путешествие по Басманному району! Почему именно этот
+                            район Москвы? Все просто: он сохранил дух и настроение настоящей Москвы, время и городские
+                            трансформации оказались не властны над уникальной живой атмосферой Басманного района.
 
-                            Басманный район - настоящий музей Москвы под открытым небом. Наш адрес - не дом, не улица, а вся территория Басманного района столицы, от Маросейки до Электрозавода. Это единство культурно-исторического наследия, территории и, самое главное, опыта жителей. Это музей городских микроисторий. Музей памятников культуры и архитектуры, знаковых деталей, которых не всегда заметны глазу. Музей памяти о тех местах, которые исчезли из-за модернизации города, но живы в воспоминаниях жителей...
+                            Басманный район - настоящий музей Москвы под открытым небом. Наш адрес - не дом, не улица, а
+                            вся территория Басманного района столицы, от Маросейки до Электрозавода. Это единство
+                            культурно-исторического наследия, территории и, самое главное, опыта жителей. Это музей
+                            городских микроисторий. Музей памятников культуры и архитектуры, знаковых деталей, которых
+                            не всегда заметны глазу. Музей памяти о тех местах, которые исчезли из-за модернизации
+                            города, но живы в воспоминаниях жителей...
 
                         </text>
                     </div>
@@ -127,7 +135,7 @@ class AboutCourse extends Component {
                 <div className={styles.MarkOfTheCourse}>
                     <RatingBlock/>
                     <button className={styles.FeedbackSend}>Оставить отзыв</button>
-                    <textarea className={styles.FeedbackText} name="comment" cols="30" rows="5"></textarea>
+                    <textarea className={styles.FeedbackText} name="comment" cols="30" rows="5"/>
                 </div>
                 <br/>
                 <br/>
@@ -146,20 +154,33 @@ class CourseContent extends Component {
     render() {
         return (
             <div className={styles.videoWithDescription}>
-                <text className={styles.titleOfCourse}>Басманные посиделки у директора Книжного клуба «Депо», журналиста, писателя и краеведа Олега Фочкина</text>
-                <ReactPlayer url="https://www.youtube.com/watch?v=uEP3Cx4Tu7E" controls={true}/>
-                <div className={styles.videoDescription}>
-                    Олег Фочкин может очень эмоционально отстаивать то, что считает правильным. Может быть уютным и гостеприимным. Ещё может быть совершенно кабинетным аналитиком - и ярким экскурсоводом...
-                    Краевед, журналист, историк, автор книг о Москве, поэт и, конечно, житель Басманного Олег Фочкин. Летом мы пришли к нему в гости и сняли фильм проекта «Басманные посиделки».
-
-                    Когда появились в России баклажаны и при чём здесь палаты Щербаковых? Что объединяет разведчика Николая Кузнецова и любовницу товарища Берии? Как связаны Музей Басманного района и семейная жизнь Олега Фочкина? А морг больницы №6 - с пиццей? Где в Басманном были залежи курительных трубок и обрывков тканей 17 века?..
-
-                    А ещё мы говорили о том, как подружить Басманный с соседним Красносельским в пространстве книжного клуба «Депо» - и вот прошло всего ничего, а «Депо», увы, уже история...
-
-                    Всё это - в фильме, фильм на ютюбе Басмании - смотрим по ссылке Олег Фочкин в проекте «Басманные посиделки: в гостях у московских краеведов».
-
+                <text className={styles.titleOfCourse}>Басманные посиделки у директора Книжного клуба «Депо»,
+                    журналиста, писателя и краеведа Олега Фочкина
+                </text>
+                <div className={styles.VideoWrapper}>
+                    <ReactPlayer url="https://www.youtube.com/watch?v=uEP3Cx4Tu7E" controls={true}/>
                 </div>
+                <text className={styles.videoDescription}>
+                    Олег Фочкин может очень эмоционально отстаивать то, что считает правильным. Может быть уютным и
+                    гостеприимным. Ещё может быть совершенно кабинетным аналитиком - и ярким экскурсоводом...
+                    Краевед, журналист, историк, автор книг о Москве, поэт и, конечно, житель Басманного Олег
+                    Фочкин.
+                    Летом мы пришли к нему в гости и сняли фильм проекта «Басманные посиделки».
 
+                    Когда появились в России баклажаны и при чём здесь палаты Щербаковых? Что объединяет разведчика
+                    Николая Кузнецова и любовницу товарища Берии? Как связаны Музей Басманного района и семейная
+                    жизнь
+                    Олега Фочкина? А морг больницы №6 - с пиццей? Где в Басманном были залежи курительных трубок и
+                    обрывков тканей 17 века?..
+
+                    А ещё мы говорили о том, как подружить Басманный с соседним Красносельским в пространстве
+                    книжного
+                    клуба «Депо» - и вот прошло всего ничего, а «Депо», увы, уже история...
+
+                    Всё это - в фильме, фильм на ютюбе Басмании - смотрим по ссылке Олег Фочкин в проекте «Басманные
+                    посиделки: в гостях у московских краеведов».
+
+                </text>
             </div>
         );
     }
@@ -170,19 +191,19 @@ function RatingBlock() {
     return (
         <div className={styles.rating_block}>
             <input name="rating" value="5" id="rating_5" type="radio"/>
-            <label htmlFor="rating_5" className={styles.label_rating}></label>
+            <label htmlFor="rating_5" className={styles.label_rating}/>
 
             <input name="rating" value="4" id="rating_4" type="radio"/>
-            <label htmlFor="rating_4" className={styles.label_rating}></label>
+            <label htmlFor="rating_4" className={styles.label_rating}/>
 
             <input name="rating" value="3" id="rating_3" type="radio"/>
-            <label htmlFor="rating_3" className={styles.label_rating}></label>
+            <label htmlFor="rating_3" className={styles.label_rating}/>
 
             <input name="rating" value="2" id="rating_2" type="radio"/>
-            <label htmlFor="rating_2" className={styles.label_rating}></label>
+            <label htmlFor="rating_2" className={styles.label_rating}/>
 
             <input name="rating" value="1" id="rating_1" type="radio"/>
-            <label htmlFor="rating_1" className={styles.label_rating}></label>
+            <label htmlFor="rating_1" className={styles.label_rating}/>
         </div>
     );
 }

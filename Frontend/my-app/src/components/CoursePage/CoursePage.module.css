@@ -52,7 +52,7 @@
     outline: none;
     color: white;
     border: 0;
-    top:15px;
+    top: 15px;
 }
 
 .Content {
@@ -112,29 +112,34 @@
     padding: 15px;
     min-width: 1050px;
     width: 85vw;
-    height: auto;
-    display: inline-block;
+    height: 100%;
+    margin: 0 auto;
 }
 
 .video {
-    display: inline;
-    position: relative;
+    position: absolute;
 }
-.titleOfCourse{
+
+.VideoWrapper{
+    position: relative;
+    float: left;
+    margin-top: 15px;
+}
+
+.titleOfCourse {
     position: relative;
     font-weight: bold;
     font-size: 20px;
-    top:0;
+    top: 0;
 }
 
 .videoDescription {
-    display: inline;
-    top: 45px;
-    margin-left:20px;
-    height: 360px;
+    width: 550px;
     float: right;
-    position: absolute;
+    margin-top: 15px;
+    position: relative;
     min-width: 390px;
+    display: table-cell;
 }
 
 .MarkOfTheCourse {
@@ -157,8 +162,8 @@
     right: 15px;
 }
 
-.secondHead{
-    height:70px;
+.secondHead {
+    height: 70px;
     min-width: 1050px;
     display: inline-block;
     width: 87vw;
@@ -170,30 +175,30 @@
     position: relative;
     top: 9px;
     left: 7px;
-  }
+}
 
-  .rating_block input[type="radio"] {
+.rating_block input[type="radio"] {
     display: none;
-  }
+}
 
-  .label_rating {
+.label_rating {
     float: right;
     display: block;
     width: 25px;
     height: 25px;
     background: url(..\..\sourses\rating_pic\rating.png) no-repeat 50% 0;
     cursor: pointer;
-  }
+}
 
-  /*Пишем правила смены положения background-а*/
+/*Пишем правила смены положения background-а*/
 .rating_block .label_rating:hover, /*Правило для ховера на текущий лейбл*/
 .rating_block .label_rating:hover ~ .label_rating, /*Правило для всех следующих лейблов по DOM дереву*/
 .rating_block input[type="radio"]:checked ~ .label_rating /*Правило для всех следующих лейблов после выбранного инпута, чтобы звездочки как бы зафиксировались*/
 {
-  background-position: 50% -25px;
+    background-position: 50% -25px;
 }
 
-.FeedbackSend{
+.FeedbackSend {
     position: absolute;
     border-radius: 5px;
     height: 33px;
@@ -207,7 +212,7 @@
     top: 5px;
 }
 
-.FeedbackText{
+.FeedbackText {
     position: relative;
     top: 30px;
     max-width: 225px;
