@@ -88,7 +88,7 @@
     background-color: white;
     margin-top: 5px;
     padding: 15px;
-    width: 700px;
+    width: 775px;
     height: auto;
 }
 
@@ -99,8 +99,7 @@
 }
 
 .TextInMainBody {
-    text-transform: capitalize;
-    text-align: start;
+    text-align: justify;
 }
 
 .CourseContent {
@@ -134,12 +133,14 @@
 }
 
 .videoDescription {
-    width: 550px;
-    float: right;
+    width: 400px;
+    float: left;
     margin-top: 15px;
+    margin-left: 10px;
     position: relative;
     min-width: 390px;
     display: table-cell;
+    text-align: justify;
 }
 
 .MarkOfTheCourse {
