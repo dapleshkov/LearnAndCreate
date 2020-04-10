@@ -1,0 +1,45 @@
+.Registration {
+    grid-area: content;
+    background-color: white;
+    height: 534px;
+    text-align: center;
+}
+button:hover{
+    background-color: #c70000;
+}
+
+.Inf {
+    position: relative;
+    font-size: large;
+    margin-right: 312px;
+    margin-top: 120px;
+    text-align: center;
+}
+
+.Password {
+    font-kerning: normal;
+    position: relative;
+    border-radius: 5px;
+    margin: 12px 25px;
+    height: 30px;
+    width: 437px;
+    text-blink: password;
+}
+
+.Register {
+    position: relative;
+    border-radius: 5px;
+    height: 30px;
+    width: 437px;
+    margin: 12px 25px;
+    background-color: red;
+    outline: none;
+    color: white;
+    border: 0;
+}
+
+.help{
+    color:red;
+    position: relative;
+    font-size: small;
+}

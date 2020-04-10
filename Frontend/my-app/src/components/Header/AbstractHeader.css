@@ -1,0 +1,185 @@
+.Abstract-header {
+    grid-area: header;
+    background-color: white;
+    height: 60px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    min-width: 1200px;
+    font-family: Roboto;
+}
+
+.Header-components {
+    position: relative;
+    margin: 10px;
+    height:40px;
+}
+
+.Header-text {
+    position: relative;
+    text-align: center;
+    color: #42444C;
+    width: 160px;
+    height: 20px;
+}
+
+.Reg {
+    position: relative;
+    right: 15px;
+    top: 7px;
+    padding: 5px;
+    background: #FF1A2E;
+    border-radius: 7px;
+    color: white;
+    float: right;
+    border: black 3px;
+}
+
+.Enter {
+    position: relative;
+    padding: 5px;
+    top: 7px;
+    right: 25px;
+    background-color: white;
+    border-radius: 7px;
+    outline: none;
+    border: black 1px;
+    float: right;
+}
+
+.dropDownMenu {
+    position: relative;
+    width: auto;
+    min-width: 90px;
+    height: 40px;
+    float: right;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.topmenu > li:last-child {
+    margin-right: 0;
+}
+
+.topmenu > li {
+    position: relative;
+    display: inline-block;
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 0;
+}
+
+.maina {
+    position: relative;
+}
+
+.ddusn {
+    position: relative;
+    top:2px;
+}
+
+.arrow-wrapper {
+    position: relative;
+    display: inline-block;
+    float: right;
+    left: 40px;
+    bottom: 2px;
+    width: 15px;
+    height: 24px;
+}
+
+.ico {
+    position: relative;
+    border-radius: 15px;
+    float: right;
+    bottom: 3px;
+    right: 10px;
+    width: 30px;
+}
+
+a {
+    display: block;
+    padding: 10px 10px 10px 5px;
+    text-decoration: none;
+    outline: none;
+    font-family: 'Lora', serif;
+    transition: .5s linear;
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    min-width: 130px;
+    z-index: 10;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+.dropDownMenu ul li {
+    width: auto;
+}
+
+.dropDownMenu ul a {
+    color: black;
+}
+
+.dropDownMenu .submenu {
+    visibility: hidden;
+    background: white;
+}
+
+.dropDownMenu ul li:hover .submenu {
+    visibility: visible;
+}
+
+.item:hover {
+    background-color: #c7c5ce;
+}
+
+.maina:hover {
+    background-color: #c7c5ce;
+}
+
+
+.InputForm{
+    position: relative;
+    width: 460px;
+    margin: 0 auto 0 220px;
+    height: 0;
+}
+
+.SearchInput{
+    position: relative;
+    background: #FFFFFF;
+    border: 0;
+    width: 400px;
+    height: 33px;
+    padding-left: 5px;
+}
+
+.SearchIcon {
+    position: relative;
+    height: 22px;
+    order: 1;
+    margin-top: 6px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.Search {
+    display: inline-flex;
+    padding: 3px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
+    padding: 3px;
+}
+
+.SearchInput:focus {
+    outline: none;
+}

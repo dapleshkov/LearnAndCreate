@@ -1,0 +1,47 @@
+.Wrapper {
+    grid-area: content;
+}
+
+.avatar{
+    position: relative;
+    width: 150px;
+    border-radius: 75px;
+    border: 1px solid black;
+    left: 10vw;
+}
+
+.info{
+    position: relative;
+    top: 0;
+}
+
+.courses{
+    text-align: center;
+    position: relative;
+}
+
+.separator{
+    border: none;
+    background-color: black;
+    height: 1px;
+    width: 1125px;
+}
+
+.username{
+    position: relative;
+    left: 20vw;
+    top: -15vh;
+    float: top;
+}
+.name{
+    float: bottom;
+    position: relative;
+    left: 15vw;
+    top: -10vh;
+}
+
+.coursesCount{
+    position: relative;
+    top: -15vh;
+    left: 30vw;
+}
