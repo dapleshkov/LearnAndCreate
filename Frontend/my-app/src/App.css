@@ -1,0 +1,15 @@
+.Abstract-wrapper {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-rows: 2fr;
+    grid-template-areas: "header" "content";
+    grid-template-columns: 100%;
+    grid-gap: 2vh;
+}
+
+
+
+*{
+  outline: 1px solid red;
+}

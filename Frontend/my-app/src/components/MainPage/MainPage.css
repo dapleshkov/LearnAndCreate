@@ -1,0 +1,98 @@
+.Main {
+    grid-area: content;
+    text-align: center;
+    min-width: 1200px;
+    font-family: Roboto;
+}
+
+.Menu {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 120px;
+    margin-top:20px;
+    min-width: 1000px;
+}
+
+.Menu-categories {
+    display: inline-block;
+}
+
+.Menu-item {
+    float: left;
+    padding: 25px;
+}
+
+.Label {
+    background-image: url(../../sourses/mainpage_pics/main_back.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 500px;
+    width: 100%;
+}
+
+.MPTitle {
+    position: absolute;
+    height: 150px;
+    top: 175px;
+    width: 100%;
+    color: white;
+    font-size: 60px;
+}
+
+button:hover {
+    background-color: #c70000;
+}
+
+.Try-button {
+    position: relative;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 8px;
+    width: 185px;
+    display:block;
+    margin-top: 15px;
+    margin-left: 45%;
+    background-color: red;
+    outline: none;
+    color: white;
+}
+
+.CourseBlock {
+    font-family: Roboto;
+    position: relative;
+    margin: 8px 10px;
+    padding: 0;
+    height: 120px;
+    width: 500px;
+    display: inline-block;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.CourseName {
+    font-weight: bold;
+    position: relative;
+    margin: 0 auto;
+    top: 30px;
+    text-decoration: none;
+    color: black;
+}
+
+.ImgCourse {
+    float: left;
+    border-radius: 10px;
+    height: 120px;
+    width: 160px;
+}
+
+.CourseDescription {
+    position: relative;
+    margin: 0 auto;
+    top: 40px;
+    text-decoration: none;
+    color: black;
+}
+
